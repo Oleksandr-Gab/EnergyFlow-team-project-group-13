@@ -5,7 +5,7 @@
 /* змінні для використання */
 @import url('./base/root.css');
 /* базові та загальні стилі */
-@import url('./base/defalt.css');
+@import url('./base/default.css');
 
 /* стилі частин */
 @import url('./patrials/header.css');
