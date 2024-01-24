@@ -1,7 +1,20 @@
-@import url('./base/modern-normalize.css');
+/* нормалізатор та скид стилів*/
+@import url('./base/modern-normalize.css'); 
 @import url('./base/reset.css');
+
+/* змінні для використання */
 @import url('./base/root.css');
+/* базові та загальні стилі */
 @import url('./base/defalt.css');
 
+/* стилі частин */
+@import url('./patrials/header.css');
+@import url('./patrials/hero.css');
+@import url('./patrials/quote-of-the-day.css');
+@import url('./patrials/exercises.css');
+@import url('./patrials/daily-norm.css');
+@import url('./patrials/footer.css');
 
+/* стилі модалок */
+@import url('./patrials/header.css');
 @import url('./patrials/header.css');
