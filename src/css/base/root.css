@@ -1,0 +1,30 @@
+
+/* в даномуц файлі змінні для використання в стилізаціях 
+для використання приклад color: var(--blackColorText-Background);
+*/
+
+
+/* локальний шрифт 
+підключення
+селектор {
+  font-family: DM-Sans;
+  font-weight: 400;
+}
+*/
+@font-face {
+    font-family: DM-Sans;
+    src: url('DMSans-VariableFont_opsz\,wght.ttf');
+  }
+
+  :root {
+    --whiteBackground: rgba(255, 255, 255, 1); /* білий стандартний колір фону */
+    --greyBackground: rgba(232, 232, 232, 1); /* світло-сірий колір фону */
+    --greyColorText-Background-Btn: rgba(126, 132, 127, 1); /* сірий колір фону, шрифту та кнопок */
+    --blackColorText-Background: rgba(27, 27, 27, 1); /* темно-сірий колір фону тв шрифту */
+    --colorHoverBtn: rgba(95, 101, 96, 1); /* колір Hover кнопок */
+    --colorTextQuote: rgba(246, 246, 246, 0.6); /* окремий колір тексту */
+    --textCardTitle: rgba(246, 246, 246, 1); /* колір тексту назви карти */
+    --textCartText: rgba(246, 246, 246, 0.4); /* колір додаткового тексту карти */
+    --colorFooterSpan: rgba(246, 246, 246, 0.3); /* колір вставки "BODY" у футері */
+}
+

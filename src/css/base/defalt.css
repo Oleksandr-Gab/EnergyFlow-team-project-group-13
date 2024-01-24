@@ -1,3 +1,14 @@
+/* в цьому файлі прописуююсть загальні стилі, що є спільними для всіх або більшості частин */
+
+
+body {
+  font-size: 28px;
+  font-family: DM-Sans;
+  font-weight: 400;
+  color: var(--blackColorText-Background);
+  background-color: var(--whiteBackground);
+}
+
 .container {
     width: 100%;
     padding-left: 20px;
@@ -23,3 +34,4 @@
       width: 1440px;
     }
   }
+
