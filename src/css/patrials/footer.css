@@ -14,6 +14,7 @@
     width: 100%;
 
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .footer-logo {
@@ -30,6 +31,10 @@
     cursor: pointer;
 }
 
+.footer-logo:hover{
+    transform: scale(1.1);
+}
+
 .footer-social-media-list {
     display: flex;
     align-items: center;
@@ -38,18 +43,22 @@
     margin-bottom: 40px;
 }
 
-.footer-social-media-icon{
     display: inline-block;
     border-radius: 10px;
     border: 1px solid rgba(246, 246, 246, 0.20);
-    fill: #F6F6F6;
-    stroke: #F6F6F6;
+    fill: var(--textCardTitle);
+    stroke: var(--textCardTitle);
+    opacity: 0.8;
+
+    padding: 8px;
 }
 
 .footer-social-media-icon:hover,
 .footer-social-media-icon:focus {
     fill: var(--colorHoverBtn);
     stroke: var(--colorHoverBtn);
+    border: 1px solid var(--colorHoverBtn);
+    transform: scale(1.1);
 }
 
 
@@ -194,8 +203,8 @@
         }
 
         .footer-social-media-icon {
-            width: 44px;
-            height: 44px;
+            width: 28px;
+            height: 28px;
         }
 
         .footer-tablet-flex{
@@ -285,7 +294,7 @@
   @media screen and (min-width: 1440px) {
 
 .background-footer {
-        background-image: url('../../img/footer-backgr-tablet.jpg');
+        background-image: url('../../img/footer-backgr-desk.jpg');
         padding: 64px 48px 26px ;
 
         max-width: 1408px;
@@ -330,6 +339,7 @@
                 /* 96.875% */
                 letter-spacing: -1.28px;
             max-width: 488px;
+            
         }
 
         .footer-company-slogan-accent {
