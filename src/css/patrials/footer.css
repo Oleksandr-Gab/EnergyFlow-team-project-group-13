@@ -1,6 +1,5 @@
 
 
-
 .background-footer {
     background-color: var(--blackColorText-Background);
     background-image: url('../../img/footer-backgr.jpg');
@@ -39,9 +38,12 @@
     margin-bottom: 40px;
 }
 
-.footer-social-media-icon {
-stroke: #F6F6F6;
-fill: #F6F6F6;
+.footer-social-media-icon{
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid rgba(246, 246, 246, 0.20);
+    fill: #F6F6F6;
+    stroke: #F6F6F6;
 }
 
 .footer-social-media-icon:hover,
@@ -198,7 +200,6 @@ fill: #F6F6F6;
 
         .footer-tablet-flex{
             display: flex;
-            align-items:first baseline;
         }
 
         .footer-first-block{
@@ -283,7 +284,68 @@ fill: #F6F6F6;
 
   @media screen and (min-width: 1440px) {
 
+.background-footer {
+        background-image: url('../../img/footer-backgr-tablet.jpg');
+        padding: 64px 48px 26px ;
 
+        max-width: 1408px;
+        width: 100%;
+    }
+
+
+        .footer-tablet-flex{
+            display: flex;
+            margin-bottom: 160px;
+        }
+
+        .footer-first-block{
+            margin-right: 156px;
+        }
+
+        .footer-second-block{
+            display: flex;
+            gap: 160px;
+        }
+
+        .footer-third-block{
+            display: flex;
+            align-items: baseline;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .footer-logo{
+            margin-bottom: 30px;
+        }
+
+                .footer-social-media-list {
+                    gap: 12px;
+                    margin-bottom: 0;
+                }
+
+        .footer-company-slogan{
+            font-size: 64px;
+                font-weight: 400;
+                line-height: 62px;
+                /* 96.875% */
+                letter-spacing: -1.28px;
+            max-width: 488px;
+        }
+
+        .footer-company-slogan-accent {
+            font-size: 64px;
+                font-weight: 400;
+                line-height: 62px;
+                /* 96.875% */
+                letter-spacing: -1.28px;
+        }
+
+    .footer-form-label {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24px;
+            /* 133.333% */
+}
 
 
 
