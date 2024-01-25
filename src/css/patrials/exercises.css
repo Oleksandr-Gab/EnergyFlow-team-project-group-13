@@ -1,0 +1,88 @@
+
+/* from 375px */
+@media screen and (min-width: 375px) {
+    
+.exercises-section-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+   
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    background: #E8E8E8;
+}
+.filter-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+.filter-button {
+    display: flex;
+    padding: 7px 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border: none;
+    border-radius: 30px;
+    background: #F6F6F6;
+    
+    
+
+    color: #1B1B1B;
+    font-size: 14px;       
+    font-weight: 400;
+    line-height: 1.28;
+    /* 128.571% */
+}
+
+.filter-button:hover {
+    background: #7E847F;
+    color: #F6F6F6;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;   
+    
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    background: #FFF;
+}
+
+.card {
+    width: 295px;
+    height: 232px;
+    padding: 45px 105px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid #808080;
+}
+
+/* .card-item {
+    max-width: calc((100% - 24px*2)/3);   
+} */
+/* animation */
+/* .card-item:hover {
+    cursor: pointer;
+    transform: scale(1.025);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+} */
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
+}
