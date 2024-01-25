@@ -13,6 +13,8 @@
 
     max-width: 335px;
     width: 100%;
+
+    box-sizing: border-box;
 }
 
 .footer-logo {
@@ -81,7 +83,7 @@ fill: #F6F6F6;
 }
 
 .footer-form-label {
-    color: var(--textCardTitle);
+    color: var(--bodyBackground);
     font-family: "DM Sans";
     font-size: 14px;
     font-style: normal;
@@ -145,7 +147,7 @@ fill: #F6F6F6;
 }
 
 .footer-text {
-    color: var(--textCardTitle);
+    color: var(--bodyBackground);
     font-family: "DM Sans";
     font-size: 12px;
     font-style: normal;
@@ -163,9 +165,126 @@ fill: #F6F6F6;
 /*~ ______________________________375px_________________________________ */
 
 @media screen and (min-width: 375px) {
-    .container {
-        max-width: 375px;
-    }
+
+
+        .background-footer {
+            padding: 40px 20px 20px 20px;
+            
+        }
 
 
 }
+
+/*~ ______________________________768px_________________________________ */
+
+  @media screen and (min-width: 768px) {
+
+    .background-footer {
+            background-image: url('../../img/footer-backgr-tablet.jpg');
+            padding: 66px 41px 32px 48px;
+    
+            max-width: 736px;
+            width: 100%;
+    
+            box-sizing: border-box;
+
+            
+        }
+
+        .footer-social-media-icon {
+            width: 44px;
+            height: 44px;
+        }
+
+        .footer-tablet-flex{
+            display: flex;
+            align-items:first baseline;
+        }
+
+        .footer-first-block{
+            margin-right: 140px;
+        }
+
+        .footer-third-block{
+            display: flex;
+            align-items: baseline;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .footer-logo{
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+                .footer-social-media-list {
+                    gap: 12px;
+                    margin-bottom: 0;
+                }
+
+        .footer-company-slogan{
+            font-size: 54px;
+            line-height: 50px;
+                /* 92.593% */
+                letter-spacing: -1.08px;
+        }
+
+        .footer-company-slogan-accent {
+            font-size: 54px;
+            line-height: 50px;
+                /* 92.593% */
+                letter-spacing: -1.08px;
+        }
+
+    .footer-form-label {
+        color: var(--bodyBackground);
+            font-family: "DM Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            /* 133.333% */
+}
+
+.footer-form-input {
+    padding: 12px 14px 12px;
+    max-width: 352px;
+}
+
+.footer-form-input::placeholder {
+    color: var(--colorTextQuote);
+    font-size: 16px;
+    line-height: 24px;
+    /* 128.571% */
+}
+
+.footer-form-btn {
+    max-width: 352px;
+
+    font-size: 16px;
+    line-height: 24px;
+
+}
+
+.footer-text{
+        font-size: 14px;
+        line-height: 18px;
+        /* 128.571% */
+        letter-spacing: -0.28px;
+}
+
+
+  }
+
+
+/*~ ______________________________1440px_________________________________ */
+
+
+
+  @media screen and (min-width: 1440px) {
+
+
+
+
+
+  }
