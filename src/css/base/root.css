@@ -3,7 +3,6 @@
 для використання приклад color: var(--blackColorText-Background);
 */
 
-
 /* локальний шрифт 
 підключення
 селектор {
@@ -12,8 +11,8 @@
 }
 */
 @font-face {
-    font-family: DM-Sans;
-    src: url('../fonts/DMSans-Variable.ttf');
+    font-family: 'DM-Sans';
+    src: url('../../fonts/DMSans-Variable.ttf');
   }
 
   :root {

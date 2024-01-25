@@ -1,0 +1,54 @@
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.logo-link {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  color: #1b1b1b;
+  font-family: 'DM Sans';
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.32px;
+}
+.menu-back-drop {
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+.menu-btn-close {
+}
+.menu-close {
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-item {
+}
+.nav-link {
+}
+.social {
+}
+.social-list {
+  display: flex;
+}
+.social-item {
+}
+.social-link {
+}
+.social-icon {
+  display: none;
+}
+.social-burger {
+}
+.menu-button-open {
+}
+.menu-open {
+}
