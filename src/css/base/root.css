@@ -13,7 +13,7 @@
 */
 @font-face {
     font-family: DM-Sans;
-    src: url('DMSans-VariableFont_opsz\,wght.ttf');
+    src: url('../fonts/DMSans-Variable.ttf');
   }
 
   :root {
