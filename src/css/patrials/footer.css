@@ -14,6 +14,7 @@
     width: 100%;
 
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .footer-logo {
@@ -285,7 +286,7 @@
   @media screen and (min-width: 1440px) {
 
 .background-footer {
-        background-image: url('../../img/footer-backgr-tablet.jpg');
+        background-image: url('../../img/footer-backgr-desk.jpg');
         padding: 64px 48px 26px ;
 
         max-width: 1408px;
@@ -330,6 +331,7 @@
                 /* 96.875% */
                 letter-spacing: -1.28px;
             max-width: 488px;
+            
         }
 
         .footer-company-slogan-accent {
