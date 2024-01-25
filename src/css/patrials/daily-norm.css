@@ -12,7 +12,7 @@
 }
 
 .motivation-img {
-    background-image: url('../img/women-sportswear-mob.jpg');
+    background-image: url(../../img/women-sportswear-mob.jpg);
     display: grid;
     place-items: center;
 }
@@ -78,7 +78,7 @@
     }
 
     .motivation-img {
-        background-image: url('../img/women-sportswear-tablet.jpg');
+        background-image: url(../../img/women-sportswear-tablet.jpg);
     }
 
     .motivation-sport-item {
