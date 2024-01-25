@@ -1,0 +1,115 @@
+.motivation-container {
+    margin: auto;
+    display: grid;
+    justify-content: center;
+}
+
+.motivation-img, .motivation-sport {
+    width: 335px;
+    height: 269px;
+    border-radius: 50px;
+    position: relative;
+}
+
+.motivation-img {
+    background-image: url('../img/women-sportswear-mob.jpg');
+    display: grid;
+    place-items: center;
+}
+
+
+
+.motivation-sport {
+    background-color: #1B1B1B;
+    color: #fff;
+}
+
+.motivation-sport-item {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.motivation-sport-title,
+.motivation-sport-text,
+.motivation-sport-description {
+    margin-left: 70px;
+}
+
+.motivation-sport-title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    padding-top: 40px;
+}
+
+.motivation-sport-text {
+    font-size: 14px;
+    line-height: 1.29;
+    margin-top: 0;
+    margin-bottom: 14px;
+    color: #F6F6F699;
+}
+
+.motivation-sport-description {
+    font-size: 14px;
+    line-height: 1.29;
+    overflow: hidden;
+    margin-right: 20px;
+    color: #F6F6F699;
+}
+
+@media screen and (min-width: 768px) {
+    .motivation-container {
+        display: grid;
+        justify-content: center;
+    }
+
+    .motivation-img,
+    .motivation-sport {
+        width: 736px;
+        height: 302px;
+    }
+
+    .motivation-img {
+        background-image: url('../img/women-sportswear-tablet.jpg');
+    }
+
+    .motivation-sport-item {
+        top: 65px;
+        left: 64px;
+    }
+
+    .motivation-sport-title {
+        margin-left: 114px;
+        padding-top: 64px;
+    }
+
+    .motivation-sport-text {
+        margin-bottom: 25px;
+        margin-left: 114px;
+    }
+
+    .motivation-sport-description {
+        margin-right: 96px;
+        margin-left: 114px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .motivation-container {
+        display: flex;
+    }
+
+    .motivation-sport,
+    .motivation-img {
+        width: 704px;
+        height: 302px;
+    }
+}
