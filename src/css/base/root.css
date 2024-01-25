@@ -17,6 +17,7 @@
   }
 
   :root {
+    --bodyBackground: rgba(246, 246, 246, 1);
     --whiteBackground: rgba(255, 255, 255, 1); /* білий стандартний колір фону */
     --greyBackground: rgba(232, 232, 232, 1); /* світло-сірий колір фону */
     --greyColorText-Background-Btn: rgba(126, 132, 127, 1); /* сірий колір фону, шрифту та кнопок */

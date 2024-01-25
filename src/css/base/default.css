@@ -6,7 +6,7 @@ body {
   font-family: DM-Sans;
   font-weight: 400;
   color: var(--blackColorText-Background);
-  background-color: var(--whiteBackground);
+  background-color: var(--bodyBackground);
 }
 
 .container {
