@@ -1,7 +1,3 @@
-@font-face {
-  font-family: 'DM Sans';
-  src: url('../../../src/fonts/DMSans-VariableFont_opsz,wght.ttf');
-}
 .hero-container {
   max-width: 335px;
   background-color: #f6f6f6;
