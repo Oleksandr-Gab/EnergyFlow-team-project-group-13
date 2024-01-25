@@ -38,8 +38,8 @@
 }
 
 .footer-social-media-icon {
-/* stroke: #F6F6F6;
-fill: #F6F6F6; */
+stroke: #F6F6F6;
+fill: #F6F6F6;
 }
 
 .footer-social-media-icon:hover,
@@ -60,6 +60,9 @@ fill: #F6F6F6; */
     letter-spacing: -0.64px;
 
     margin-bottom: 20px;
+
+    max-width: 279px;
+    width: 100%;
 }
 
 .footer-company-slogan-accent {
@@ -84,9 +87,9 @@ fill: #F6F6F6; */
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
+    max-width: 268px;
+    width: 100%;
     /* 128.571% */
-
-    margin-bottom: 20px;
 }
 
 .footer-form-input {
@@ -100,6 +103,7 @@ fill: #F6F6F6; */
 
     cursor: pointer;
     margin-bottom: 12px;
+    margin-top: 20px;
 }
 
 .footer-form-input::placeholder {
