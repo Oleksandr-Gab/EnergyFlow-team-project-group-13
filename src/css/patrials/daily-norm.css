@@ -5,7 +5,7 @@
 }
 
 .motivation-img {
-    background-image:url('/src/img/women-sportswear-mob.jpg');
+    background-image: url('../img/women-sportswear-mob.jpg');
     position: relative;
     border-radius: 50px;
     max-width: 100%;
@@ -86,7 +86,7 @@
         height: 302px;
         border-radius: 50px;
 
-        background: url('/src/img/women-sportswear-tablet.jpg');
+        background-image: url('../img/women-sportswear-tablet.jpg');
         position: relative;
         color: #fff;
         max-width: 100%;
