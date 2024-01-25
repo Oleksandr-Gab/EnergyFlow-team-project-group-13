@@ -1,0 +1,172 @@
+.motivation-container {
+    margin: auto;
+    display: grid;
+    justify-content: center;
+}
+
+.motivation-img {
+    background-image:url('/src/img/women-sportswear-mob.jpg');
+    position: relative;
+    border-radius: 50px;
+    max-width: 100%;
+
+    width: 335px;
+    height: 269px;
+
+    display: block;
+    display: grid;
+    place-items: center;
+}
+
+.motivation-sport {
+    width: 335px;
+    height: 269px;
+
+    position: relative;
+    border-radius: 50px;
+    background-color: #1B1B1B;
+    color: #fff;
+}
+
+.motivation-sport-item {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+
+    background-color: #F6F6F61A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.motivation-sport-title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin-bottom: 2px;
+    margin-top: 0px;
+    margin-left: 70px;
+    padding-top: 40px;
+}
+
+.motivation-sport-text {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.29;
+
+    margin-top: 0px;
+    margin-bottom: 14px;
+    margin-left: 70px;
+}
+
+.motivation-sport-description {
+    font-size: 14px;
+    line-height: 1.29;
+    overflow: hidden;
+
+    margin-left: 70px;
+    margin-right: 20px;
+    margin-top: 0px;
+}
+
+
+@media screen and (min-width: 768px) {
+    
+    .motivation-container {
+        display: grid;
+        justify-content: center;
+    }
+    
+    .motivation-img {
+        width: 736px;
+        height: 302px;
+        border-radius: 50px;
+
+        background: url('/src/img/women-sportswear-tablet.jpg');
+        position: relative;
+        color: #fff;
+        max-width: 100%;
+        
+        display: block;
+        display: grid;
+        justify-content: center;
+    }
+    
+    .motivation-sport {
+        width: 736px;
+        height: 302px;
+        border-radius: 50px;
+
+        position: relative;
+        background-color: #1B1B1B;
+        color: #fff;
+        
+    }
+
+    .motivation-sport-item {
+        position: absolute;
+        top: 65px;
+        left: 64px;
+        width: 32px;
+        height: 32px;
+
+        background-color: #F6F6F61A;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .motivation-sport-title {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1;
+
+        margin-bottom: 2px;
+        margin-top: 0px;
+        margin-left: 114px;
+        padding-top: 64px;
+    }
+    
+    .motivation-sport-text {
+        color: #fff;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.29;
+
+        margin-top: 0px;
+        margin-bottom: 25px;
+        margin-left: 114px;
+    }
+    
+    .motivation-sport-description {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.29;
+        overflow: hidden;
+        
+        margin-left: 114px;
+        margin-right: 96px;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+    .motivation-container {
+        display: flex;
+    }
+
+    .motivation-sport {
+        width: 704px;
+        height: 302px;
+    }
+
+    .motivation-img {
+        width: 704px;
+        height: 302px;
+    }
+}
