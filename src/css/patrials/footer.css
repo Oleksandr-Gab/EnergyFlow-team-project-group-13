@@ -31,6 +31,10 @@
     cursor: pointer;
 }
 
+.footer-logo:hover{
+    transform: scale(1.1);
+}
+
 .footer-social-media-list {
     display: flex;
     align-items: center;
@@ -43,14 +47,19 @@
     display: inline-block;
     border-radius: 10px;
     border: 1px solid rgba(246, 246, 246, 0.20);
-    fill: #F6F6F6;
-    stroke: #F6F6F6;
+    fill: var(--textCardTitle);
+    stroke: var(--textCardTitle);
+    opacity: 0.8;
+
+    padding: 8px;
 }
 
 .footer-social-media-icon:hover,
 .footer-social-media-icon:focus {
     fill: var(--colorHoverBtn);
     stroke: var(--colorHoverBtn);
+    border: 1px solid var(--colorHoverBtn);
+    transform: scale(1.1);
 }
 
 
@@ -195,8 +204,8 @@
         }
 
         .footer-social-media-icon {
-            width: 44px;
-            height: 44px;
+            width: 28px;
+            height: 28px;
         }
 
         .footer-tablet-flex{
