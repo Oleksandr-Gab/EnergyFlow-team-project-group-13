@@ -1,11 +1,8 @@
-body {
-  @media screen and (max-width: 767px) {
-    &.lock {
-      overflow: hidden;
-    }
+@media screen and (max-width: 767px) {
+  .lock {
+    overflow: hidden;
   }
 }
-
 .header-wrap {
   display: flex;
   justify-content: space-between;
@@ -152,8 +149,8 @@ body {
 
   @media screen and (max-width: 767px) {
     border: 1px solid rgba(126, 132, 127, 0.2);
-    fill: rgba(126, 132, 127, 0.2)
-    
+    fill: rgba(126, 132, 127, 0.2);
+
     &:hover,
     &:focus {
       border: 1px solid rgba(95, 101, 96, 0.2);
