@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const footerform = document.querySelector('.footer-form')
 
 footerform.addEventListener("submit", handleSubmit);
