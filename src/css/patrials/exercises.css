@@ -44,8 +44,12 @@
 
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
-    background: #fff;
+    row-gap: 20px;
+    /* background: #fff; */
+    /* ----------------------------- */
+    background-color: var(--greyBackground);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .card {
@@ -82,3 +86,147 @@
     align-items: center;
   }
 }
+
+/* ---------------------------------------------------------------------- */
+
+/* ###################################################################### */
+
+/* ------------------------ style exercises-card------------------------- */
+
+.gallery-card {
+  background-color: #fff;
+  width: 295px;
+  height: 165;
+  padding: 16px;
+  border-radius: 15px;
+}
+
+.gallery-search {
+  margin-bottom: 40px;
+  margin-top: 20px;
+  margin: 20px auto 40px auto;
+}
+
+.gallery-input {
+  border-radius: 30px;
+  padding: 12px 14px;
+  border: none;
+}
+
+.gallery-input::placeholder {
+  color: var(--blackColorText-Background);
+
+  font-family: 'DM Sans';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29;
+}
+
+.header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --greyColorText-Background-Btn   (#7e847f)*/
+
+.workout {
+  border-radius: 15px;
+  background-color: var(--greyColorText-Background-Btn);
+  border: none;
+  padding: 5px 8px;
+  color: #f6f6f6;
+
+  font-family: 'DM Sans';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #1b1b1b;
+  font-family: 'DM Sans';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.workout-btn-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 8px;
+}
+
+/* --blackColorText-Background  (#1b1b1b)*/
+
+.workout-btn {
+  color: var(--blackColorText-Background);
+
+  font-family: 'DM Sans';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29;
+
+  background-color: inherit;
+  border: none;
+}
+
+.title-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 16px;
+
+  color: #1b1b1b;
+  font-family: 'DM Sans';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+
+  margin-top: 27px;
+  margin-bottom: 18px;
+}
+
+.params-card {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 6px;
+
+  color: #1b1b1b;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'DM Sans';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.params-text {
+  color: rgba(27, 27, 27, 0.4);
+}
+
+.run {
+  /* fill: #808080; */
+  background-color: #000;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .information-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 14px;
+  }
+}
+/* ------------------------------------------------------------- */
