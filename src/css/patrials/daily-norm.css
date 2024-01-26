@@ -91,6 +91,10 @@
         left: 64px;
     }
 
+    .motivation-sport-item-icon {
+        fill: var(--bodyBackground);
+    }
+
     .motivation-sport-title {
         margin-left: 114px;
         padding-top: 64px;
