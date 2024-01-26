@@ -1,7 +1,6 @@
+import './js/favoritePart';
+import './js/exercises';
 
-
-
-import './js/favoritePart'
 
 //------------footer----------
-import './js/footer'
+import './js/footer';
