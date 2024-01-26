@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EnergyFlow-team-project-group-13</title>
     
-    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-c6f45420.js"></script>
+    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/vendor-0cb09735.js"></script>
+    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-0042c27e.js"></script>
     <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-f224a074.css">
   </head>
   <body>
@@ -225,7 +226,8 @@
 
                     <form class="footer-form">
                         <label class="footer-form-label">Subscribe and learn about new exercises!</label>
-                        <input type="text" class="footer-form-input" placeholder="Email">
+                        <input name="footerInput" type="email" class="footer-form-input" placeholder="Email" required
+                            pattern="^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$">
                         <button type="submit" class="footer-form-btn">Send</button>
                     </form>
 
@@ -248,6 +250,8 @@
         </div>
     </div>
 </section>
+
+<script href="../js/footer.js"></script>
 
     <div id="exerciseModal" class="modal is-hidden">
   <button class="close" id="closeModalBtn">&#10006;</button>
