@@ -16,20 +16,20 @@ refs.rateStars.addEventListener('click', getRate);
 
 function closeModal(e) {
   if (e.target.classList.contains('backdrop')) {
-    refs.modalBackdrop.classList.remove('is-open');
+    refs.modalBackdrop.classList.remove('is-hidden');
     window.removeEventListener('click', closeModal);
   }
 }
 function closeModalByBtn(e) {
   if (e.currentTarget) {
-    refs.modalBackdrop.classList.remove('is-open');
+    refs.modalBackdrop.classList.add('is-hidden');
     window.removeEventListener('click', closeModal);
   }
 }
 
 function closeModalByEsc(e) {
   if (e.code === 'Escape') {
-    refs.modalBackdrop.classList.remove('is-open');
+    refs.modalBackdrop.classList.add('is-hidden');
     window.removeEventListener('click', closeModal);
   }
 }
@@ -55,6 +55,6 @@ function getData(e) {
     email: e.target.elements.email.value,
     comment: e.target.elements.comment.value,
   });
-  refs.modalBackdrop.classList.remove('is-open');
+  refs.modalBackdrop.classList.remove('is-hidden');
   refs.form.removeEventListener('submit', getData);
 }
