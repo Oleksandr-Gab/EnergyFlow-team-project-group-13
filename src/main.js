@@ -1,4 +1,2 @@
-
-
-
-import './js/favoritePart'
+import './js/favoritePart';
+import './js/exercises';
