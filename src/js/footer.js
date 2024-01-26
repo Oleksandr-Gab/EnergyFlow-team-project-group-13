@@ -13,7 +13,7 @@ function handleSubmit(event) {
         email: footerEmailValue
     })
     .then(response => {
-        if (response.status >= 200 && response.status < 300) {
+        if (response.status >= 200 && response.status < 300 ) {
             iziToast.success({
             title: 'OK',
                 message: 'Successfully inserted record!',
