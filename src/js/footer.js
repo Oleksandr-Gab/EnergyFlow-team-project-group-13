@@ -1,10 +1,6 @@
-import axios from 'axios';
-import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 const footerform = document.querySelector('.footer-form');
-// const footerInput = document.querySelector('.footer-form-input')
 
 footerform.addEventListener("submit", handleSubmit);
 
