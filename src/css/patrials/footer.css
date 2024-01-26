@@ -115,6 +115,8 @@
     border: 1px solid #F6F6F6;
     box-sizing: border-box;
 
+    color: var(--bodyBackground);
+
     cursor: pointer;
     margin-bottom: 12px;
     margin-top: 20px;
