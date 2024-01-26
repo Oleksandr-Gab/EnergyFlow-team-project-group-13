@@ -38,12 +38,12 @@ function callApiWithQuery(filter) {
         (html, { name, filter, imgUrl }) =>
           html +
           `<li class="GalleryItem">
-         <div class="Card">
+        <div class="Card">
           <a class="GalleryLink" href="${imgUrl}">
-           <img class="GalleryImage"
-           src="${imgUrl}"
-           alt="${filter}"
-           />
+            <img class="GalleryImage"
+            src="${imgUrl}"
+            alt="${filter}"
+          />
           </a>
           </div>          
           <div class="CardDescription">

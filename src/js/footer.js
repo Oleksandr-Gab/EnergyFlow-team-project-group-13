@@ -1,5 +1,3 @@
-import 'izitoast/dist/css/iziToast.min.css';
-
 const footerform = document.querySelector('.footer-form');
 
 footerform.addEventListener("submit", handleSubmit);
