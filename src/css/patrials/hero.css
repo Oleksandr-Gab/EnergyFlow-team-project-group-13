@@ -39,7 +39,7 @@
   border: 1px solid rgba(246, 246, 246, 0.3);
   padding: 4px 10px;
   color: #f6f6f6;
-  font-family: 'DM Sans';
+  /* font-family: 'DM Sans'; */
   font-size: 12px;
 }
 
@@ -77,23 +77,177 @@
 }
 
 /* tablet */
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
+    .hero-container {
+      display: flex;
+      flex-direction: row;
+      max-width: 736px;
+      /* background-color: #f6f6f6; */
+    } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+
     .hero-picture-container {
-      background-image: url(../../img/hero.img/hero-tablet-2x.jpg);
+      height: 900px;
+      width: 248px;
+      background-image: url(../../img/hero.img/hero-tablet-1x.jpg);
+      /* background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; */
+      border-radius: 50px 0px 50px 50px;
+      margin-bottom: 0px;
+      /* position: relative; */
+    }
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      .hero-picture-container {
+        background-image: url(../../img/hero.img/hero-tablet-2x.jpg);
+      }
+    }
+    .hero-popular-sport-container {
+      /* display: flex; */
+      /*  flex-direction: column; */
+      /* position: absolute; */
+      /* bottom: 0px; */
+      padding-left: 20px;
+      padding-bottom: 60px;
+      gap: 8px;
+    }
+    .hero-popular-line {
+      /* display: flex;
+      flex-direction: row; */
+      gap: 8px;
+    }
+    .hero-popular-p {
+      /*  border-radius: 30px;
+      border: 1px solid rgba(246, 246, 246, 0.3); */
+      padding: 4px 16px;
+      /*  color: #f6f6f6; */
+      /* font-family: 'DM Sans'; */
+      font-size: 16px;
+    }
+
+    .hero-title-container {
+      max-width: 488px;
+      /*  background-color: var(--whiteBackground); */
+      border-radius: 0px 50px 50px 50px;
+    }
+    .hero-title {
+      padding: 231px 32px 25px 32px;
+      /* margin: 0 auto; */
+      max-width: 424px;
+      /* width: 100%; */
+      font-size: 98px;
+      /* font-weight: 400; */
+      line-height: 0.97;
+      letter-spacing: -1.96px;
+    }
+    /* .hero-title-span {
+      color: #7e847f;
+      font-style: italic;
+    } */
+    .hero-p {
+      max-width: 396px;
+      /* width: 100%;
+      color: #1b1b1b; */
+
+      font-size: 18px;
+      /* font-style: normal;
+      font-weight: 400; */
+      line-height: 1.33;
+      letter-spacing: -0.18px;
+      margin-left: 32px;
+      padding-bottom: 192px;
     }
   }
-} */
+}
 
 /* Desktop */
-/* @media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
+    .hero-container {
+      /* display: flex;
+      flex-direction: row; */
+      max-width: 1408px;
+      /* background-color: #f6f6f6; */
+    } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+
     .hero-picture-container {
-      background-image: url(../../img/hero.img/hero-desktop-2x.jpg);
+      height: 884px;
+      width: 704px;
+      background-image: url(../../img/hero.img/hero-desktop-1x.jpg);
+      /* background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; */
+      /* border-radius: 50px 0px 50px 50px;
+      margin-bottom: 0px; */
+      /* position: relative; */
+    }
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      .hero-picture-container {
+        background-image: url(../../img/hero.img/hero-desktop-2x.jpg);
+      }
+    }
+    .hero-popular-sport-container {
+      /* display: flex; */
+      /*  flex-direction: column; */
+      /* position: absolute; */
+      /* bottom: 0px; */
+      padding-left: 48px;
+      padding-bottom: 32px;
+      /* gap: 8px; */
+    }
+    .hero-popular-line {
+      /* display: flex;
+      flex-direction: row; */
+      /* gap: 8px; */
+    }
+    .hero-popular-p {
+      /*  border-radius: 30px;
+      border: 1px solid rgba(246, 246, 246, 0.3); */
+      /* padding: 4px 16px; */
+      /*  color: #f6f6f6; */
+      /* font-family: 'DM Sans'; */
+      /* font-size: 16px; */
+    }
+
+    .hero-title-container {
+      max-width: 704px;
+      /*  background-color: var(--whiteBackground); */
+      /*  border-radius: 0px 50px 50px 50px; */
+    }
+    .hero-title {
+      padding: 225px 33px 25px 32px;
+      /* margin: 0 auto; */
+      max-width: 639px;
+      /* width: 100%; */
+      font-size: 120px;
+      /* font-weight: 400; */
+      line-height: 0.96;
+      letter-spacing: -2.4px;
+    }
+    /* .hero-title-span {
+      color: #7e847f;
+      font-style: italic;
+    } */
+    .hero-p {
+      max-width: 528px;
+      /* width: 100%;
+      color: #1b1b1b; */
+
+      /* font-size: 18px; */
+      /* font-style: normal;
+      font-weight: 400; */
+      /*  line-height: 1.33;
+      letter-spacing: -0.18px;
+      margin-left: 32px; */
+      padding-bottom: 241px;
     }
   }
-} */
+}
