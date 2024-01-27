@@ -4,7 +4,6 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 const FILTER_LIST = document.querySelector('.FilterList');
 let filterExercises;
 const GALLERY = document.querySelector('.Gallery');
