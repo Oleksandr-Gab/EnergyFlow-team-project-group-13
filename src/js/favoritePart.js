@@ -1,5 +1,4 @@
 
-
 // const favoritePartInfo = document.querySelector('.favoritePartInfo');
 
 // const savedFavorites = localStorage.getItem("favorite");
@@ -11,3 +10,4 @@
 // ];
 
 // favoritePartInfo.innerHTML = favoriteInfo.join(' ');
+

@@ -1,7 +1,6 @@
-// біліотеки
-import './js/libraies';
+// бібліотеки
+import './js/libraies.js';
 
-import './js/header.js';
 import './js/favoritePart';
 import './js/exercises';
 import './js/modal-form';
