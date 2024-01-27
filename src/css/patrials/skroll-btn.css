@@ -30,7 +30,7 @@
     background-color: var(--colorHoverBtn)
 }
 
-.skroll-btn--active {
+.skroll-btn-active {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);

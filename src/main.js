@@ -10,6 +10,9 @@ import './js/exercisesWaist.js';
 import './js/exercisesPages.js';
 
 
+
+
+
 //------------footer----------
 import './js/footer.js';
 
