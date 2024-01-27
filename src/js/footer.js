@@ -5,7 +5,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 const footerform = document.querySelector('.footer-form');
 const footerInput = document.querySelector('.footer-form-input');
 
-
 const baseURL = 'https://energyflow.b.goit.study/api/subscription';
 
 footerform.addEventListener("submit", handleSubmit);
