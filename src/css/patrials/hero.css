@@ -78,10 +78,7 @@
 
 /* tablet */
 @media screen and (min-width: 768px) {
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .hero-container {
+      .hero-container {
       display: flex;
       flex-direction: row;
       max-width: 736px;
@@ -161,15 +158,12 @@
       margin-left: 32px;
       padding-bottom: 192px;
     }
-  }
+  
 }
 
 /* Desktop */
 @media screen and (min-width: 1440px) {
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .hero-container {
+     .hero-container {
       /* display: flex;
       flex-direction: row; */
       max-width: 1408px;
@@ -249,5 +243,5 @@
       margin-left: 32px; */
       padding-bottom: 241px;
     }
-  }
+  
 }
