@@ -11,9 +11,9 @@ const body = document.body;
 const currentPath = window.location.href;
 console.log(currentPath);
 
-if (currentPath.includes("/favorite.html")) {
+if (currentPath.includes("favorite")) {
   homePageLink.classList.remove('current');
-  favoritePageLink.classList.add('current')
+  favoritePageLink.classList.add('current');
 }
 
 

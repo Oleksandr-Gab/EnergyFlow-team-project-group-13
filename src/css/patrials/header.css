@@ -53,7 +53,7 @@
     padding: 20px;
     position: fixed;
     top: 0;
-    width: 335px;
+    max-width: 335px;
     height: 771px;
     border-radius: 30px;
     right: -100%;
@@ -139,6 +139,10 @@
 .current {
   background-color: var(--whiteBackground);
   border-radius: 30px;
+
+  @media screen and (max-width: 767px) {
+    color: var(--blackColorText-Background);
+  }
 }
 
 .social-list {
