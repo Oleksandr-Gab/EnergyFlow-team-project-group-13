@@ -3,9 +3,9 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { renderImgs } from './exercises.js';
+// import { renderImgs } from '../main.js';
 
-console.log(renderImgs);
+// console.log(renderImgs);
 
 let page;
 let totalItems;
