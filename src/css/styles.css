@@ -17,6 +17,8 @@
 
 @import url('./patrials/favoritePart.css');
 
+
+@import url('./patrials/skroll-btn.css');
 /* стилі модалок */
 @import url('./patrials/modal-pop-up.css');
 @import url('./patrials/modal-form.css');
