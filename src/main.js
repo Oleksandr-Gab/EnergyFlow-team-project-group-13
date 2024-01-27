@@ -10,4 +10,4 @@ import './js/exercisesPages.js';
 import './js/modal-form.js';
 
 //------------footer----------
-import './js/footer';
+import './js/footer.js';
