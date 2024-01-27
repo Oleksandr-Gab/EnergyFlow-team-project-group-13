@@ -9,7 +9,7 @@ const menuBackDrop = document.querySelector('.menu-back-drop');
 const body = document.body;
 
 const currentPath = window.location.pathname;
-
+  console.log(currentPath);
 if (currentPath != '/index.html') {
     homePageLink.classList.remove('current');
     favoritePageLink.classList.add('current');
