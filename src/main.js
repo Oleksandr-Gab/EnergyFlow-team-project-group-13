@@ -2,6 +2,7 @@
 import './js/libraies.js';
 
 // частини
+import './js/header.js';
 import './js/favoritePart.js';
 import './js/exercises.js';
 import './js/exercisesWaist.js';
