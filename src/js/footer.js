@@ -2,9 +2,12 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 const footerform = document.querySelector('.footer-form');
 // const footerInput = document.querySelector('.footer-form-input')
+
+const baseURL = 'https://energyflow.b.goit.study/api/subscription';
+
+const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
 footerform.addEventListener("submit", handleSubmit);
 
@@ -12,27 +15,31 @@ async function handleSubmit(event) {
     event.preventDefault();
     
     const footerEmailValue = event.currentTarget.elements.footerInput.value.trim();
-   
 
     try {
-        const response = await axios.post('https://energyflow.b.goit.study/api/subscription', {
-        email: footerEmailValue
-        })
+        if (emailPattern.test(footerEmailValue)) {
+            const response = await axios.post(baseURL, {
+                email: footerEmailValue
+            });
+        
+            if (response.status >= 200 && response.status < 300) {
+                iziToast.success({
+                    title: 'OK',
+                    message: 'Successfully inserted record!',
+                    color: 'white'
+                });
+                console.log(response.data);
+            }
+        } else {
+            throw new Error('Request failed with status');
+        }
 
-        iziToast.success({
-            title: 'OK',
-                 message: 'Successfully inserted record!',
-                 color: 'white'
-         });
-        
-        console.log(response.data)
-        
     } catch (error) {
         iziToast.error({
-                    title: 'Error',
-                    message: 'Error sending subscription request',
-                });
+            title: 'Error',
+            message: 'Error sending subscription request',
+        });
     }
- 
-};
+}
+
 
