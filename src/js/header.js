@@ -10,9 +10,9 @@ const body = document.body;
 
 const currentPath = window.location.pathname;
   console.log(currentPath);
-if (currentPath != '/index.html') {
-    homePageLink.classList.remove('current');
-    favoritePageLink.classList.add('current');
+if (currentPath = '/index.html') {
+    favoritePageLink.classList.remove('current');
+    homePageLink.classList.add('current');
 }
 
 
