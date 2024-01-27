@@ -35,9 +35,12 @@ async function handleSubmit(event) {
     } catch (error) {
         iziToast.error({
             title: 'Error',
-            message: 'Error sending subscription request',
+            message: error.response.data.message,
+            position: 'center',
+            backgroundColor: 'gray',
         });
     } finally {
         footerInput.value = ''
     }
 }
+
