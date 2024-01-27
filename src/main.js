@@ -10,7 +10,7 @@ import './js/exercisesPages.js';
 
 
 //------------footer----------
-import './js/footer';
+import './js/footer.js';
 
 // модалки
 import './js/modal-form.js';
