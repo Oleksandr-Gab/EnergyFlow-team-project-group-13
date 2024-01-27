@@ -14,8 +14,15 @@
     position: relative;
 }
 
+.motivation-sport-item-icon {
+    fill: var(--bodyBackground);
+}
+
 .motivation-img {
-    background-image: url('../../img/women-sportswear-mob.jpg');
+    background-image: image-set(
+        url('../../img/daly-norm-section/women-sportswear-mob@sm1x.jpg') 1x,
+        url('../../img/daly-norm-section/women-sportswear-mob@sm2x.jpg') 2x
+    );
     display: grid;
     place-items: center;
 }
@@ -31,6 +38,7 @@
     left: 20px;
     width: 32px;
     height: 32px;
+    
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -46,12 +54,13 @@
 .motivation-sport-title {
     font-size: 24px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.33;
     padding-top: 40px;
 }
 
 .motivation-sport-text {
     font-size: 14px;
+    ont-weight: 400;
     line-height: 1.29;
     margin-top: 0;
     margin-bottom: 14px;
@@ -59,8 +68,9 @@
 }
 
 .motivation-sport-description {
-    font-size: 14px;
-    line-height: 1.29;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
     overflow: hidden;
     margin-right: 20px;
     color: #F6F6F699;
@@ -83,16 +93,15 @@
     }
 
     .motivation-img {
-        background-image: url('../../img/women-sportswear-tablet.jpg');
+        background-image: image-set(
+            url('../../img/daly-norm-section/women-sportswear-tablet@1x.jpg') 1x,
+            url('../../img/daly-norm-section/women-sportswear-tablet@2x.jpg') 2x
+        );
     }
 
     .motivation-sport-item {
         top: 65px;
         left: 64px;
-    }
-
-    .motivation-sport-item-icon {
-        fill: var(--bodyBackground);
     }
 
     .motivation-sport-title {

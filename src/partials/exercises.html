@@ -1,15 +1,27 @@
-<section class="container exercises-section-container">
-  <h2 class="title">Exercises</h2>
-  <ul class="filter-list">
-    <li class="filter-item">
-      <button class="filter-button">Muscles</button>
-    </li>
-    <li class="filter-item">
-      <button class="filter-button">Body parts</button>
-    </li>
-    <li class="filter-item">
-      <button class="filter-button">Equipment</button>
-    </li>
-  </ul>
-  <div class="cards-container"></div>
+<section class="container ExercisesSectionContainer">
+  <h2 class="SectionTitle">Exercises</h2>
+  <div class="SearchBlock">
+    <ul class="FilterList">
+      <li class="FilterItem">
+        <button class="FilterButton" type="button" name="Muscles">
+          Muscles
+        </button>
+      </li>
+      <li class="FilterItem">
+        <button class="FilterButton" type="button" name="Body parts">
+          Body parts
+        </button>
+      </li>
+      <li class="FilterItem">
+        <button class="FilterButton" type="button" name="Equipment">
+          Equipment
+        </button>
+      </li>
+    </ul>
+    <input id="search" type="search" placeholder="Search" />
+  </div>
+  <div class="CardsContainer">
+    <ul class="Gallery"></ul>
+  </div>
+  <ul class="PaginationBtn"></ul>
 </section>
