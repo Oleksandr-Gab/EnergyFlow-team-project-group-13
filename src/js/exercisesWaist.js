@@ -3,9 +3,9 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { renderImgs } from './exercises.js';
+// import { renderImgs } from './exercises.js';
 
-console.log(renderImgs);
+// console.log(renderImgs);
 
 let page;
 let totalItems;
@@ -29,7 +29,7 @@ const fetchExercises = async request => {
 
 galleryWaist.addEventListener('click', event => {
   event.preventDefault();
-  //   galleryWaist.innerHTML = '';
+  galleryWaist.innerHTML = '';
 
   galleryWaist.classList.add('information-cards');
 
