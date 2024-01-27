@@ -1,9 +1,9 @@
-
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const footerform = document.querySelector('.footer-form');
+const footerInput = document.querySelector('.footer-form-input');
 
 const baseURL = 'https://energyflow.b.goit.study/api/subscription';
 
@@ -15,19 +15,21 @@ async function handleSubmit(event) {
     const footerEmailValue = event.currentTarget.elements.footerInput.value.trim();
 
     try {
-            const response = await axios.post(baseURL, {
-                email: footerEmailValue
+        const response = await axios.post(baseURL, {
+            email: footerEmailValue
+        });
+
+        if (response.status >= 200 && response.status < 300) {
+            const successMessage = response.data.message;
+            iziToast.success({
+                title: 'OK',
+                message: successMessage,
+                color: 'white',
+                position: 'center'
             });
-        
-            if (response.status >= 200 && response.status < 300) {
-                iziToast.success({
-                    title: 'OK',
-                    message: 'Successfully inserted record!',
-                    color: 'white'
-                });
-                console.log(response.data);
+            
         } else {
-            throw new Error('Request was failed');
+            throw new Error();
         }
 
     } catch (error) {
@@ -35,7 +37,7 @@ async function handleSubmit(event) {
             title: 'Error',
             message: 'Error sending subscription request',
         });
+    } finally {
+        footerInput.value = ''
     }
 }
-
-
