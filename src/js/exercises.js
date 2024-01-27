@@ -7,6 +7,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 export let renderImgs;
 
 const FILTER_LIST = document.querySelector('.filter-list');
+
+
 let filterExercises;
 const GALLERY = document.querySelector('.gallery');
 
