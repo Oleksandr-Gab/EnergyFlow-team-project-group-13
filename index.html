@@ -7,8 +7,8 @@
     <title>EnergyFlow-team-project-group-13</title>
     
     <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/vendor-8cce9181.js"></script>
-    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-1bdb3194.js"></script>
-    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-b17b55a3.css">
+    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-0c83f03c.js"></script>
+    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-c9857ccf.css">
     <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -16,19 +16,32 @@
   <div class="header-wrap">
     <a href="./index.html" class="logo-link">energy.flow</a>
     <div class="menu-back-drop">
-      <nav class="nav">
-        <button type="button" class="menu-btn-close">
-          <svg width="20" height="20" aria-label="button menu">
-            <use class="menu-close" href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#"></use>
+      <nav class="nav" data-menu>
+        <button type="button" class="menu-btn-close" data-menu-close>
+          <svg width="32" height="32" aria-label="button-menu">
+            <use class="menu-close" href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#icon-close"></use>
           </svg>
         </button>
+        <!-- <div class="header-wrap-mob">
+          <a href="./index.html" class="logo-link-mob">energy.flow</a>
+        </div> -->
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="./index.html" class="nav-link current">Home</a>
+            <a
+              href="./index.html"
+              class="nav-link current"
+              data-action="homepage"
+              >Home</a
+            >
           </li>
 
           <li class="nav-item">
-            <a href="./favorite.html" class="nav-link">Favorites</a>
+            <a
+              href="./favorite.html"
+              class="nav-link"
+              data-action="favoritespage"
+              >Favorites</a
+            >
           </li>
         </ul>
         <div class="social">
@@ -109,7 +122,7 @@
       </ul>
     </div>
 
-    <button type="button" class="menu-button-open">
+    <button type="button" class="menu-button-open" data-menu-open>
       <svg width="32" height="18" aria-label="button menu">
         <use class="menu-open" href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#menu-burher"></use>
       </svg>
