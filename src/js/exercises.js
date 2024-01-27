@@ -5,16 +5,15 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 let page;
 let totalItems;
-let totalPages;
+let maxPages;
 const limit = 8;
+
+// maxPages = Math.ceil(totalItems / limit);
 
 // ---------------------------------------------------------
 const gallery = document.querySelector('.cards-container');
-// ---------------------------------------------------------
-const filterList = document.querySelector('.filter-list');
-const cardItem = document.querySelector('.filter-imag');
+const paginationBtn = document.querySelector('.pagination-btn');
 const containerBtn = document.querySelector('.filter-item');
-
 const EXERCISES_URL = new URL('https://energyflow.b.goit.study/api/exercises?');
 const FILTERS_URL = new URL('https://energyflow.b.goit.study/api/filters?');
 
@@ -33,8 +32,6 @@ containerBtn.addEventListener('click', event => {
   event.preventDefault();
   fetchExercises(FILTERS_URL)
     .then(response => {
-      console.log(response.results);
-
       renderFilters(response.results);
     })
     .catch(error => {
@@ -50,28 +47,22 @@ containerBtn.addEventListener('click', event => {
 
 gallery.addEventListener('click', event => {
   event.preventDefault();
-  // gallery.innerHTML = '';
+  gallery.innerHTML = '';
 
-  gallery.classList.add('information-card');
-
-  // filterList.insertAdjacentHTML(
-  //   'afterend',
-  //   `<div class="gallery-search">
-  //           <input class="gallery-input" type="text" placeholder="Search">
-  //           <button>
-  //             <svg class="instagram-icon svg" width="12" height="12">
-  //                 <use href="./img/sprite.svg#icon-instagram"></use>
-  //               </svg>
-  //           </button>
-  //     </div>`
-  // );
+  gallery.classList.add('information-cards');
 
   EXERCISES_URL.searchParams.append('limit', limit);
   EXERCISES_URL.searchParams.append('page', 1);
 
   fetchExercises(EXERCISES_URL)
     .then(response => {
-      console.log(response.results);
+      console.log(response);
+      maxPages = Math.ceil(response.totalPages / limit);
+      console.log(maxPages);
+      if (maxPages > 1) {
+        paginationBtn.style.display = 'flex';
+        renderBtn(maxPages);
+      }
       renderExercises(response.results);
     })
     .catch(error => {
@@ -130,6 +121,18 @@ function renderExercises(arr) {
 
 // ==============================================================================
 
+// filterList.insertAdjacentHTML(
+//   'afterend',
+//   `<div class="gallery-search">
+//           <input class="gallery-input" type="text" placeholder="Search">
+//           <button>
+//             <svg class="instagram-icon svg" width="12" height="12">
+//                 <use href="./img/sprite.svg#icon-instagram"></use>
+//               </svg>
+//           </button>
+//     </div>`
+// );
+
 // Рендер фільтру вправ ---------------------------------
 
 function renderFilters(arr) {
@@ -143,5 +146,16 @@ function renderFilters(arr) {
         </div>`,
       ''
     )
+  );
+}
+
+function renderBtn(num) {
+  let total = 2;
+  if (num > 2) {
+    total = 3;
+  }
+  paginationBtn.insertAdjacentHTML(
+    'afterbegin',
+    '<li class="pagination-item"></li>'.repeat(total)
   );
 }
