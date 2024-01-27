@@ -10,21 +10,11 @@ const body = document.body;
 
 const currentPath = window.location.pathname;
 
-function setCurrentClass(link, path) {
-  if (link) {
-    if (path === link.getAttribute('href')) {
-      link.classList.add('current');
-    } else {
-      link.classList.remove('current');
-    }
-  }
+if (currentPath != '/index.html') {
+    homePageLink.classList.remove('current');
+    favoritePageLink.classList.add('current');
 }
 
-setCurrentClass(homePageLink, '/EnergyFlow-team-project-group-13/index.html');
-setCurrentClass(
-  favoritePageLink,
-  '/EnergyFlow-team-project-group-13/favorite.html'
-);
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
