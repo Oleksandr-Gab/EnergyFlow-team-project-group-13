@@ -1,8 +1,8 @@
-
-/* from 375px */
-@media screen and (min-width: 375px) {
+/* 0-767px */
+@media screen and (max-width: 767px) {
     
 .ExercisesSectionContainer {
+    box-sizing: border-box;
     padding-top: 40px;
     padding-bottom: 40px;
    
@@ -10,6 +10,11 @@
     flex-direction: column;
     border-radius: 30px;
     background: #E8E8E8;
+}
+.SearchBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
 }
 .FilterList {
     margin-top: 20px;
@@ -40,6 +45,18 @@
 .FilterButton:hover {
     background: #7E847F;
     color: #F6F6F6;
+}
+
+#search {
+    background: url("/src/img/sprite.svg#icon-search") no-repeat;
+    background-position: 0 50%;
+    border: none;
+    border-radius: 30px;
+    background-color: #F6F6F6;    
+    /* padding: 12px 181px 12px 14px; */
+    /* align-items: center; */
+    /* gap: 10px; */
+    /* display: none; */
 }
 
 .CardsContainer {
@@ -86,3 +103,10 @@
     align-items: center;
 }
 }
+
+/* tablet 768px + */
+@media screen and (min-width: 768px){}
+
+/* desctop 1440px + */
+@media screen and (min-width: 1440px){}
+
