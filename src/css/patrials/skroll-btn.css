@@ -43,7 +43,7 @@
     height: 13px;
 }
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .div-skroll-btn {
         right: 20px;
         bottom: 20px;
@@ -58,4 +58,4 @@
         width: 23px;
         height: 23px;
     }
-} */
+}
