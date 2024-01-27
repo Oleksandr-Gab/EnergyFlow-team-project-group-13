@@ -12,7 +12,7 @@ let totalItems;
 let maxPages;
 const limit = 8;
 
-const galleryWaist = document.querySelector('.Gallery');
+const galleryWaist = document.querySelector('.gallery');
 
 const EXERCISES_URL = new URL('https://energyflow.b.goit.study/api/exercises?');
 
