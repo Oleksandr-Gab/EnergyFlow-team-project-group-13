@@ -4,9 +4,13 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const FILTER_LIST = document.querySelector('.FilterList');
+export let renderImgs;
+
+const FILTER_LIST = document.querySelector('.filter-list');
+
+
 let filterExercises;
-const GALLERY = document.querySelector('.Gallery');
+const GALLERY = document.querySelector('.gallery');
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
@@ -40,23 +44,23 @@ async function callApiWithQuery(filter) {
       limit: '12',
     },
   });
-  const renderImgs = await API.get('/filters');
+  renderImgs = await API.get('/filters');
   console.log(renderImgs);
   const imgs = renderImgs.data.results.reduce(
     (html, { name, filter, imgUrl }) =>
       html +
-      `<li class="GalleryItem">
-           <div class="Card">
-            <a class="GalleryLink" href="${imgUrl}">
-             <img class="GalleryImage"
+      `<li class="gallery-item">
+           <div class="card">
+            <a class="gallery-link" href="${imgUrl}">
+             <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"
              />
             </a>
             </div>
-            <div class="CardDescription">
-            <p class="NameDescription">${name}</p>
-            <p class="FilterDescription">${filter}</p>
+            <div class="card-description">
+            <p class="name-description">${name}</p>
+            <p class="filter-description">${filter}</p>
             </div>
           </li>`,
     ''
