@@ -1,7 +1,9 @@
-'use strict';
+// для додавання 'npm install axios'
+import axios from 'axios';
+// для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import axios from 'axios';
+
 
 const FILTER_LIST = document.querySelector('.FilterList');
 let filterExercises;
