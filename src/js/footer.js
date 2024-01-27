@@ -5,6 +5,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const footerform = document.querySelector('.footer-form');
 const footerInput = document.querySelector('.footer-form-input');
 
+
 const baseURL = 'https://energyflow.b.goit.study/api/subscription';
 
 footerform.addEventListener("submit", handleSubmit);
@@ -14,6 +15,7 @@ async function handleSubmit(event) {
     
     const footerEmailValue = event.currentTarget.elements.footerInput.value.trim();
 
+    
     try {
         const response = await axios.post(baseURL, {
             email: footerEmailValue
