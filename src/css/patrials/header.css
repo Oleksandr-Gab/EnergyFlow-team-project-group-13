@@ -4,6 +4,15 @@
   }
 }
 
+.header {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  right: 0;
+  left: 0;
+  z-index: 15;
+}
+
 .header-wrap {
   display: flex;
   justify-content: space-between;
@@ -33,6 +42,7 @@
     letter-spacing: -0.56px;
   }
 }
+
 .nav {
   display: flex;
   align-items: center;
@@ -43,8 +53,9 @@
     padding: 20px;
     position: fixed;
     top: 0;
-    width: 210px;
-    height: 100vh;
+    width: 335px;
+    height: 771px;
+    border-radius: 30px;
     right: -100%;
     background-color: var(--greyColorText-Background-Btn);
     transition: all 0.2s;
@@ -72,25 +83,7 @@
     display: flex;
   }
 }
-/* .header-wrap-mob {
-  @media screen and (max-width: 767px) {
-    display: inline-flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: -24px;
-    margin-right: 122px;
-    margin-left: 9px;
 
-    .logo-link-mob {
-      color: #f6f6f6;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.32px;
-    }
-  }
-} */
 .nav-list {
   display: flex;
   align-items: center;
@@ -188,6 +181,45 @@
   }
 }
 
+.header-wrap-mob.index-page .logo-link {
+  display: none;
+
+  @media screen and (max-width: 767px) {
+    color: var(--whiteBackground);
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+  }
+}
+
+.header-wrap-mob.index-page {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 200px;
+}
+/* .header-wrap-mob {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 100px;
+} */
+
+.menu-back-drop.active .nav {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 11;
+}
+
+.menu-back-drop.active {
+  position: fixed;
+  z-index: 10;
+}
+
 .social-link {
   display: flex;
   align-items: center;
@@ -199,7 +231,7 @@
   fill: var(--textCardTitle);
   transition: border-color 0.3s, fill 0.3s;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 767px) {
     border: 1px solid var(--greyColorText-Background-Btn);
     fill: var(--greyColorText-Background-Btn);
 
