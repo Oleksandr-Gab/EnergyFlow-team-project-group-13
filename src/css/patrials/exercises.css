@@ -42,6 +42,11 @@
     line-height: 1.28;
     /* 128.571% */
 }
+.active {
+    color: var(--textCardTitle);
+    background: var(--colorHoverBtn);
+}
+
 
 .filter-button:hover {
     

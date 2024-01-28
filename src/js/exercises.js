@@ -4,9 +4,6 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-export let responce;
-console.log(responce);
-
 const FILTER_LIST = document.querySelector('.filter-list');
 
 let filterExercises;
@@ -18,8 +15,21 @@ const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 // Виклик функції при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery('Muscles');
-  MUSCLES_BUTTON.disabled = true;
+  MUSCLES_BUTTON.classList.add('active');
 });
+
+const getExercisesData = async (filter, page, limit) => {
+  const API = axios.create({
+    baseURL: 'https://energyflow.b.goit.study/api',
+    params: {
+      filter: filter,
+      page: page,
+      limit: limit,
+    },
+  });
+
+  return await API.get('/filters');
+};
 
 //делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
@@ -30,31 +40,18 @@ FILTER_LIST.addEventListener('click', event => {
   if (event.target.tagName === 'BUTTON') {
     // отримаємо значення атрибута "name" button
     filterExercises = event.target.name;
-    console.log(filterExercises);
+    MUSCLES_BUTTON.classList.remove('active');
     //виклик функції з отриманним значенням фільтра
     callApiWithQuery(filterExercises);
   }
 });
 
-// axios.defaults базова адреса
-// axios.defaults.baseURL = 'https://energyflow.b.goit.study/api';
-// const FILTER_URL = `/filters`;
-
 // Функція для виклику API та відображення зображень за обраним фільтром
 async function callApiWithQuery(filter) {
-  const API = axios.create({
-    baseURL: 'https://energyflow.b.goit.study/api',
-    params: {
-      filter: filter,
-      page: '1',
-      limit: '12',
-    },
-  });
-
   try {
-    responce = await API.get('/filters');
+    const data = await getExercisesData(filter, 1, 12);
     // console.log(renderImgs);
-    const imgs = renderImgs.data.results.reduce(
+    const imgs = data.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
@@ -70,7 +67,6 @@ async function callApiWithQuery(filter) {
             <div class="card-description">
             <p class="name-description">${name}</p>
             <p class="filter-description">${filter}</p>
-            
           </li>`,
       ''
     );
