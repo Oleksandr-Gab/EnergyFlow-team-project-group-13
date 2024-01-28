@@ -7,8 +7,8 @@
     <title>EnergyFlow-team-project-group-13</title>
     
     <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/vendor-8cce9181.js"></script>
-    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-b9709a92.js"></script>
-    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-c5204b97.css">
+    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-8f09ca41.js"></script>
+    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-1c7504a0.css">
     <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -371,6 +371,49 @@
     </div>
 </div>
 <div class="a"></div>
+    <button id="openModalBtnPrize">Відкрити модальне вікно</button>
+<div id="myModalPrize">
+  <div class="modal-content-prize">
+    <button id="closeModalPrize" style="cursor: pointer; float: right">
+      &times;
+    </button>
+    <div id="introMessagePrize" class="intro-message-prize">
+      <h2 class="wheel-h2">DO YOU WANT TO RECEIVE A GIFT?</h2>
+      <p class="wheel-p">Press the button and spin the wheel...</p>
+    </div>
+    <div id="congratulationsMessage" class="congratulations-message">
+      <p id="congratulationMessage"></p>
+      <p id="congratulationMessage1"></p>
+      <p id="prizeMessage"></p>
+    </div>
+    <div class="get-prize-container">
+      <form id="prizeForm">
+        <label class="label-get" for="email"></label>
+        <input
+          type="email"
+          id="email-prize"
+          name="email"
+          class="input-get"
+          placeholder="email..."
+          required
+        />
+
+        <button type="button" class="button-get">Get</button>
+      </form>
+    </div>
+    <div class="deal-wheel">
+      <!-- блок с призами -->
+      <ul class="spinner"></ul>
+      <!-- язычок барабана -->
+      <div class="ticker"></div>
+      <!-- кнопка -->
+      <button class="btn-spin">Try your luck</button>
+    </div>
+  </div>
+</div>
+
+<!-- подключаем скрипт -->
+
 
     
   </body>
