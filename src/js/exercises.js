@@ -55,7 +55,7 @@ async function callApiWithQuery(filter) {
     const imgs = renderImgs.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
-        `<li class="gallery-item">
+        `<li class="gallery-item" id=${name}>
           
             <a class="gallery-link" href="${imgUrl}">
              <img class="gallery-image"
