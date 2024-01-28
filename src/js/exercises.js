@@ -13,11 +13,11 @@ const GALLERY = document.querySelector('.gallery');
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
-MUSCLES_BUTTON.disabled = false;
 
 // Виклик функції при завантаженні сторінки
-document.addEventListener('DOMContentLoaded', () => {
-  callApiWithQuery('Muscles');
+document.addEventListener('DOMContentLoaded', async () => {
+  await callApiWithQuery('Muscles');
+  MUSCLES_BUTTON.disabled = true;
 });
 
 //делегування слухача на FILTER_LIST
