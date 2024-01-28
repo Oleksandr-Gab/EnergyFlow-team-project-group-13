@@ -1,21 +1,39 @@
-<section class="Container ExercisesSectionContainer">
-  <h2 class="SectionTitle">Exercises</h2>
-  <ul class="FilterList">
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Muscles">Muscles</button>
+<section class="container exercises-section-container">
+  <h2 class="section-title">Exercises</h2>
+  <div class="filter-list-section">
+    <ul class="filter-list">
+      <li class="filter-item">
+        <button class="filter-button" type="button" name="Muscles">
+          Muscles
+        </button>
+      </li>
+      <li class="filter-item">
+        <button class="filter-button" type="button" name="Body parts">
+          Body parts
+        </button>
+      </li>
+      <li class="filter-item">
+        <button class="filter-button" type="button" name="Equipment">
+          Equipment
+        </button>
+      </li>
+    </ul>
+    <input id="search" type="search" placeholder="Search" />
+  </div>
+  <div class="search-block">
+  </div>
+  <div class="gallery">
+    
+  </div>
+  <ul class="custom-pagination-btn">
+    <li>
+        <button class="render-pagination-btn" type="button" data-btn="1" style="display: none">0</button>
     </li>
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Body%20parts">
-        Body parts
-      </button>
+    <li>
+        <p class="render-pagination-btn render-pagination-btn-active">1</p>
     </li>
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Equipment">
-        Equipment
-      </button>
+    <li>
+        <button class="render-pagination-btn" type="button" data-btn="3">2</button>
     </li>
   </ul>
-  <div class="CardsContainer">
-    <ul class="Gallery"></ul>
-  </div>
 </section>
