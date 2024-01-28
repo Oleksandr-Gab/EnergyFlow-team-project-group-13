@@ -5,7 +5,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-// import { renderImgs } from '../main.js';
+// import { renderImgs } from './exercises.js';
 
 // console.log(renderImgs);
 
@@ -16,39 +16,60 @@ const limit = 8;
 
 const galleryWaist = document.querySelector('.gallery');
 
+const FILTER_URL = new URL('https://energyflow.b.goit.study/api/filters?');
 const EXERCISES_URL = new URL('https://energyflow.b.goit.study/api/exercises?');
 
 // Функція запиту--------------------------------------------
 
-const fetchExercises = async request => {
+export const fetchExercises = async request => {
   const exercises = await axios.get(request);
 
   return exercises.data;
 };
 // --------------------------------------------------------
 
+// --------------filter listener ----------------------------
+FILTER_URL.searchParams.append('filter', 'Muscles');
+fetchExercises(FILTER_URL)
+  .then(response => {
+    console.log(response);
+
+    // name який треба прив'язати на перше фото "Muscles"
+    console.log(response.results[0].name);
+  })
+  .catch(error => {
+    iziToast.error({
+      message: 'Sorry. Please try again!',
+      position: 'topRight',
+    });
+  });
+
 // --------- exercises  listener-----------------------------
 
 galleryWaist.addEventListener('click', event => {
   event.preventDefault();
-  //   galleryWaist.innerHTML = '';
+  galleryWaist.innerHTML = '';
 
+  // console.log(event.target.name);
   galleryWaist.classList.add('information-cards');
 
+  // EXERCISES_URL.searchParams.append('name', event.target.name);
   EXERCISES_URL.searchParams.append('limit', limit);
   EXERCISES_URL.searchParams.append('page', 1);
-  EXERCISES_URL.searchParams.append('name', '?');
 
   fetchExercises(EXERCISES_URL)
     .then(response => {
       console.log(response);
+      // console.log(response);
       //   maxPages = Math.ceil(response.totalPages / limit);
       //   console.log(maxPages);
       //   if (maxPages > 1) {
       //     paginationBtn.style.display = 'flex';
       //     renderBtn(maxPages);
       //   }
+
       renderExercises(response.results);
+      // return response.results;
     })
     .catch(error => {
       iziToast.error({
@@ -57,6 +78,12 @@ galleryWaist.addEventListener('click', event => {
       });
     });
 });
+
+// --------------------------------------------------------
+
+// galleryWaist.addEventListener('click', event => {
+//   console.log(event.target._id);
+// });
 
 // --------------------------------------------------------
 
