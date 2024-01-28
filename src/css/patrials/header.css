@@ -53,7 +53,7 @@
     position: fixed;
     top: 0;
     max-width: 335px;
-    height: 771px;
+    max-height: 771px;
     border-radius: 30px;
     right: -100%;
     background-color: var(--greyColorText-Background-Btn);
@@ -179,7 +179,7 @@
   background-color: transparent;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   .menu-button-open {
     display: none;
   }
