@@ -48,6 +48,7 @@
   background-color: var(--whiteBackground);
   border-radius: 30px;
   padding: 60px 20px 80px 20px;
+  position: relative; /* rrr */
 }
 .hero-title {
   margin: 0 auto;
@@ -79,173 +80,171 @@
 
 /* tablet */
 @media screen and (min-width: 768px) {
-      .hero-container {
-      display: flex;
-      flex-direction: row;
-      /* max-width: 768px; */
-      justify-content: center;
-      /* background-color: #f6f6f6; */
-    } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+  .hero-container {
+    display: flex;
+    flex-direction: row;
+    /* max-width: 768px; */
+    justify-content: center;
+    /* background-color: #f6f6f6; */
+  } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
 
-    .hero-picture-container {
-      height: 900px;
-      width: 248px;
-      background-image: url(../../img/hero.img/hero-tablet-1x.jpg);
-      /* background-repeat: no-repeat;
+  .hero-picture-container {
+    height: 900px;
+    width: 248px;
+    background-image: url(../../img/hero.img/hero-tablet-1x.jpg);
+    /* background-repeat: no-repeat;
       background-size: cover;
       background-position: center; */
-      border-radius: 50px 0px 50px 50px;
-      margin-bottom: 0px;
-      /* position: relative; */
+    border-radius: 50px 0px 50px 50px;
+    margin-bottom: 0px;
+    /* position: relative; */
+  }
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .hero-picture-container {
+      background-image: url(../../img/hero.img/hero-tablet-2x.jpg);
     }
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      .hero-picture-container {
-        background-image: url(../../img/hero.img/hero-tablet-2x.jpg);
-      }
-    }
-    .hero-popular-sport-container {
-      /* display: flex; */
-      /*  flex-direction: column; */
-      /* position: absolute; */
-      /* bottom: 0px; */
-      padding-left: 20px;
-      padding-bottom: 60px;
-      gap: 8px;
-    }
-    .hero-popular-line {
-      /* display: flex;
+  }
+  .hero-popular-sport-container {
+    /* display: flex; */
+    /*  flex-direction: column; */
+    /* position: absolute; */
+    /* bottom: 0px; */
+    padding-left: 20px;
+    padding-bottom: 60px;
+    gap: 8px;
+  }
+  .hero-popular-line {
+    /* display: flex;
       flex-direction: row; */
-      gap: 8px;
-    }
-    .hero-popular-p {
-      /*  border-radius: 30px;
+    gap: 8px;
+  }
+  .hero-popular-p {
+    /*  border-radius: 30px;
       border: 1px solid rgba(246, 246, 246, 0.3); */
-      padding: 4px 16px;
-      /*  color: #f6f6f6; */
-      /* font-family: 'DM Sans'; */
-      font-size: 16px;
-    }
+    padding: 4px 16px;
+    /*  color: #f6f6f6; */
+    /* font-family: 'DM Sans'; */
+    font-size: 16px;
+  }
 
-    .hero-title-container {
-      padding: 215px 32px 192px 32px;
-      /* max-width: 488px; */
-      /*  background-color: var(--whiteBackground); */
-      border-radius: 0px 50px 50px 50px;
-    }
-    .hero-title {
-          /* margin: 0 auto; */
-      margin-bottom: 24px;
-      max-width: 424px;
-      /* width: 100%; */
-      font-size: 98px;
-      /* font-weight: 400; */
-      line-height: 0.97;
-      letter-spacing: -1.96px;
-    }
-    /* .hero-title-span {
+  .hero-title-container {
+    padding: 215px 32px 192px 32px;
+    /* max-width: 488px; */
+    /*  background-color: var(--whiteBackground); */
+    border-radius: 0px 50px 50px 50px;
+  }
+  .hero-title {
+    /* margin: 0 auto; */
+    margin-bottom: 24px;
+    max-width: 424px;
+    /* width: 100%; */
+    font-size: 98px;
+    /* font-weight: 400; */
+    line-height: 0.97;
+    letter-spacing: -1.96px;
+  }
+  /* .hero-title-span {
       color: #7e847f;
       font-style: italic;
     } */
-    .hero-p {
-      max-width: 396px;
-      /* width: 100%;
+  .hero-p {
+    max-width: 396px;
+    /* width: 100%;
       color: #1b1b1b; */
 
-      font-size: 18px;
-      /* font-style: normal;
+    font-size: 18px;
+    /* font-style: normal;
       font-weight: 400; */
-      line-height: 1.33;
-      letter-spacing: -0.18px;
-      margin-left: 0;
-      /* padding-bottom: 192px; */
-    }
-  
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    margin-left: 0;
+    /* padding-bottom: 192px; */
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1440px) {
-     .hero-container {
-      /* display: flex;
+  .hero-container {
+    /* display: flex;
       flex-direction: row; */
-      /* max-width: 1440px; */
-      /* background-color: #f6f6f6; */
-    } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+    /* max-width: 1440px; */
+    /* background-color: #f6f6f6; */
+  } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
 
-    .hero-picture-container {
-      height: 884px;
-      width: 704px;
-      background-image: url(../../img/hero.img/hero-desktop-1x.jpg);
-      /* background-repeat: no-repeat;
+  .hero-picture-container {
+    height: 884px;
+    width: 704px;
+    background-image: url(../../img/hero.img/hero-desktop-1x.jpg);
+    /* background-repeat: no-repeat;
       background-size: cover;
       background-position: center; */
-      /* border-radius: 50px 0px 50px 50px;
+    /* border-radius: 50px 0px 50px 50px;
       margin-bottom: 0px; */
-      /* position: relative; */
+    /* position: relative; */
+  }
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .hero-picture-container {
+      background-image: url(../../img/hero.img/hero-desktop-2x.jpg);
     }
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      .hero-picture-container {
-        background-image: url(../../img/hero.img/hero-desktop-2x.jpg);
-      }
-    }
-    .hero-popular-sport-container {
-      /* display: flex; */
-      /*  flex-direction: column; */
-      /* position: absolute; */
-      /* bottom: 0px; */
-      padding-left: 48px;
-      padding-bottom: 32px;
-      /* gap: 8px; */
-    }
-    .hero-popular-line {
-      /* display: flex;
+  }
+  .hero-popular-sport-container {
+    /* display: flex; */
+    /*  flex-direction: column; */
+    /* position: absolute; */
+    /* bottom: 0px; */
+    padding-left: 48px;
+    padding-bottom: 32px;
+    /* gap: 8px; */
+  }
+  .hero-popular-line {
+    /* display: flex;
       flex-direction: row; */
-      /* gap: 8px; */
-    }
-    .hero-popular-p {
-      /*  border-radius: 30px;
+    /* gap: 8px; */
+  }
+  .hero-popular-p {
+    /*  border-radius: 30px;
       border: 1px solid rgba(246, 246, 246, 0.3); */
-      /* padding: 4px 16px; */
-      /*  color: #f6f6f6; */
-      /* font-family: 'DM Sans'; */
-      /* font-size: 16px; */
-    }
+    /* padding: 4px 16px; */
+    /*  color: #f6f6f6; */
+    /* font-family: 'DM Sans'; */
+    /* font-size: 16px; */
+  }
 
-    .hero-title-container {
-      padding: 225px 32px 241px 32px;
-      /* max-width: 704px; */
-      /*  background-color: var(--whiteBackground); */
-      /*  border-radius: 0px 50px 50px 50px; */
-    }
-    .hero-title {
-      margin-bottom: 25px;
-      /* margin: 0 auto; */
-      max-width: 639px;
-      /* width: 100%; */
-      font-size: 120px;
-      /* font-weight: 400; */
-      line-height: 0.96;
-      letter-spacing: -2.4px;
-    }
-    /* .hero-title-span {
+  .hero-title-container {
+    padding: 225px 32px 241px 32px;
+    /* max-width: 704px; */
+    /*  background-color: var(--whiteBackground); */
+    /*  border-radius: 0px 50px 50px 50px; */
+  }
+  .hero-title {
+    margin-bottom: 25px;
+    /* margin: 0 auto; */
+    max-width: 639px;
+    /* width: 100%; */
+    font-size: 120px;
+    /* font-weight: 400; */
+    line-height: 0.96;
+    letter-spacing: -2.4px;
+  }
+  /* .hero-title-span {
       color: #7e847f;
       font-style: italic;
     } */
-    .hero-p {
-      max-width: 528px;
-      /* width: 100%;
+  .hero-p {
+    max-width: 528px;
+    /* width: 100%;
       color: #1b1b1b; */
 
-      /* font-size: 18px; */
-      /* font-style: normal;
+    /* font-size: 18px; */
+    /* font-style: normal;
       font-weight: 400; */
-      /*  line-height: 1.33;
+    /*  line-height: 1.33;
       letter-spacing: -0.18px;
       margin-left: 32px; */
-      /* padding-bottom: 241px; */
-    }
-  
+    /* padding-bottom: 241px; */
+  }
 }

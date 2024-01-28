@@ -1,3 +1,7 @@
+import axios from 'axios';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 const prizes = [
   {
     text: 'One-Month Membership',
@@ -199,7 +203,36 @@ spinner.addEventListener('transitionend', () => {
 setupWheel();
 
 /* email */
-var buttonGetPrize = document.getElementsByClassName('button-get');
+
+const prizeform = document.querySelector('#prizeForm');
+const prizeInput = document.querySelector('.input-get');
+
+prizeform.addEventListener('submit', prizeSubmit);
+
+async function prizeSubmit(event) {
+  event.preventDefault();
+
+  const prizeEmailValue = event.currentTarget.elements.prizeInput.value.trim();
+  if (!validateEmailPrize(prizeEmailValue)) {
+    return messageValidEmailPrize();
+  }
+}
+
+const validateEmailPrize = email => {
+  const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  return pattern.test(email);
+};
+
+const messageValidEmailPrize = () => {
+  iziToast.info({
+    title: '',
+    message: 'Please give us a valid email.',
+    color: 'white',
+    position: 'center',
+  });
+};
+
+/* var buttonGetPrize = document.getElementsByClassName('button-get');
 function claimPrize() {
   var email = document.getElementById('email-prize').value;
 
@@ -211,7 +244,7 @@ function claimPrize() {
 }
 buttonGetPrize.onclick = function () {
   claimPrize();
-};
+}; */
 
 var modal = document.getElementById('myModalPrize');
 var openModalBtnPrize = document.getElementById('openModalBtnPrize');
