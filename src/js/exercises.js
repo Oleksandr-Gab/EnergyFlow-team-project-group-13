@@ -4,7 +4,8 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-export let renderImgs;
+export let responce;
+console.log(responce);
 
 const FILTER_LIST = document.querySelector('.filter-list');
 
@@ -49,14 +50,15 @@ async function callApiWithQuery(filter) {
       limit: '12',
     },
   });
+
   try {
-    renderImgs = await API.get('/filters');
+    responce = await API.get('/filters');
     // console.log(renderImgs);
     const imgs = renderImgs.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-          
+           <div class="card">
             <a class="gallery-link" href="${imgUrl}">
              <img class="gallery-image"
              src="${imgUrl}"
