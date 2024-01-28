@@ -10,7 +10,7 @@
 .motivation-img, .motivation-sport {
     width: 335px;
     height: 269px;
-    border-radius: 50px;
+    border-radius: 30px;
     position: relative;
 }
 
@@ -68,11 +68,12 @@
 }
 
 .motivation-sport-description {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.28;
     overflow: hidden;
-    margin-right: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     color: #F6F6F699;
 }
 
@@ -90,6 +91,7 @@
     .motivation-sport {
         width: 736px;
         height: 302px;
+        border-radius: 50px;
     }
 
     .motivation-img {
@@ -117,6 +119,10 @@
     .motivation-sport-description {
         margin-right: 96px;
         margin-left: 114px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+
     }
 }
 
