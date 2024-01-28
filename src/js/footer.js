@@ -17,6 +17,7 @@ async function handleSubmit(event) {
         return messageValidEmail();
     }; 
 
+    
     try {
         const response = await axios.post(baseURL, {
             email: footerEmailValue
