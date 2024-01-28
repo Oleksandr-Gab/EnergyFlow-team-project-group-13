@@ -46,6 +46,7 @@
 }
 .quote-info {
   padding-left: 44px;
+  min-height: 100px;
 }
 .quote-text {
   color: var(--colorTextQuote);
