@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import './js/favoritePart';
 import './js/exercises';
-
+import './js/prize';
 
 //------------footer----------
 import './js/footer';
