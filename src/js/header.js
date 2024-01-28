@@ -8,11 +8,12 @@ const favoritePageLink = document.querySelector(
 const menuBackDrop = document.querySelector('.menu-back-drop');
 const body = document.body;
 
-const currentPath = window.location.pathname;
+const currentPath = window.location.href;
+console.log(currentPath);
 
-if (!currentPath.includes("/index.html")) {
-    homePageLink.classList.remove('current');
-    favoritePageLink.classList.add('current');
+if (currentPath.includes("favorite")) {
+  homePageLink.classList.remove('current');
+  favoritePageLink.classList.add('current');
 }
 
 

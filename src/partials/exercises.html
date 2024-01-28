@@ -1,6 +1,6 @@
 <section class="container exercises-section-container">
   <h2 class="section-title">Exercises</h2>
-  <div class="search-block">
+  <div class="filter-list-section">
     <ul class="filter-list">
       <li class="filter-item">
         <button class="filter-button" type="button" name="Muscles">
@@ -20,8 +20,20 @@
     </ul>
     <input id="search" type="search" placeholder="Search" />
   </div>
-  <!-- <div class="cards-container"> -->
-  <ul class="gallery"></ul>
-  <!-- </div> -->
-  <ul class="pagination-btn"></ul>
+  <div class="search-block">
+  </div>
+  <div class="gallery">
+    
+  </div>
+  <ul class="custom-pagination-btn">
+    <li>
+        <button class="render-pagination-btn" type="button" data-btn="1" style="display: none">0</button>
+    </li>
+    <li>
+        <p class="render-pagination-btn render-pagination-btn-active">1</p>
+    </li>
+    <li>
+        <button class="render-pagination-btn" type="button" data-btn="3">2</button>
+    </li>
+  </ul>
 </section>
