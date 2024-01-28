@@ -12,7 +12,6 @@ import './js/exercisesPages.js';
 
 
 
-
 //------------footer----------
 import './js/footer.js';
 
@@ -23,7 +22,6 @@ import './js/skroll-btn.js'
 import './js/favoritePart.js';
 
 // модалки
+import './js/prize';
 import './js/modal-pop-up.js';
 import './js/modal-form.js';
-
-

@@ -1,5 +1,5 @@
 /* нормалізатор та скид стилів*/
-@import url('./base/modern-normalize.css'); 
+@import url('./base/modern-normalize.css');
 @import url('./base/reset.css');
 
 /* змінні для використання */
@@ -25,3 +25,4 @@
 /* стилі модалок */
 @import url('./patrials/modal-pop-up.css');
 @import url('./patrials/modal-form.css');
+@import url('./patrials/prize.css');

@@ -1,0 +1,310 @@
+/* МОДАЛКА */
+
+.wheel-h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+
+  color: #120e0e; /* #edae0c; */
+  white-space: nowrap;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: gradientAnimation 5s infinite alternate;
+}
+.wheel-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+
+  color: #120e0e; /* #edae0c; */
+  white-space: nowrap;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: gradientAnimation 5s infinite alternate;
+}
+
+.modal-content-prize {
+  /* width: 80%; */
+
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: rgb(240, 244, 245);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#openModalBtnPrize {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.input-get {
+  max-width: 200px;
+  width: 100%;
+  padding: 4px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+#closeModalPrize {
+  border: none;
+}
+
+.button-get {
+  background-color: black;
+  color: #fff;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.button-get:hover {
+  background-color: #2e2f2f;
+}
+#prizeForm {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.get-prize-container {
+  display: none;
+}
+
+.congratulations-message {
+  display: flex;
+  text-align: center;
+}
+#congratulationsMessage {
+  max-width: 250px;
+  width: 100%;
+}
+
+#congratulationMessage {
+  font-size: 20px;
+  font-weight: 700;
+}
+#congratulationMessage1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+#prizeMessage {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Колесо */
+#myModalPrize {
+  /* подключаем сетку */
+  display: grid;
+  /* ставим всё по центру */
+  place-items: center;
+  /* если что-то не помещается на своё место — скрываем то, что не поместилось */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#myModalPrize {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* общий блок для всех элементов */
+.deal-wheel {
+  justify-content: center; /* mobile */
+  /* задаём переменные блока */
+  /* размеры колеса */
+  --size: clamp(250px, 60vmin, 700px);
+  /* настройки яркости и заливки фона секторов */
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+    hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+    hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+  );
+  /* добавляем позиционирование относительно других элементов */
+  position: relative;
+  /* подключаем сетку */
+  display: grid;
+  grid-gap: calc(var(--size) / 20);
+  /* выравниваем содержимое блока по центру */
+  align-items: center;
+
+  /* задаём имена областей внутри сетки */
+  grid-template-areas:
+    'spinner'
+    'trigger';
+  /* устанавливаем размер шрифта */
+  font-size: calc(var(--size) / 30);
+  /* box-sizing: border-box; */
+}
+
+/* всё, что относится ко внутренним элементам главного блока, будет находиться в области сетки с названием spinner */
+.deal-wheel > * {
+  grid-area: spinner;
+  box-sizing: border-box;
+}
+
+/* сам блок и кнопка будут находиться в области сетки с названием trigger и будут выровнены по центру */
+.deal-wheel .btn-spin {
+  grid-area: trigger;
+  justify-self: center;
+  box-sizing: border-box;
+}
+
+/* сектор колеса */
+.spinner {
+  /* добавляем относительное позиционирование */
+  position: relative;
+  /* подключаем сетку */
+  display: grid;
+  /* выравниваем всё по центру */
+  align-items: center;
+  /* добавляем элемент в сетку */
+  grid-template-areas: 'spinner';
+  /* устанавливаем размеры */
+  width: var(--size);
+  height: var(--size);
+  /* поворачиваем элемент  */
+  transform: rotate(calc(var(--rotate, 25) * 1deg));
+  /* рисуем круглую обводку, а всё, что не поместится, — будет скрыто за кругом */
+  border-radius: 50%;
+  box-sizing: border-box;
+  padding: 0;
+
+  /* Додаємо контур */
+  border: 4px solid rgb(62, 184, 119); /* Зелений контур */
+  border-radius: 50%; /* Закруглюємо кут круга */
+  padding: 15px; /* Задаємо відступ для контура */
+  /* Градієнтний фон контура */
+  background: linear-gradient(to right, #4caf50, #45a049);
+
+  /* Тінь контура */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Додаємо тінь, кольоровий градієнт */
+}
+
+/* всё, что внутри этого блока, будет находиться в области сетки с названием spinner */
+.spinner * {
+  grid-area: spinner;
+  box-sizing: border-box;
+}
+
+/* текст на секторах */
+.prize {
+  font-weight: bold;
+  /* включаем «гибкую» вёрстку */
+  display: flex;
+  align-items: center;
+
+  /* задаём отступы от краёв блока */
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 21);
+
+  /* устанавливаем размеры */
+  width: 50%;
+  height: 50%;
+  /* устанавливаем координаты, относительно которых будем вращать текст */
+  transform-origin: center right;
+  /* поворачиваем текст */
+  transform: rotate(var(--rotate));
+  /* запрещаем пользователю выделять мышкой текст на секторах */
+  user-select: none;
+}
+
+/* язычок */
+.ticker {
+  /* добавляем относительное позиционирование */
+  position: relative;
+  /* устанавливаем размеры */
+  left: calc(var(--size) / -15);
+  width: calc(var(--size) / 10);
+  height: calc(var(--size) / 20);
+  /* фон язычка */
+  background: var(--lg);
+
+  /* делаем так, чтобы язычок был выше колеса */
+  z-index: 1;
+  /* форма язычка */
+  clip-path: polygon(20% 0, 100% 50%, 20% 100%, 0% 50%);
+  /* устанавливаем точку, относительно которой будет вращаться язычок при движении колеса */
+  transform-origin: center left;
+}
+
+/* кнопка запуска колеса */
+.btn-spin {
+  display: inline; /*  */
+  color: white;
+  background: black;
+  border: none;
+  /* берём размер шрифта такой же, как в колесе */
+  font-size: inherit;
+  /* добавляем отступы от текста внутри кнопки */
+  padding: 0.9rem 2rem 1rem;
+  /* скругляем углы */
+  border-radius: 0.5rem;
+  /* меняем внешний вид курсора над кнопкой на руку*/
+  cursor: pointer;
+}
+
+/* если кнопка нажата и неактивна */
+.btn-spin:disabled {
+  display: none;
+}
+
+/* анимация вращения */
+.is-spinning .spinner {
+  transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
+}
+
+/* анимация движения язычка */
+.is-spinning .ticker {
+  animation: tick 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* эффект, когда колесо задевает язычок при вращении */
+@keyframes tick {
+  40% {
+    /* чуть поворачиваем язычок наверх в середине анимации */
+    transform: rotate(-12deg);
+  }
+}
+
+/* анимируем выпавший сектор */
+.prize.selected .text {
+  /* делаем текст белым */
+
+  /* настраиваем длительность анимации */
+  animation: selected 3s ease;
+}
+
+/* настраиваем анимацию текста на выпавшем секторе по кадрам */
+@keyframes selected {
+  /* что происходит на 25% от начала анимации */
+  25% {
+    /* увеличиваем текст в 1,25 раза */
+    transform: scale(1.25);
+    /* добавляем тексту тень */
+    text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1);
+  }
+  40% {
+    transform: scale(0.92);
+    text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
+  }
+  60% {
+    transform: scale(1.02);
+    text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
+  }
+  75% {
+    transform: scale(0.98);
+  }
+  85% {
+    transform: scale(1);
+  }
+}
