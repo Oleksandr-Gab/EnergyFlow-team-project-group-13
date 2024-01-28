@@ -8,9 +8,9 @@
 }
 
 .motivation-img, .motivation-sport {
-    width: 335px;
+    max-width: 335px;
     height: 269px;
-    border-radius: 50px;
+    border-radius: 30px;
     position: relative;
 }
 
@@ -48,7 +48,7 @@
 .motivation-sport-title,
 .motivation-sport-text,
 .motivation-sport-description {
-    margin-left: 70px;
+    padding-left: 70px;
 }
 
 .motivation-sport-title {
@@ -68,12 +68,20 @@
 }
 
 .motivation-sport-description {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.28;
     overflow: hidden;
     margin-right: 20px;
     color: #F6F6F699;
+}
+
+@media screen and (min-width: 375px) {
+    .motivation-img,
+    .motivation-sport {
+        max-width: 335px;
+        height: 269px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -85,7 +93,9 @@
         padding-top: 16px;
         padding-bottom: 16px;
     }
-
+    .motivation-sport {
+        border-radius: 50px;
+    }
     .motivation-img,
     .motivation-sport {
         width: 736px;
@@ -117,6 +127,12 @@
     .motivation-sport-description {
         margin-right: 96px;
         margin-left: 114px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+        overflow: hidden;
+        margin-right: 20px;
+        color: #F6F6F699;
     }
 }
 
