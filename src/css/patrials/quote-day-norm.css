@@ -1,9 +1,9 @@
-.quote-container {
+/* .quote-container {
     width: 335px;
     height: 545px;
     margin-top: 20px;
 
-}
+} */
 
 .quote-sportswear-img {
     height: 272px;
@@ -26,30 +26,30 @@
     height: 272px;
 }
 
-.quote-card {
+/* .quote-card {
     display: flex;
     margin-bottom: 12px;
-}
+} */
 
 .quote-run {
     fill: var(--textCardTitle);
     margin-right: 12px;
 }
-
+/* 
 .quote-title {
     min-width: 160px;
     color: var(--textCardTitle);
     font-size: 20px;
     font-weight: 500;
     line-height: 1.4;
-}
+} */
 
-.quote-commas {
+/* .quote-commas {
     fill: var(--textCardTitle);
     margin-left: 61px;
-}
+} */
 
-.quote-info {
+/* .quote-info {
     padding-left: 44px;
 }
 
@@ -67,16 +67,16 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
-}
+} */
 
 /*! TABLET STYLES */
 @media screen and (min-width: 768px) {
-    .quote-container {
+    /* .quote-container {
         width: 736px;
         height: 604px;
         margin-top: 16px;
 
-    }
+    } */
 
     .duble {
         display: flex;
@@ -91,7 +91,7 @@
         height: 302px;
     }
 
-    .quote-run {
+    /* .quote-run {
         margin-right: 16px;
     }
 
@@ -118,7 +118,7 @@
         font-size: 16px;
         line-height: 1.5;
         margin-bottom: 24px;
-    }
+    } */
 
     .quote-sportswear-img {
 
@@ -129,11 +129,11 @@
 
 /*! DESKTOP STYLES  */
 @media screen and (min-width: 1440px) {
-    .quote-container {
+    /* .quote-container {
         display: flex;
         width: 1408px;
         height: 302px;
-    }
+    } */
 
     .quote-fav {
         align-items: flex-start;
