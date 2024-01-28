@@ -55,14 +55,18 @@ FILTER_LIST.addEventListener('click', event => {
     // отримаємо значення атрибута "name" button
     MUSCLES_BUTTON.classList.remove('active');
     //виклик функції з отриманним значенням фільтра
-    callApiWithQuery(event.target.name);
+    callApiWithQuery({ filter: event.target.name });
   }
 });
 
 //делегування слухача на PAGES_LIST
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
-  btnPgs = '';
+
+  console.log(event.target.id);
+  callApiWithQuery(event.target.id);
+
+  // btnPgs = '';
   // PAGES_LIST.innerHTML = '';
   // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
@@ -74,7 +78,7 @@ let page = 1;
 let limit = 12;
 
 // Функція для виклику API та відображення зображень за обраним фільтром та параметрами
-async function callApiWithQuery(filter) {
+async function callApiWithQuery({ filter, page = 1 }) {
   try {
     const renderExercises = await getExercisesData(filter, page, limit);
     // console.log(renderExercises);
@@ -102,7 +106,7 @@ async function callApiWithQuery(filter) {
       const totalPages = renderExercises.data.totalPages;
       // let btnPgs = '';
       for (let i = 1; i <= totalPages; i++) {
-        btnPgs += `<button class="pg-num-btn" type="button"
+        btnPgs += `<button id="${i}" class="pg-num-btn" type="button"
  >${i}</button>`;
       }
 
