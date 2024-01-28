@@ -11,7 +11,7 @@ const giveRatingBtn = document.getElementById('giveRatingBtn');
 const exerciseInfo = document.getElementById('information');
 let id;
 
-const scrollPosition = window.scrollY || window.pageYOffset;
+
 
 // --- Відкриття модалки
  export function openModal() {
