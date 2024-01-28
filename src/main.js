@@ -23,6 +23,7 @@ import './js/skroll-btn.js'
 import './js/favoritePart.js';
 
 // модалки
-import './js/modal-form.js';
 import './js/modal-pop-up.js';
+import './js/modal-form.js';
+
 
