@@ -3,7 +3,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 
-const exercisesSectionContainer = document.querySelector('.ExercisesSectionContainer');
+const exercisesSectionContainer = document.querySelector('.cardFilter');
 const renderBtnListElement = document.querySelector('.custom-pagination-btn');
 const paginationButtons = document.querySelectorAll('.render-pagination-btn');
 
@@ -76,8 +76,10 @@ const renderPageOneContent = async (markup) => {
   }
 };
 
+
+
 // Оновлення кнопок і видимості при пагінації
-const updateButtonValuesAndVisibility = (target) => {
+const updateButtonValuesAndVisibility = async (target) => {
   const btnIncrement = parseInt(target.dataset.btn) === 3 ? 1 : -1;
   paginationButtons.forEach((button) => {
     button.textContent = parseInt(button.textContent) + btnIncrement;
@@ -100,11 +102,11 @@ const handlePaginationButtonClick = (event) => {
 // ширина екрану і кількості елементів на сторінці
 const bodyWidth = getComputedStyle(document.querySelector('body')).width;
 const itemsPerPage = bodyWidth < 768 ? 8 : 12;
+const btnActive = Math.ceil(69 / itemsPerPage);
 const params = {
   limit: itemsPerPage,
   page: 1,
 };
-const btnActive = 69 / itemsPerPage;
 
 // обробник подій для кнопок пагінації
 renderBtnListElement.addEventListener('click', handlePaginationButtonClick);
