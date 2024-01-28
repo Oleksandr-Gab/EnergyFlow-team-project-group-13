@@ -3,85 +3,61 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-// import { renderImgs } from './exercises.js';
-
-// console.log(renderImgs);
-
 let page;
 let totalItems;
 let maxPages;
 const limit = 8;
 
-const galleryWaist = document.querySelector('.gallery');
+const galleryDalley = document.querySelector('.gallery');
+const galleryWaist = document.querySelector('.pagination-btn');
+const arrowRight = document.querySelector('.workout-btn-container');
 
-const FILTER_URL = new URL('https://energyflow.b.goit.study/api/filters?');
-const EXERCISES_URL = new URL('https://energyflow.b.goit.study/api/exercises?');
+const apiWaist = axios.create({
+  baseURL: 'https://energyflow.b.goit.study/api',
+  params: {
+    page: '1',
+    limit: '8',
+  },
+});
 
-// Функція запиту--------------------------------------------
+// ----- Функція запиту--------------------------------------------
 
 export const fetchExercises = async request => {
-  const exercises = await axios.get(request);
+  const exercises = await apiWaist.get(request);
 
-  return exercises.data;
+  return exercises;
 };
-// --------------------------------------------------------
 
-// --------------filter listener ----------------------------
-FILTER_URL.searchParams.append('filter', 'Muscles');
-fetchExercises(FILTER_URL)
-  .then(response => {
-    console.log(response);
+// -------------------------------------------------------------
 
-    // name який треба прив'язати на перше фото "Muscles"
-    console.log(response.results[0].name);
-  })
-  .catch(error => {
-    iziToast.error({
-      message: 'Sorry. Please try again!',
-      position: 'topRight',
-    });
-  });
-
-// --------- exercises  listener-----------------------------
-
-galleryWaist.addEventListener('click', event => {
-  event.preventDefault();
+function handClick() {
+  galleryDalley.innerHTML = '';
   galleryWaist.innerHTML = '';
-
-  // console.log(event.target.name);
   galleryWaist.classList.add('information-cards');
-
-  // EXERCISES_URL.searchParams.append('name', event.target.name);
-  EXERCISES_URL.searchParams.append('limit', limit);
-  EXERCISES_URL.searchParams.append('page', 1);
-
-  fetchExercises(EXERCISES_URL)
+  fetchExercises('/exercises')
     .then(response => {
       console.log(response);
-      // console.log(response);
-      //   maxPages = Math.ceil(response.totalPages / limit);
-      //   console.log(maxPages);
-      //   if (maxPages > 1) {
-      //     paginationBtn.style.display = 'flex';
-      //     renderBtn(maxPages);
-      //   }
-
-      renderExercises(response.results);
-      // return response.results;
+      console.log(response.data.results);
+      renderExercises(response.data.results);
     })
     .catch(error => {
       iziToast.error({
-        message: 'Sorry. Please try again!',
+        message: error,
         position: 'topRight',
       });
     });
-});
+}
+
+galleryDalley.addEventListener('click', handClick);
+
+// galleryWaist.removeEventListener('click', handClick); ??????????????????
 
 // --------------------------------------------------------
+//  Виводимо в консоль Id елемента списку
 
-// galleryWaist.addEventListener('click', event => {
-//   console.log(event.target._id);
-// });
+galleryWaist.addEventListener('click', event => {
+  console.log(event.target.id);
+});
 
 // --------------------------------------------------------
 
@@ -89,9 +65,9 @@ function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
-      (html, { burnedCalories, name, bodyPart, rating, time, target }) =>
+      (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
-        `<li class="gallery-card">
+        `<li class="gallery-card" id=${_id}>
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -128,3 +104,5 @@ function renderExercises(arr) {
     )
   );
 }
+
+//  <li class="gallery-item" id=${name}>
