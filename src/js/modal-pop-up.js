@@ -11,13 +11,24 @@ const giveRatingBtn = document.getElementById('giveRatingBtn');
 const exerciseInfo = document.getElementById('information');
 let id;
 
+const scrollPosition = window.scrollY || window.pageYOffset;
 
 // --- Відкриття модалки
  export function openModal() {
     exerciseModal.classList.add('open');
     closeModalBtn.addEventListener('click', closeModal);
-    exerciseModal.addEventListener('click', outsideClick);
-    document.addEventListener('keydown', escapeKey);
+    document.addEventListener('mouseup', outsideClick);
+     document.addEventListener('keydown', escapeKey);
+
+     
+
+
+document.body.style.overflow = 'hidden';
+
+
+    
+       
+
 
     // Выкликаємо функцію cardClick і динамічно додаємо данні
     cardClick().then(exerciseData => {
@@ -48,23 +59,33 @@ let id;
     function closeModal() {
         exerciseModal.classList.remove('open');
         closeModalBtn.removeEventListener('click', closeModal);
-        exerciseModal.removeEventListener('click', outsideClick);
+        document.removeEventListener('mouseup', outsideClick);
         document.removeEventListener('keydown', escapeKey);
+        
+        document.body.style.overflow = '';
+        
+        
+    
+        
     }
 
-    // --- Кліки по бєкдропу та esc
-    function outsideClick(event) {
-        if (event.target !== exerciseModal) {
-            closeModal();
-        }
+// --- Кліки по бєкдропу та esc
+    
+   const outsideClick = function (event) {
+    const container = document.getElementById('modal');
+    if (!container.contains(event.target) && exerciseModal.classList.contains('open')) {
+        closeModal();
     }
+};
 
 
-    function escapeKey(event) {
-        if (event.key === 'Escape' && exerciseModal.classList.contains('open')) {
-            closeModal();
-        }
+   const escapeKey = function (event) {
+    if (event.key === 'Escape') {
+        closeModal();
     }
+};
+
+
 
     // --------- Зчитуємо айді картки на яку натискаємо та отримуємо інфо з АПІ
 
