@@ -15,16 +15,15 @@
 
 .header-wrap {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  justify-content: space-around;
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
-    padding: 24px 32px;
+  @media screen and (min-width: 768px) {
+    justify-content: space-evenly;
   }
 
-  @media screen and (min-width: 1281px) {
-    padding: 28px 32px;
+  @media screen and (min-width: 1400px) {
+    justify-content: space-around;
   }
 }
 .logo-link {
@@ -95,14 +94,14 @@
     align-items: center;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) {
     background-color: var(--greyColorText-Background-Btn);
     width: 233px;
     height: 52px;
     border-radius: 60px;
   }
 
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1400px) {
     background-color: var(--greyColorText-Background-Btn);
     width: 265px;
     height: 52px;
@@ -172,19 +171,19 @@
 }
 
 .menu-button-open {
-  display: none;
-
-  @media screen and (max-width: 767px) {
-    display: block;
-    margin-left: auto;
-    padding: 0;
-    line-height: 0;
-    border: none;
-    z-index: 5;
-    background-color: transparent;
-  }
+  display: block;
+  padding: 0;
+  line-height: 0;
+  border: none;
+  z-index: 5;
+  background-color: transparent;
 }
 
+@media screen and (min-width: 768px){
+  .menu-button-open {
+    display: none;
+  }
+}
 .header-wrap-mob.index-page .logo-link {
   display: none;
 
@@ -235,7 +234,7 @@
   fill: var(--textCardTitle);
   transition: border-color 0.3s, fill 0.3s;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     border: 1px solid var(--greyColorText-Background-Btn);
     fill: var(--greyColorText-Background-Btn);
 

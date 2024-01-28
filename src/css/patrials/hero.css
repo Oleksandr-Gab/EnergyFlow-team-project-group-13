@@ -44,26 +44,27 @@
 }
 
 .hero-title-container {
-  max-width: 335px;
+  /* max-width: 335px; */
   background-color: var(--whiteBackground);
   border-radius: 30px;
+  padding: 60px 20px 80px 20px;
 }
 .hero-title {
-  padding: 60px 20px 20px 20px;
   margin: 0 auto;
-  max-width: 295px;
+  /* max-width: 295px; */
   width: 100%;
   font-size: 56px;
   font-weight: 400;
   line-height: 0.89;
   letter-spacing: -1.12px;
+  margin-bottom: 20px;
 }
 .hero-title-span {
   color: #7e847f;
   font-style: italic;
 }
 .hero-p {
-  max-width: 295px;
+  /* max-width: 295px; */
   width: 100%;
   color: #1b1b1b;
 
@@ -73,7 +74,7 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
   margin: 0 auto;
-  padding-bottom: 81px;
+  /* padding-bottom: 81px; */
 }
 
 /* tablet */
@@ -81,7 +82,8 @@
       .hero-container {
       display: flex;
       flex-direction: row;
-      max-width: 736px;
+      /* max-width: 768px; */
+      justify-content: center;
       /* background-color: #f6f6f6; */
     } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
 
@@ -127,13 +129,14 @@
     }
 
     .hero-title-container {
-      max-width: 488px;
+      padding: 215px 32px 192px 32px;
+      /* max-width: 488px; */
       /*  background-color: var(--whiteBackground); */
       border-radius: 0px 50px 50px 50px;
     }
     .hero-title {
-      padding: 231px 32px 25px 32px;
-      /* margin: 0 auto; */
+          /* margin: 0 auto; */
+      margin-bottom: 24px;
       max-width: 424px;
       /* width: 100%; */
       font-size: 98px;
@@ -155,8 +158,8 @@
       font-weight: 400; */
       line-height: 1.33;
       letter-spacing: -0.18px;
-      margin-left: 32px;
-      padding-bottom: 192px;
+      margin-left: 0;
+      /* padding-bottom: 192px; */
     }
   
 }
@@ -166,7 +169,7 @@
      .hero-container {
       /* display: flex;
       flex-direction: row; */
-      max-width: 1408px;
+      /* max-width: 1440px; */
       /* background-color: #f6f6f6; */
     } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
 
@@ -212,12 +215,13 @@
     }
 
     .hero-title-container {
-      max-width: 704px;
+      padding: 225px 32px 241px 32px;
+      /* max-width: 704px; */
       /*  background-color: var(--whiteBackground); */
       /*  border-radius: 0px 50px 50px 50px; */
     }
     .hero-title {
-      padding: 225px 33px 25px 32px;
+      margin-bottom: 25px;
       /* margin: 0 auto; */
       max-width: 639px;
       /* width: 100%; */
@@ -241,7 +245,7 @@
       /*  line-height: 1.33;
       letter-spacing: -0.18px;
       margin-left: 32px; */
-      padding-bottom: 241px;
+      /* padding-bottom: 241px; */
     }
   
 }
