@@ -16,8 +16,9 @@ const limit = 8;
 
 const galleryDalley = document.querySelector('.gallery');
 const galleryWaist = document.querySelector('.waist');
+const viewportWidth = innerWidth;
 // const arrowRight = document.querySelector('.workout-btn-container');
-
+console.log(viewportWidth);
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
   params: {
