@@ -1,17 +1,33 @@
 #exerciseModal {
   display: none;
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+#exerciseModal.open {
+  display: block;
+}
+
+body #exerciseModal.open {
+  position: fixed;
+}
+
+#modal {
+  display: block;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 732px;
   height: 470px;
-  background: var(--colorTextQuote);
+  background-color: var(--textCardTitle);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#exerciseModal.open {
-  display: block;
+  border-radius: 24px;
 }
 
 .close {
