@@ -1,5 +1,5 @@
 #exerciseModal {
-  display: block;
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -8,6 +8,10 @@
   height: 470px;
   background: var(--colorTextQuote);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#exerciseModal.open {
+  display: block;
 }
 
 .close {
@@ -72,5 +76,6 @@
   vertical-align: middle;
   margin-left: 9px;
 
-  color: var(--greyBackground);
+  fill: var(--greyColorText-Background-Btn);
+  stroke: var(--whiteBackground);
 }

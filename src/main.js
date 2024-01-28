@@ -24,3 +24,5 @@ import './js/favoritePart.js';
 
 // модалки
 import './js/modal-form.js';
+import './js/modal-pop-up.js';
+

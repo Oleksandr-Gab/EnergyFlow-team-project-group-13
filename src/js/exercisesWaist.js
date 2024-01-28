@@ -1,3 +1,5 @@
+import { openModal } from './modal-pop-up';
+
 import axios from 'axios';
 
 import iziToast from 'izitoast';
@@ -62,9 +64,9 @@ function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
-      (html, { burnedCalories, name, bodyPart, rating, time, target }) =>
+      (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
-        `<li class="gallery-card">
+        `<li class="gallery-card" data-id="${_id}">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -101,3 +103,17 @@ function renderExercises(arr) {
     )
   );
 }
+
+
+
+// ------------------------------------------------------------------------------
+galleryWaist.addEventListener('click', event => {
+  event.preventDefault();
+
+  const galleryCard = event.target.closest('.gallery-card');
+  if (galleryCard) {
+    const cardId = galleryCard.dataset.id;
+    openModal();
+  }
+});
+
