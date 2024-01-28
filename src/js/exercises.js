@@ -8,7 +8,6 @@ export let renderImgs;
 
 const FILTER_LIST = document.querySelector('.filter-list');
 
-
 let filterExercises;
 const GALLERY = document.querySelector('.gallery');
 
@@ -16,9 +15,15 @@ const GALLERY = document.querySelector('.gallery');
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 MUSCLES_BUTTON.disabled = false;
 
+// Виклик функції при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', () => {
+  callApiWithQuery('Muscles');
+});
+
 //делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
-  //очищення всіх попередних елементів у розмітці gallery перед новим пошуком
+  event.preventDefault();
+  //очищення розмітці gallery перед новим пошуком
   GALLERY.innerHTML = '';
   // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
@@ -34,7 +39,7 @@ FILTER_LIST.addEventListener('click', event => {
 // axios.defaults.baseURL = 'https://energyflow.b.goit.study/api';
 // const FILTER_URL = `/filters`;
 
-// Function to call the API with the selected filterExecises
+// Функція для виклику API та відображення зображень за обраним фільтром
 async function callApiWithQuery(filter) {
   const API = axios.create({
     baseURL: 'https://energyflow.b.goit.study/api',
@@ -44,60 +49,36 @@ async function callApiWithQuery(filter) {
       limit: '12',
     },
   });
-  renderImgs = await API.get('/filters');
-  console.log(renderImgs);
-  const imgs = renderImgs.data.results.reduce(
-    (html, { name, filter, imgUrl }) =>
-      html +
-      `<li class="gallery-item">
-           <div class="card">
+  try {
+    renderImgs = await API.get('/filters');
+    // console.log(renderImgs);
+    const imgs = renderImgs.data.results.reduce(
+      (html, { name, filter, imgUrl }) =>
+        html +
+        `<li class="gallery-item">
+          
             <a class="gallery-link" href="${imgUrl}">
              <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"
-             />
+             style = "background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url("${imgUrl}"), lightgray 1.925px -135.663px / 106.102% 202.346% no-repeat;"
+            />
             </a>
             </div>
             <div class="card-description">
             <p class="name-description">${name}</p>
             <p class="filter-description">${filter}</p>
-            </div>
+            
           </li>`,
-    ''
-  );
-  GALLERY.insertAdjacentHTML('beforeend', imgs);
-
-  //   API.get('/filters')
-  //     .then(response => {
-  //       console.log(response.results);
-  //       const IMGS = response.results.reduce(
-  //         (html, { name, filter, imgUrl }) =>
-  //           html +
-  //           `<li class="GalleryItem">
-  //          <div class="Card">
-  //           <a class="GalleryLink" href="${imgUrl}">
-  //            <img class="GalleryImage"
-  //            src="${imgUrl}"
-  //            alt="${filter}"
-  //            />
-  //           </a>
-  //           </div>
-  //           <div class="CardDescription">
-  //           <p class="NameDescription">${name}</p>
-  //           <p class="FilterDescription">${filter}</p>
-  //           </div>
-  //         </li>`,
-  //         ''
-  //       );
-
-  //   GALLERY.insertAdjacentHTML('beforeend', IMGS);
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  //   iziToast.error({
-  //     message: error.message,
-  //     color: 'red',
-  //     position: 'topCenter',
-  //   });
-  // });
+      ''
+    );
+    GALLERY.insertAdjacentHTML('afterbegin', imgs);
+  } catch (error) {
+    console.error(error);
+    iziToast.error({
+      message: error.message,
+      color: 'red',
+      position: 'topCenter',
+    });
+  }
 }

@@ -1,27 +1,30 @@
-/* 0-767px */
-@media screen and (max-width: 767px) {
-    
+/* mobile 0-767px */
 .exercises-section-container {
     box-sizing: border-box;
+    min-width: 335px;
+    margin-top: 20px;
     padding-top: 40px;
     padding-bottom: 40px;
-   
+
     display: flex;
     flex-direction: column;
     border-radius: 30px;
     background: #E8E8E8;
 }
+
 .search-block {
     display: flex;
     flex-direction: row;
     gap: 35px;
 }
+
 .filter-list {
     margin-top: 20px;
     display: flex;
     /* flex-direction: row; */
     gap: 6px;
 }
+
 .filter-button {
     display: flex;
     padding: 7px 14px;
@@ -31,20 +34,19 @@
 
     border: none;
     border-radius: 30px;
-    background: #F6F6F6;
-    
-    
+    background: var(--bodyBackground);
 
     color: #1B1B1B;
-    font-size: 14px;       
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.28;
     /* 128.571% */
 }
 
 .filter-button:hover {
-    background: #7E847F;
-    color: #F6F6F6;
+    
+    color: var(--textCardTitle);
+    background: var(--colorHoverBtn);
 }
 
 #search {
@@ -53,11 +55,11 @@
     border: none;
     border-radius: 30px;
     background-color: #F6F6F6;
-    display: none;    
+    display: none;
     /* padding: 12px 181px 12px 14px; */
     /* align-items: center; */
     /* gap: 10px; */
-    
+
 }
 
 /* .cards-container {
@@ -91,14 +93,22 @@
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 } */
 .gallery {
-    margin-top: 40px ;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
     gap: 20px;
 }
+
 .gallery-item {
-    position: relative
+    position: relative; 
+    width: 295px;
+    height: 232px;
+
+        
 }
+
 .gallery-image {
     width: 100%;
     height: 100%;
@@ -108,7 +118,7 @@
     background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url(<path-to-image>), lightgray 1.925px -135.663px / 106.102% 202.346% no-repeat;
 }
 
-.card-description{
+.card-description {
     color: #F6F6F6;
     display: flex;
     flex-direction: column;
@@ -120,34 +130,87 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
-    }
-    
-    
-    
+}
 
-.name-description{
-    
-    text-transform: capitalize ;
+.name-description {
+
+    text-transform: capitalize;
     font-size: 20px;
     line-height: 1;
+    text-align: center;
     /* font-feature-settings: 'clig' off, */
 }
-.filter-description{
-    
+
+.filter-description {
+
     font-size: 12px;
     line-height: 1.5;
 
+} 
+.pagination-btn {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 20px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    
+}
+.pg-num-btn {
+    display: flex;
+    padding: 6px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    /* gap: 10px; */
+    border: none;    
+    color: rgba(27, 27, 27, 0.40);
+    background-color: transparent;
+}
+.pg-num-btn:hover {
+    color: inherit;
+    border-radius: 18px;
+    border: 1px solid #1B1B1B;
 }
 
-}
 
 /* tablet 768px + */
 @media screen and (min-width: 768px){
-    #search {
-display: block;
-    }
+.exercises-section-container {        
+    min-width: 736px;
+    margin-top: 16px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+
+}
+.gallery {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 32px;
 }
 
-/* desctop 1440px + */
+.gallery-item {
+    
+    width: 313px;
+    height: 250px;
+
+}    
+    
+    
+.filter-button {            
+    padding: 10px 20px;
+    
+
+        
+}
+    
+}
+
+/* desktop 1440px + */
 @media screen and (min-width: 1440px){}
 
