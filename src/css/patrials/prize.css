@@ -28,23 +28,16 @@
   padding-top: 10px;
   padding-bottom: 30px;
 }
-
 .modal-content-prize {
-  /* width: 80%; */
-  /* height: 100%; */
   display: inline-block;
   max-width: 320px;
   width: 100%;
-
-  /* margin: 0 auto; */
-  /* margin-top: 30px; */
-
   background-color: rgb(240, 244, 245);
   padding: 20px;
   border-radius: 8px;
 }
-
 #openModalBtnPrize {
+  font-size: 12px;
   background-color: rgb(126, 133, 127);
   color: #fff;
   padding: 12px;
@@ -55,6 +48,7 @@
   bottom: 20px;
   right: 30px;
   animation: shake 0.8s infinite;
+  box-shadow: 0 4px 10px rgba(26, 25, 25, 0.5);
 }
 @keyframes shake {
   0%,
@@ -65,7 +59,6 @@
     transform: translateY(-5px);
   }
 }
-
 .input-get {
   padding: 12px 14px 12px;
   width: 100%;
@@ -73,33 +66,35 @@
   border-radius: 30px;
   border: 1px solid #302f2f;
   box-sizing: border-box;
-  color: #302f2f;
+  color: black;
   cursor: pointer;
   margin-bottom: 10px;
   margin-top: 10px;
   max-width: 250px;
 }
-/*  */
-
+.input-get:focus {
+  border: 1.5px solid #5f5d5d;
+  outline: rgb(126, 133, 127);
+}
 #closeModalPrize {
   border: none;
+  font-size: 30px;
+  background: none;
 }
-
 .button-get {
   background-color: black;
 
   cursor: pointer;
-
+  box-shadow: 0 4px 10px rgba(26, 25, 25, 0.3);
   padding: 12px;
   border-radius: 30px;
   background: var(--greyColorText-Background-Btn);
   border: none;
   max-width: 250px;
   width: 100%;
-
   color: #f6f6f6;
   font-family: 'DM Sans';
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
@@ -114,6 +109,7 @@
 
   align-items: center;
 }
+
 .get-prize-container {
   display: none;
 }
@@ -148,10 +144,6 @@
 
 /* Колесо */
 #myModalPrize {
-  /* подключаем сетку */
-  /* display: grid; */
-  /* ставим всё по центру */
-
   z-index: 1000;
   /* если что-то не помещается на своё место — скрываем то, что не поместилось */
   overflow: hidden;
@@ -330,9 +322,6 @@
 
 /* анимируем выпавший сектор */
 .prize.selected .text {
-  /* делаем текст белым */
-
-  /* настраиваем длительность анимации */
   animation: selected 3s ease;
 }
 
@@ -362,6 +351,12 @@
 }
 
 @media (min-width: 768px) {
+  .button-get {
+    font-size: 18px;
+  }
+  #closeModalPrize {
+    font-size: 40px;
+  }
   #openModalBtnPrize {
     background-color: rgb(126, 133, 127);
     color: #fff;
@@ -373,7 +368,8 @@
     bottom: 30px;
     right: 60px;
     animation: shake 0.8s infinite;
-    font-size: 30px;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(26, 25, 25, 0.5);
   }
   @keyframes shake {
     0%,
@@ -394,12 +390,8 @@
   }
 
   .modal-content-prize {
-    /* width: 80%; */
-
     max-width: 600px;
     width: 100%;
-    /* margin: 0 auto;
-    margin-top: 10px; */
   }
 
   #congratulationsMessage {
@@ -436,6 +428,9 @@
 }
 
 @media (min-width: 1440px) {
+  .button-get {
+    font-size: 21px;
+  }
   #openModalBtnPrize {
     background-color: rgb(126, 133, 127);
     color: #fff;
@@ -447,7 +442,8 @@
     bottom: 30px;
     right: 160px;
     animation: shake 0.8s infinite;
-    font-size: 30px;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(26, 25, 25, 0.5);
   }
   @keyframes shake {
     0%,
@@ -468,12 +464,8 @@
   }
 
   .modal-content-prize {
-    /* width: 80%; */
-
     max-width: 600px;
     width: 100%;
-    /*  margin: 0 auto;
-    margin-top: 10px; */
   }
 
   #congratulationsMessage {
