@@ -1,7 +1,6 @@
-/* .hero-container {
-  max-width: 335px;
-  background-color: #f6f6f6;
-} коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+.hero-container {
+  width: auto;
+}
 
 .hero-picture-container {
   height: 387px;
@@ -78,12 +77,19 @@
   /* padding-bottom: 81px; */
 }
 
+@media screen and (min-width: 375px) {
+  .hero-container {
+  width: 375px;
+  }
+}
+
+
 /* tablet */
 @media screen and (min-width: 768px) {
   .hero-container {
     display: flex;
     flex-direction: row;
-    /* max-width: 768px; */
+    width: 768px;
     justify-content: center;
     /* background-color: #f6f6f6; */
   } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
@@ -167,11 +173,8 @@
 /* Desktop */
 @media screen and (min-width: 1440px) {
   .hero-container {
-    /* display: flex;
-      flex-direction: row; */
-    /* max-width: 1440px; */
-    /* background-color: #f6f6f6; */
-  } /* коли змінять розмір контейнера на 335 та backgroung для body то ці стилі можна видалити */
+    width: 1440px;
+  }
 
   .hero-picture-container {
     height: 884px;

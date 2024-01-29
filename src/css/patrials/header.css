@@ -55,12 +55,13 @@
     max-width: 335px;
     max-height: 771px;
     border-radius: 30px;
-    right: -100%;
+    right: -120%;
     background-color: var(--greyColorText-Background-Btn);
     transition: all 0.2s;
     z-index: 10;
 
     &.active {
+      /* display: flex; */
       right: 0;
     }
   }
