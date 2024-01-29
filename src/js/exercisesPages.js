@@ -12,9 +12,11 @@ const axiosInstance = axios.create({
 
 // отримання фільтрів
 const apiService = {
-  fetchFilters: async (queryParams) => {
+  fetchFilters: async queryParams => {
     try {
-      const response = await axiosInstance.get('filters', { params: queryParams });
+      const response = await axiosInstance.get('filters', {
+        params: queryParams,
+      });
       return response.data.results;
     } catch (error) {
       console.error(error);
@@ -23,8 +25,8 @@ const apiService = {
   },
 };
 
-// Обробник помилок 
-const handleApiError = (error) => {
+// Обробник помилок
+const handleApiError = error => {
   iziToast.error({
     title: 'API Error',
     message: 'An error occurred while fetching data from the API.',
@@ -33,7 +35,7 @@ const handleApiError = (error) => {
 };
 
 // HTML для фільтрів
-const generateFilterMarkup = async (queryParams) => {
+const generateFilterMarkup = async queryParams => {
   try {
     // Виклик API для отримання фільтрів та генерація HTML-розмітки
     const data = await apiService.fetchFilters({ ...queryParams });
@@ -46,7 +48,7 @@ const generateFilterMarkup = async (queryParams) => {
 };
 
 // HTML для одного елемента фільтра
-const generateFilterItemHTML = (filterItem) => {
+const generateFilterItemHTML = filterItem => {
   return `<li class="render-page-one-item" data-name="${filterItem.name}">
             <img src="${filterItem.imgUrl}" alt="" />
             <div class="render-page-one-img-container">
@@ -64,7 +66,7 @@ const handleRenderingError = () => {
 };
 
 // Рендер першої сторінки
-const renderPageOneContent = async (markup) => {
+const renderPageOneContent = async markup => {
   try {
     // Рендер HTML-розмітки в контейнер для вправ
     const renderedMarkup = await markup;
@@ -76,18 +78,18 @@ const renderPageOneContent = async (markup) => {
 };
 
 // Оновлення кнопок і видимості при пагінації
-const updateButtonValuesAndVisibility = (target) => {
+const updateButtonValuesAndVisibility = target => {
   const btnIncrement = parseInt(target.dataset.btn) === 3 ? 1 : -1;
-  paginationButtons.forEach((button) => {
+  paginationButtons.forEach(button => {
     button.textContent = parseInt(button.textContent) + btnIncrement;
   });
 
   paginationButtons[0].style.display = params.page > 1 ? 'block' : 'none';
-  paginationButtons[2].style.display = params.page >= btnActive - 1 ? 'none' : 'block';
+  paginationButtons[2].style.display =
+    params.page >= btnActive - 1 ? 'none' : 'block';
 };
 
-
-const handlePaginationButtonClick = (event) => {
+const handlePaginationButtonClick = event => {
   if (event.target.nodeName === 'BUTTON') {
     // рендер першої сторінки
     params.page = parseInt(event.target.textContent);

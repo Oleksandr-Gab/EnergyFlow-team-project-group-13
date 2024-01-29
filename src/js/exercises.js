@@ -59,7 +59,7 @@ FILTER_LIST.addEventListener('click', event => {
 });
 
 //делегування слухача на PAGES_LIST
-PAGES_LIST.addEventListener('click', () => {
+PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
 
   // перевірка if a button was clicked
@@ -70,7 +70,7 @@ PAGES_LIST.addEventListener('click', () => {
   }
 });
 
-// Функція для виклику API та відображення зображень за обраним фільтром та параметрами
+// виклик API та створення розмітки за обраним фільтром
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
     const renderExercises = await getExercisesData(filter, page, limit);
@@ -89,14 +89,12 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-           <div class="card">
-            <a class="gallery-link" href="${imgUrl}">
+           <div class="card" >            
              <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"
              style = "background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url("${imgUrl}"), lightgray 1.925px -135.663px / 106.102% 202.346% no-repeat;"
-            />
-            </a>
+            />            
             </div>
             <div class="card-description">
             <p class="name-description">${name}</p>
