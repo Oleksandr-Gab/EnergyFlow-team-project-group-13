@@ -6,10 +6,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { getExercisesData } from './exercises.js';
+import { activeModalBtn } from './modal-pop-up.js';
+
 
 getExercisesData()
   .then(response => {
-    console.log(response);
+    // console.log(response);
   })
   .catch(error => {
     iziToast.error({
@@ -35,7 +37,7 @@ const searchPart = document.querySelector('#search');
 const searchBlock = document.querySelector('.search-block');
 const viewportWidth = innerWidth;
 const arrowRight = document.querySelector('.workout-btn');
-console.log(viewportWidth);
+// console.log(viewportWidth);
 
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
@@ -80,7 +82,7 @@ const fetchExercises = async request => {
 const abs = 'abs';
 
 galleryDalley.addEventListener('click', event => {
-  console.log('hi');
+  // console.log('hi');
   event.preventDefault();
   galleryDalley.innerHTML = '';
   searchPart.style.display = 'block';
@@ -96,7 +98,7 @@ galleryDalley.addEventListener('click', event => {
   };
   fetchExercises('/exercises')
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
 
       renderExercises(response.data.results);
     })
@@ -211,6 +213,7 @@ function renderExercises(arr) {
       ''
     )
   );
+  activeModalBtn();
 }
 
 // ------------------------------------------------------------------------------

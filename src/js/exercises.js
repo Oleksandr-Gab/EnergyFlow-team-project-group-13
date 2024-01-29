@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 //функція запиту на DATA
 export const getExercisesData = async (filter, page, limit) => {
-  console.log(filter, page, limit);
+  // console.log(filter, page, limit);
   try {
     const API = axios.create({
       baseURL: 'https://energyflow.b.goit.study/api',
