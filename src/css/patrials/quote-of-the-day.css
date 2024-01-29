@@ -147,13 +147,13 @@
     display: flex;
     width: 1408px;
     height: 302px;
-    width: 704px;
   }
   .quote-main {
     align-items: flex-start;
     padding-left: 64px;
     padding-right: 64px;
     border-radius: 50px;
+    width: 704px;
   }
 
   .quote-back-img {
