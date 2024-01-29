@@ -5,6 +5,20 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+import { getExercisesData } from './exercises.js';
+
+getExercisesData()
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    iziToast.error({
+      message: error,
+      position: 'topRight',
+    });
+  });
+console.log();
+
 let page;
 let totalItems;
 let maxPages;
@@ -16,7 +30,7 @@ const partError =
 
 const galleryDalley = document.querySelector('.gallery');
 const filterBtns = document.querySelector('.filter-list');
-const galleryWaist = document.querySelector('.waist');
+// const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const searchBlock = document.querySelector('.search-block');
 const viewportWidth = innerWidth;
@@ -66,17 +80,18 @@ const fetchExercises = async request => {
 const abs = 'abs';
 
 galleryDalley.addEventListener('click', event => {
+  console.log('hi');
+  event.preventDefault();
   galleryDalley.innerHTML = '';
-  galleryWaist.innerHTML = '';
   searchPart.style.display = 'block';
-  searchBlock.style.display = 'block';
+  // searchBlock.style.display = 'block';
   // ------------------------------------
 
-  galleryWaist.classList.add('information-cards');
+  galleryDalley.classList.add('information-cards');
 
   apiWaist.defaults.params = {
     //  дані, отримані при кліку на фото на приклад: (muscles: 'abs')
-    currentButton: 'clickOnPhoto-id...',
+    // currentButton: 'clickOnPhoto-id...',
     limit: '8',
   };
   fetchExercises('/exercises')
@@ -127,10 +142,10 @@ searchPart.addEventListener('input', event => {
       return;
     }
     // -------Запит --------------
-    galleryWaist.classList.add('information-cards');
+    galleryDalley.classList.add('information-cards');
     apiWaist.defaults.params = {
       //  дані, отримані з 'input search' приклад: (muscles: 'abs')
-      keydown: 'inputValue',
+      // keydown: 'inputValue',
       limit: '8',
     };
     fetchExercises('/exercises')
@@ -154,7 +169,7 @@ function renderExercises(arr) {
   // const listPart = arr.filter(item => item.target === part);
 
   // ---------------------
-  galleryWaist.insertAdjacentHTML(
+  galleryDalley.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
