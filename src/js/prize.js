@@ -2,41 +2,6 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-/* const prizes = [
-  {
-    text: 'One-Month Membership',
-    color: 'rgba(232, 232, 232, 1)',
-  },
-  {
-    text: 'Personal Training Session',
-    color: 'rgb(62, 184, 119)',
-  },
-  {
-    text: 'Fitness Bracelet',
-    color: 'rgba(232, 232, 232, 1)',
-  },
-  {
-    text: '25% Off Certificate',
-    color: 'rgb(62, 184, 119)',
-  },
-  {
-    text: '$50 Gift Card',
-    color: 'rgba(232, 232, 232, 1)',
-  },
-  {
-    text: '10% Off Certificate',
-    color: 'rgb(62, 184, 119)',
-  },
-  {
-    text: '$30 Gift Card',
-    color: 'rgba(232, 232, 232, 1)',
-  },
-  {
-    text: 'Participation in Marathon',
-    color: 'rgb(62, 184, 119)',
-  },
-];
- */
 const prizes = [
   {
     text: 'One-Month Membership',
@@ -229,9 +194,6 @@ spinner.addEventListener('transitionend', () => {
   wheel.classList.remove(spinClass);
   // отправляем в CSS новое положение поворота колеса
   spinner.style.setProperty('--rotate', rotation);
-  // делаем кнопку снова активной
-  /*  trigger.disabled = false; */
-  /* getPrize.classList.remove("get-prize-container"); */
 });
 
 // подготавливаем всё к первому запуску
@@ -266,20 +228,6 @@ const messageValidEmailPrize = () => {
     position: 'center',
   });
 };
-
-/* var buttonGetPrize = document.getElementsByClassName('button-get');
-function claimPrize() {
-  var email = document.getElementById('email-prize').value;
-
-  // здесь код для отправки данных на сервер или другую логику обработки
-
-  alert(
-    'Congratulations! Your prize is ready to be picked up. We will contact you at the specified email.'
-  );
-}
-buttonGetPrize.onclick = function () {
-  claimPrize();
-}; */
 
 var modal = document.getElementById('myModalPrize');
 var openModalBtnPrize = document.getElementById('openModalBtnPrize');
@@ -326,12 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Якщо валідний, ви можете відправити форму або виконати інші дії
-    // Наприклад, ви можете відправити AJAX-запит на сервер
-
-    // Додайте свій код для обробки валідного email тут
-
-    // Приклад виведення повідомлення про успішну відправку
     iziToast.success({
       title: 'Success',
       message: 'Form submitted!',
@@ -342,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function () {
       iconColor: 'black', // White icon
     });
 
-    // Закриваємо модальне вікно через 2 секунди
     setTimeout(function () {
       closePrizeModal();
     }, 1000);
