@@ -92,6 +92,7 @@
 
     .quote-fav-container {
         display: flex;
+        height: 302px;
     }
     
 }
