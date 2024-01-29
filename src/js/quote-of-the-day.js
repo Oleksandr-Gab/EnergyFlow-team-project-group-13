@@ -1,5 +1,6 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
+import TypeIt from "typeit";
 import 'izitoast/dist/css/iziToast.min.css';
 const quoteContainer = document.querySelector('.quote-info')
 const QUOTE_DATA_STORAGE = 'quote-of-the-day';
@@ -69,3 +70,9 @@ if (parseInt(storedDate) === dayOfMonth) {
     localStorage.setItem(DATE_STORAGE, dayOfMonth.toString());
 }
 
+checkDay();
+
+new TypeIt("#quote", {
+    speed: 50,
+    waitUntilVisible: true,
+  }).go();
