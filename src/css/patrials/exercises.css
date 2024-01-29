@@ -187,12 +187,13 @@
     margin-top: 16px;
     padding-top: 64px;
     padding-bottom: 64px;
+    border-radius: 50px;
 
 }
 .gallery {
     margin-top: 40px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     /* justify-content: center; */
