@@ -69,4 +69,3 @@ if (parseInt(storedDate) === dayOfMonth) {
     localStorage.setItem(DATE_STORAGE, dayOfMonth.toString());
 }
 
-checkDay();
