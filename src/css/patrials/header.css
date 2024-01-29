@@ -42,6 +42,10 @@
   }
 }
 
+.logo-link:hover {
+  transform: scale(1.1);
+}
+
 .nav {
   display: flex;
   align-items: center;
