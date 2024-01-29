@@ -4,100 +4,116 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-export let renderImgs;
-
 const FILTER_LIST = document.querySelector('.filter-list');
-
-
-let filterExercises;
 const GALLERY = document.querySelector('.gallery');
+const PAGES_LIST = document.querySelector('.pagination-btn');
+
+export let exercisesData;
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
-MUSCLES_BUTTON.disabled = false;
+
+// Виклик функції з фільтром за default при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', async () => {
+  await callApiWithQuery({ filter: 'Muscles' });
+  MUSCLES_BUTTON.classList.add('active');
+});
+
+//функція запиту на DATA
+export const getExercisesData = async (filter, page, limit) => {
+  console.log(filter, page, limit);
+  try {
+    const API = axios.create({
+      baseURL: 'https://energyflow.b.goit.study/api',
+      params: {
+        filter: filter,
+        page: page,
+        limit: limit,
+      },
+    });
+    exercisesData = await API.get('/filters');
+    return exercisesData;
+  } catch (error) {
+    console.error(error);
+    iziToast.error({
+      message: error.message,
+      color: 'red',
+      position: 'topCenter',
+    });
+  }
+};
 
 //делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
-  //очищення всіх попередних елементів у розмітці gallery перед новим пошуком
+  event.preventDefault();
+  //очищення розмітці перед новим пошуком
   GALLERY.innerHTML = '';
+  PAGES_LIST.innerHTML = '';
   // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
     // отримаємо значення атрибута "name" button
-    filterExercises = event.target.name;
-    console.log(filterExercises);
+    MUSCLES_BUTTON.classList.remove('active');
     //виклик функції з отриманним значенням фільтра
-    callApiWithQuery(filterExercises);
+    callApiWithQuery({ filter: event.target.name });
   }
 });
 
-// axios.defaults базова адреса
-// axios.defaults.baseURL = 'https://energyflow.b.goit.study/api';
-// const FILTER_URL = `/filters`;
+//делегування слухача на PAGES_LIST
+PAGES_LIST.addEventListener('click', () => {
+  event.preventDefault();
 
-// Function to call the API with the selected filterExecises
-async function callApiWithQuery(filter) {
-  const API = axios.create({
-    baseURL: 'https://energyflow.b.goit.study/api',
-    params: {
-      filter: filter,
-      page: '1',
-      limit: '12',
-    },
-  });
-  renderImgs = await API.get('/filters');
-  console.log(renderImgs);
-  const imgs = renderImgs.data.results.reduce(
-    (html, { name, filter, imgUrl }) =>
-      html +
-      `<li class="gallery-item">
+  // перевірка if a button was clicked
+  if (event.target.tagName === 'BUTTON') {
+    PAGES_LIST.innerHTML = '';
+    GALLERY.innerHTML = '';
+    callApiWithQuery({ filter: event.target.name, page: event.target.id });
+  }
+});
+
+// Функція для виклику API та відображення зображень за обраним фільтром та параметрами
+async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
+  try {
+    const renderExercises = await getExercisesData(filter, page, limit);
+
+    const quantityBtnPgs = () => {
+      const totalPages = renderExercises.data.totalPages;
+      let btnPgs = '';
+      for (let i = 1; i <= totalPages; i++) {
+        btnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}"
+ >${i}</button>`;
+      }
+      return btnPgs;
+    };
+
+    const imgs = renderExercises.data.results.reduce(
+      (html, { name, filter, imgUrl }) =>
+        html +
+        `<li class="gallery-item" id=${name}>
            <div class="card">
             <a class="gallery-link" href="${imgUrl}">
              <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"
-             />
+             style = "background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url("${imgUrl}"), lightgray 1.925px -135.663px / 106.102% 202.346% no-repeat;"
+            />
             </a>
             </div>
             <div class="card-description">
             <p class="name-description">${name}</p>
             <p class="filter-description">${filter}</p>
-            </div>
           </li>`,
-    ''
-  );
-  GALLERY.insertAdjacentHTML('beforeend', imgs);
+      ''
+    );
 
-  //   API.get('/filters')
-  //     .then(response => {
-  //       console.log(response.results);
-  //       const IMGS = response.results.reduce(
-  //         (html, { name, filter, imgUrl }) =>
-  //           html +
-  //           `<li class="GalleryItem">
-  //          <div class="Card">
-  //           <a class="GalleryLink" href="${imgUrl}">
-  //            <img class="GalleryImage"
-  //            src="${imgUrl}"
-  //            alt="${filter}"
-  //            />
-  //           </a>
-  //           </div>
-  //           <div class="CardDescription">
-  //           <p class="NameDescription">${name}</p>
-  //           <p class="FilterDescription">${filter}</p>
-  //           </div>
-  //         </li>`,
-  //         ''
-  //       );
-
-  //   GALLERY.insertAdjacentHTML('beforeend', IMGS);
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  //   iziToast.error({
-  //     message: error.message,
-  //     color: 'red',
-  //     position: 'topCenter',
-  //   });
-  // });
+    const pgs = quantityBtnPgs();
+    PAGES_LIST.insertAdjacentHTML('afterbegin', pgs);
+    GALLERY.insertAdjacentHTML('afterbegin', imgs);
+  } catch (error) {
+    console.error(error);
+    iziToast.error({
+      message: error.message,
+      color: 'red',
+      position: 'topCenter',
+    });
+  }
 }

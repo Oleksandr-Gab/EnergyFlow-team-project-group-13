@@ -8,6 +8,8 @@ body {
   color: var(--blackColorText-Background);
   background-color: var(--bodyBackground);
   box-sizing: border-box;
+  
+
 }
 
 .container {
