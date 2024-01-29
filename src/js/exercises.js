@@ -9,14 +9,14 @@ const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 
 export let exercisesData;
-let btnPgs = '';
+let paginationButtonsHTML = '';
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 
-// Виклик функції при завантаженні сторінки
+// Виклик функції з фільтром за default при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', async () => {
-  await callApiWithQuery('Muscles');
+  await callApiWithQuery({ filter: 'Muscles' });
   MUSCLES_BUTTON.classList.add('active');
 });
 
@@ -48,8 +48,9 @@ FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
   //очищення розмітці gallery перед новим пошуком
   GALLERY.innerHTML = '';
-  PAGES_LIST.innerHTML = '';
-  btnPgs = '';
+  //очищення розмітці PAGES_LIST перед новим пошуком
+  // PAGES_LIST.innerHTML = '';
+  // paginationButtonsHTML = '';
   // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
     // отримаємо значення атрибута "name" button
@@ -62,22 +63,20 @@ FILTER_LIST.addEventListener('click', event => {
 //делегування слухача на PAGES_LIST
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
-
   console.log(event.target.id);
   callApiWithQuery(event.target.id);
-
   // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
-    // btnPgs = '';
+    // paginationButtonsHTML = '';
     // PAGES_LIST.innerHTML = '';
   }
 });
 
 //параметри запиту API
-let page = 1;
-let limit = 12;
+const page = 1;
+const limit = 12;
 
-// Функція для виклику API та відображення зображень за обраним фільтром та параметрами
+// Функція виклику API для відображення карток та кнопок пагінації за обраним фільтром
 async function callApiWithQuery({ filter, page = 1 }) {
   try {
     const renderExercises = await getExercisesData(filter, page, limit);
@@ -101,21 +100,27 @@ async function callApiWithQuery({ filter, page = 1 }) {
           </li>`,
       ''
     );
-    console.log(btnPgs);
+    console.log(paginationButtonsHTML);
     const quantityBtnPgs = () => {
       const totalPages = renderExercises.data.totalPages;
-      // let btnPgs = '';
+      console.log(totalPages);
+      //очистка markup paginationButtonsHTML после run фильтра
+      let paginationButtonsHTML = '';
+      //
       for (let i = 1; i <= totalPages; i++) {
-        btnPgs += `<button id="${i}" class="pg-num-btn" type="button"
+        paginationButtonsHTML += `<button id="${i}" class="pg-num-btn" type="button"
  >${i}</button>`;
       }
 
-      return btnPgs;
+      return paginationButtonsHTML;
     };
     console.log(quantityBtnPgs());
     const pgs = quantityBtnPgs();
-    PAGES_LIST.insertAdjacentHTML('afterbegin', pgs);
 
+    // Очистка PAGES_LIST перед додаванням нових кнопок пагінації
+    PAGES_LIST.innerHTML = '';
+
+    PAGES_LIST.insertAdjacentHTML('afterbegin', pgs);
     GALLERY.insertAdjacentHTML('afterbegin', imgs);
   } catch (error) {
     console.error(error);
