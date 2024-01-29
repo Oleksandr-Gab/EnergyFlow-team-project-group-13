@@ -1,53 +1,88 @@
-import { openModal } from './modal-pop-up';
+// import { openModal } from './modal-pop-up';
 
 import axios from 'axios';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-// import { renderImgs } from './exercises.js';
-
-// console.log(renderImgs);
-
 let page;
 let totalItems;
 let maxPages;
 const limit = 8;
 
+//  -------Текст при відсутності вправи ------
+const partError =
+  'Unfortunately, no results were found. You may want to consider other search options to find the exercise you are looking for. Our range is wide and you have the opportunity to find more options that suit your needs.';
+
 const galleryDalley = document.querySelector('.gallery');
+const filterBtns = document.querySelector('.filter-list');
 const galleryWaist = document.querySelector('.waist');
+const searchPart = document.querySelector('#search');
+const searchBlock = document.querySelector('.search-block');
 const viewportWidth = innerWidth;
-// const arrowRight = document.querySelector('.workout-btn-container');
+const arrowRight = document.querySelector('.workout-btn');
 console.log(viewportWidth);
+
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
-  params: {
-    page: '1',
-    limit: '8',
-  },
 });
 
-// ----- Функція запиту--------------------------------------------
+// export const fetchExercises = async request => {
+//   const exercises = await apiWaist.get(request);
 
-export const fetchExercises = async request => {
-  const exercises = await apiWaist.get(request);
-
-  return exercises;
-};
+//   return exercises;
+// };
 
 // -------------------------------------------------------------
 
-function handClick() {
-  // ??????????????????????????????????????????????????????????????
+// galleryDalley.addEventListener('click', handClick);
+
+// bodypart
+// muscles
+// equipment
+
+// keyword
+
+// galleryWaist.removeEventListener('click', handClick);
+
+const fetchExercises = async request => {
+  const exercises = await apiWaist.get(request, {
+    params: {
+      // ----- papam for input --------
+      // bodypart: 'waist',
+      // muscles: 'abs',
+      // equipment: 'roller',
+      // keyword: 'cable',
+      // ---------------------------------------------------
+      page: '1',
+      // -------ліміт ---------------------- ???????????????
+      // limit: '10',
+    },
+  });
+  return exercises;
+};
+
+// ---example ----
+const abs = 'abs';
+
+galleryDalley.addEventListener('click', event => {
   galleryDalley.innerHTML = '';
-  // ??????????????????????????????????????????????????????????????
   galleryWaist.innerHTML = '';
+  searchPart.style.display = 'block';
+  searchBlock.style.display = 'block';
+  // ------------------------------------
+
   galleryWaist.classList.add('information-cards');
+
+  apiWaist.defaults.params = {
+    //  дані, отримані при кліку на фото на приклад: (muscles: 'abs')
+    currentButton: 'clickOnPhoto-id...',
+    limit: '8',
+  };
   fetchExercises('/exercises')
     .then(response => {
-      // console.log(response);
-      // console.log(response.data);
-      // console.log(response.data.results);
+      console.log(response.data);
+
       renderExercises(response.data.results);
     })
     .catch(error => {
@@ -56,27 +91,75 @@ function handClick() {
         position: 'topRight',
       });
     });
-}
+});
 
-galleryDalley.addEventListener('click', handClick);
+// -----------------------------------------------------------
 
-// galleryWaist.removeEventListener('click', handClick);
+// searchPart.addEventListener('input', event => {
+//   clearTimeout(typingTimer);
 
-// --------------------------------------------------------
-//  Виводимо в консоль Id елемента списку
+//   typingTimer = setTimeout(function () {
+//     let emailValue = searchPart.value;
+//     partName = searchPart.value;
 
-galleryWaist.addEventListener('click', event => {
-  console.log('hi');
-  console.log(event.target.id);
+//     console.log(partName);
+//     console.log('Введенное значение после задержки:', emailValue);
+//   }, 2000);
+// });
+
+// ----- Пошук вправи за інпутом -----------------------------
+
+let partName;
+let typingTimer;
+searchPart.addEventListener('input', event => {
+  clearTimeout(typingTimer);
+
+  typingTimer = setTimeout(function () {
+    partName = searchPart.value;
+    console.log(partName);
+  }, 1000);
+
+  searchBlock.addEventListener('click', event => {
+    console.log(partName.toLowerCase());
+    // ----------- Підставляемо значення інпут "Назва вправи" ----------------
+    if (partName.trim() !== 'input-value') {
+      galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
+      return;
+    }
+    // -------Запит --------------
+    galleryWaist.classList.add('information-cards');
+    apiWaist.defaults.params = {
+      //  дані, отримані з 'input search' приклад: (muscles: 'abs')
+      keydown: 'inputValue',
+      limit: '8',
+    };
+    fetchExercises('/exercises')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        iziToast.error({
+          message: error,
+          position: 'topRight',
+        });
+      });
+  });
+
+  // console.log(partName.trim());
 });
 
 function renderExercises(arr) {
+  // ---Підвид вправи----- id картки -----
+  // let part = 'abs';
+  // const listPart = arr.filter(item => item.target === part);
+
+  // ---------------------
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
-        `<li class="gallery-card" id="${_id}">
+        `<li class="gallery-card">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -87,10 +170,11 @@ function renderExercises(arr) {
         </div>
                  
         <div class="workout-btn-container">
-            <button class="workout-btn">Start</button>
+            <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="../img/sprite.svg#icon-right"></use>
             </svg>
+            </button>
         </div>
       </div>
 
