@@ -92,8 +92,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
            <div class="card" >            
              <img class="gallery-image"
              src="${imgUrl}"
-             alt="${filter}"
-             style = "background: linear-gradient(0deg, rgba(16, 16, 16, 0.70) 0%, rgba(16, 16, 16, 0.70) 100%), url("${imgUrl}"), lightgray 1.925px -135.663px / 106.102% 202.346% no-repeat;"
+             alt="${filter}"            
             />            
             </div>
             <div class="card-description">
