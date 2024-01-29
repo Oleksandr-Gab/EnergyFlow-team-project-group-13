@@ -1,13 +1,16 @@
 /*! MAIN STYLE */
 .quote-container {
-  width: 335px;
   height: 545px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: auto;
+  margin-left: auto;
   margin-top: 20px;
 }
 .quote-back-img {
   background-image: url(../../img/quote-section-img/quote-wear-mobile.jpg);
   height: 272px;
-  background-size: 100%;
+  background-size: auto;
   border-radius: 30px;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -17,12 +20,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  width: auto;
+  height: 272px;
   background: var(--greyColorText-Background-Btn);
   border-radius: 30px;
-  width: 295px;
-  height: 272px;
+  margin-top: 0;
 }
 .quote-card {
   display: flex;
@@ -42,10 +44,11 @@
 }
 .quote-commas {
   fill: var(--textCardTitle);
-  margin-left: 61px;
+  margin-left: 24px;
 }
 .quote-info {
   padding-left: 44px;
+  min-height: 100px;
 }
 .quote-text {
   color: var(--colorTextQuote);
@@ -61,6 +64,22 @@
   font-weight: 500;
   line-height: 1.5;
 }
+/*! MOBILE STYLE */
+@media screen and (min-width: 375px) {
+  .quote-container {
+    width: 335px;
+    margin-top: 16px;
+  }
+  .quote-main {
+    width: 335px;
+  }
+  .quote-commas {
+    margin-left: 61px;
+  }
+  .quote-back-img {
+    background-size: 100%;
+  }
+}
 @media screen and (min-resolution: 192dpi) and (min-width: 375px),
   screen and (min-resolution: 2dppx) and (min-width: 375px),
   screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
@@ -73,7 +92,8 @@
   .quote-container {
     width: 736px;
     height: 604px;
-    margin-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .quote-back-img {
     background-image: url(../../img/quote-section-img/quote-wear-tablet.jpg);
@@ -133,6 +153,7 @@
     padding-left: 64px;
     padding-right: 64px;
     border-radius: 50px;
+    width: 704px;
   }
 
   .quote-back-img {

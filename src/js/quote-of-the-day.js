@@ -1,25 +1,39 @@
-// 1.Отримання даних з бека
-// 2. Зберігати ці дані в localStorage
-// 3. Перевірка дати, якщо дата змінилася робити запит на бек та підставляти нову quote ^_^
-//  Якщо дата не змінилася робити запит на бекенд не потрібно
 import axios from 'axios';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 const quoteContainer = document.querySelector('.quote-info')
-
-
+const QUOTE_DATA_STORAGE = 'quote-of-the-day';
+const DATE_STORAGE = "date"
+const quoteDate = new Date()
+const dayOfMonth = quoteDate.getDate()
 async function getQuoteResponse() {
     try {
     const quoteApi = axios.create({
-        baseURL: 'https://energyflow.b.goit.study/api'
+        baseURL: 'https://energyflow.b.goit.study/api',
+
     });
         const responseQuote = await quoteApi.get('/quote'); 
-    renderQuote(responseQuote.data);
+        const quoteResponseData = responseQuote.data
+        renderQuote(quoteResponseData);
+        saveQuoteAndData(quoteResponseData, dayOfMonth)
+        
+        
 } catch (error) {
-  console.error("SOMETHING WENT WRONG", error);
+  iziToast.error({
+      timeout: 5000,
+      title: "Error",
+      message: error.message,
+      position: 'topRight',
+    });
 }
 }
 
 
-
+//! SAVE QUOTE AND DATA
+function saveQuoteAndData(data, day) {
+    localStorage.setItem(QUOTE_DATA_STORAGE, JSON.stringify(data));
+    localStorage.setItem(DATE_STORAGE, day);
+}
 
 //! RENDER QUOTE
 function renderQuote(data) {
@@ -30,4 +44,29 @@ function renderQuote(data) {
         <h3 class="quote-author">${author}</h3>`, '');
 }
 
-getQuoteResponse()
+
+
+async function checkDay() {
+    const storedDate = localStorage.getItem(DATE_STORAGE);
+if (isNaN(storedDate)) {
+     iziToast.error({
+      timeout: 5000,
+      title: "Error",
+      message: error.message,
+      position: 'topRight',
+     });
+    return;
+}
+if (parseInt(storedDate) === dayOfMonth) {
+        const storedQuoteData = localStorage.getItem(QUOTE_DATA_STORAGE);
+        if (storedQuoteData) {
+            const parsedData = JSON.parse(storedQuoteData);
+            renderQuote(parsedData);
+        }
+        return;
+    }
+    await getQuoteResponse();
+    localStorage.setItem(DATE_STORAGE, dayOfMonth.toString());
+}
+
+checkDay();
