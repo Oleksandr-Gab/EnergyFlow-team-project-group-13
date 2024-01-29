@@ -216,6 +216,38 @@
     
 }
 
-/* desktop 1440px + */
-@media screen and (min-width: 1440px){}
+
+
+/* desctop 1440px + */
+@media screen and (min-width: 1440px){
+
+    .custom-pagination-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .custom-pagination-btn .render-pagination-btn {
+        color: rgba(27, 27, 27, 0.4);
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.8px;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+      }
+
+      .custom-pagination-btn .render-pagination-btn-active {
+        color: #1b1b1b;
+        border-radius: 50%;
+        border: 1px solid #1b1b1b;
+        padding: 0px 12px;
+        flex-shrink: 0;
+      }
+
+}
+
 

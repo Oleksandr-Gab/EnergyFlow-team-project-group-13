@@ -1,9 +1,11 @@
+import { openModal } from './modal-pop-up';
+
 import axios from 'axios';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-// import { renderImgs } from '../main.js';
+// import { renderImgs } from './exercises.js';
 
 // console.log(renderImgs);
 
@@ -12,59 +14,69 @@ let totalItems;
 let maxPages;
 const limit = 8;
 
-const galleryWaist = document.querySelector('.Gallery');
+const galleryDalley = document.querySelector('.gallery');
+const galleryWaist = document.querySelector('.waist');
+const viewportWidth = innerWidth;
+// const arrowRight = document.querySelector('.workout-btn-container');
+console.log(viewportWidth);
+const apiWaist = axios.create({
+  baseURL: 'https://energyflow.b.goit.study/api',
+  params: {
+    page: '1',
+    limit: '8',
+  },
+});
 
-const EXERCISES_URL = new URL('https://energyflow.b.goit.study/api/exercises?');
+// ----- Функція запиту--------------------------------------------
 
-// Функція запиту--------------------------------------------
+export const fetchExercises = async request => {
+  const exercises = await apiWaist.get(request);
 
-const fetchExercises = async request => {
-  const exercises = await axios.get(request);
-
-  return exercises.data;
+  return exercises;
 };
-// --------------------------------------------------------
 
-// --------- exercises  listener-----------------------------
+// -------------------------------------------------------------
 
-galleryWaist.addEventListener('click', event => {
-  event.preventDefault();
-  //   galleryWaist.innerHTML = '';
-
+function handClick() {
+  // ??????????????????????????????????????????????????????????????
+  galleryDalley.innerHTML = '';
+  // ??????????????????????????????????????????????????????????????
+  galleryWaist.innerHTML = '';
   galleryWaist.classList.add('information-cards');
-
-  EXERCISES_URL.searchParams.append('limit', limit);
-  EXERCISES_URL.searchParams.append('page', 1);
-  EXERCISES_URL.searchParams.append('name', '?');
-
-  fetchExercises(EXERCISES_URL)
+  fetchExercises('/exercises')
     .then(response => {
-      console.log(response);
-      //   maxPages = Math.ceil(response.totalPages / limit);
-      //   console.log(maxPages);
-      //   if (maxPages > 1) {
-      //     paginationBtn.style.display = 'flex';
-      //     renderBtn(maxPages);
-      //   }
-      renderExercises(response.results);
+      // console.log(response);
+      // console.log(response.data);
+      // console.log(response.data.results);
+      renderExercises(response.data.results);
     })
     .catch(error => {
       iziToast.error({
-        message: 'Sorry. Please try again!',
+        message: error,
         position: 'topRight',
       });
     });
-});
+}
+
+galleryDalley.addEventListener('click', handClick);
+
+// galleryWaist.removeEventListener('click', handClick);
 
 // --------------------------------------------------------
+//  Виводимо в консоль Id елемента списку
+
+galleryWaist.addEventListener('click', event => {
+  console.log('hi');
+  console.log(event.target.id);
+});
 
 function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
-      (html, { burnedCalories, name, bodyPart, rating, time, target }) =>
+      (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
-        `<li class="gallery-card">
+        `<li class="gallery-card" id="${_id}">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -101,3 +113,21 @@ function renderExercises(arr) {
     )
   );
 }
+
+// ------------------------------------------------------------------------------
+
+// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// galleryWaist.addEventListener('click', event => {
+//   event.preventDefault();
+
+// ---- ПИШИ В ІНШОМУ ФАЙЛІ -----------------------------
+
+//   const galleryCard = event.target.closest('.gallery-card');
+//   if (galleryCard) {
+//     const cardId = galleryCard.dataset.id;
+//     openModal();
+//   }
+// });
+
+// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
