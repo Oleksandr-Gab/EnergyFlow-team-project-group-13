@@ -303,3 +303,58 @@ var closeModalBtnPrize = document.getElementById('closeModalPrize');
 closeModalBtnPrize.onclick = function () {
   closeModalPrize();
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Функція для відправки форми
+  function sendForm() {
+    // Отримуємо значення email
+    var email = document.getElementById('email-prize').value;
+
+    // Перевіряємо, чи є валідний email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      // Якщо не валідний, виводимо повідомлення і виходимо
+      iziToast.error({
+        title: 'Error',
+        message: 'Enter a valid email!',
+        zIndex: 1001,
+        timeout: 2000, // Display for 3 seconds
+        backgroundColor: 'white', // Red background
+        color: 'black', // White text
+        iconColor: 'black', // White icon
+      });
+      return;
+    }
+
+    // Якщо валідний, ви можете відправити форму або виконати інші дії
+    // Наприклад, ви можете відправити AJAX-запит на сервер
+
+    // Додайте свій код для обробки валідного email тут
+
+    // Приклад виведення повідомлення про успішну відправку
+    iziToast.success({
+      title: 'Success',
+      message: 'Form submitted!',
+      zIndex: 1001,
+      timeout: 2000, // Display for 3 seconds
+      backgroundColor: 'white', // Red background
+      color: 'black', // White text
+      iconColor: 'black', // White icon
+    });
+
+    // Закриваємо модальне вікно через 2 секунди
+    setTimeout(function () {
+      closePrizeModal();
+    }, 1000);
+  }
+
+  // Функція для закриття модального вікна
+  function closePrizeModal() {
+    var modal = document.getElementById('myModalPrize');
+    modal.style.display = 'none';
+  }
+
+  // Додаємо обробник події для кнопки "Get"
+  var getButton = document.querySelector('.button-get');
+  getButton.addEventListener('click', sendForm);
+});
