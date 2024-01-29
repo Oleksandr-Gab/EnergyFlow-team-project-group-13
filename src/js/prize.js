@@ -2,7 +2,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const prizes = [
+/* const prizes = [
   {
     text: 'One-Month Membership',
     color: 'rgba(232, 232, 232, 1)',
@@ -34,6 +34,41 @@ const prizes = [
   {
     text: 'Participation in Marathon',
     color: 'rgb(62, 184, 119)',
+  },
+];
+ */
+const prizes = [
+  {
+    text: 'One-Month Membership',
+    color: 'rgba(232, 232, 232, 1)',
+  },
+  {
+    text: 'Personal Training Session',
+    color: 'rgb(126, 133, 127)',
+  },
+  {
+    text: 'Fitness Bracelet',
+    color: 'rgba(232, 232, 232, 1)',
+  },
+  {
+    text: '25% Off Certificate',
+    color: 'rgb(126, 133, 127)',
+  },
+  {
+    text: '$50 Gift Card',
+    color: 'rgba(232, 232, 232, 1)',
+  },
+  {
+    text: '10% Off Certificate',
+    color: 'rgb(126, 133, 127)',
+  },
+  {
+    text: '$30 Gift Card',
+    color: 'rgba(232, 232, 232, 1)',
+  },
+  {
+    text: 'Participation in Marathon',
+    color: 'rgb(126, 133, 127)',
   },
 ];
 
@@ -250,7 +285,7 @@ var modal = document.getElementById('myModalPrize');
 var openModalBtnPrize = document.getElementById('openModalBtnPrize');
 
 openModalBtnPrize.onclick = function () {
-  modal.style.display = 'block';
+  modal.style.display = 'flex';
 };
 
 function closeModalPrize() {
