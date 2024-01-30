@@ -73,6 +73,19 @@ if (parseInt(storedDate) === dayOfMonth) {
 checkDay();
 
 new TypeIt("#quote", {
-    speed: 50,
+    speed: 26,
+    startDelay: 300,
     waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+      }
+  }).go();
+
+  new TypeIt("#motivation-txt", {
+    speed: 26,
+    startDelay: 300,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+      }
   }).go();
