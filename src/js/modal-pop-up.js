@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const exerciseInfo = document.getElementById('information');
+const addToFavoritesBtn = document.getElementById('addToFavoritesBtn')
 let openModalBtn;
+let modallResponseData;
 
 async function getData(id) {
     try {
@@ -17,8 +19,7 @@ async function getData(id) {
             baseURL: 'https://energyflow.b.goit.study/api/exercises',
         });
         const responseModall = await modallApi.get(id);
-        const modallResponseData = responseModall.data;
-        console.log(modallResponseData);
+        modallResponseData = responseModall.data;
         renderCard(modallResponseData);
 
     } catch (error) {
@@ -82,7 +83,6 @@ function renderCard(data) {
         <p class="description">Description: ${description}</p> 
         </div>`;
     
-    console.log(modalHtml);
     exerciseInfo.innerHTML = modalHtml;
     openModal();
 
@@ -125,3 +125,24 @@ const escapeKey = function (event) {
         closeModal();
     }
 };
+
+
+// функція додавання інфи в локал
+
+addToFavoritesBtn.addEventListener('click', async () => {
+    let newLocalFavCart = [];
+    let localFavCart = localStorage.getItem('favoritesCard');
+
+    if (localFavCart != null) {
+        newLocalFavCart = JSON.parse(localFavCart);
+    };
+
+    const newDataCard = await JSON.stringify(modallResponseData);
+    newLocalFavCart.push(newDataCard);
+
+    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+});
+
+
+
+
