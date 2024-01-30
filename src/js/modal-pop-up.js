@@ -2,11 +2,14 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+document.addEventListener('DOMContentLoaded', () => {
+    activeModalBtn();
+});
+
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const exerciseInfo = document.getElementById('information');
 let openModalBtn;
-
 
 async function getData(id) {
     try {
@@ -16,14 +19,15 @@ async function getData(id) {
         const responseModall = await modallApi.get(id);
         const modallResponseData = responseModall.data;
         console.log(modallResponseData);
-        renderCard(responseModall);
+        renderCard(modallResponseData);
+
     } catch (error) {
         iziToast.error({
             title: 'Error',
             message: 'Error fetching exercise data: ',
             position: 'topRight',
-        })
-    };    
+        });
+    }
 }
 
 export const activeModalBtn = () => {
@@ -33,15 +37,14 @@ export const activeModalBtn = () => {
             event.preventDefault();
             let id = event.target.id;
             getData(id);
+        });
     });
-})
-}
+};
 
-function renderCard (data = []) {
-//   const dataM = {data};
-  const modalHtml = data.reduce((html, { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time }) => {
-    return (html +
-        `<img src="${gifUrl}" alt="${name}">
+function renderCard(data) {
+    const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
+    const modalHtml = `
+        <img src="${gifUrl}" alt="${name}">
         <h2>${name}</h2>
         <p>Rating: ${rating}</p>
         <p>Target: ${target}</p>
@@ -49,13 +52,11 @@ function renderCard (data = []) {
         <p>Equipment: ${equipment}</p>
         <p>Popular: ${popularity}</p>
         <p>Burned Calories: ${burnedCalories}</p>
-        <p>Description: ${description}</p>`
-        );
-    }, '');
+        <p>Description: ${description}</p>`;
     console.log(modalHtml);
     exerciseInfo.innerHTML = modalHtml;
     openModal();
-};
+}
 
 // --- Відкриття модалки
 
@@ -68,7 +69,8 @@ export function openModal() {
     document.addEventListener('keydown', escapeKey);
 }
 
-    // --- Закриття модалки 
+// --- Закриття модалки 
+
 function closeModal() {
     exerciseModal.classList.remove('open');
     closeModalBtn.removeEventListener('click', closeModal);
@@ -79,12 +81,14 @@ function closeModal() {
 }
 
 // --- Кліки по бєкдропу та esc
-    const outsideClick = function (event) {
+
+const outsideClick = function (event) {
     const container = document.getElementById('modal');
     if (!container.contains(event.target) && exerciseModal.classList.contains('open')) {
         closeModal();
     }
 };
+
 const escapeKey = function (event) {
     if (event.key === 'Escape') {
         closeModal();
