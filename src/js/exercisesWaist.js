@@ -14,6 +14,7 @@ const partError =
 
 const galleryDalley = document.querySelector('.gallery');
 const sectionTitle = document.querySelector('.section-title');
+const titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const viewportWidth = innerWidth;
@@ -36,6 +37,7 @@ galleryDalley.addEventListener('click', event => {
 
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
+
   searchPart.style.display = 'block';
   galleryWaist.classList.add('information-cards');
 
@@ -51,9 +53,9 @@ galleryDalley.addEventListener('click', event => {
   // ------------------------------------------------
   sectionTitle.insertAdjacentHTML(
     'beforeend',
-    `<p class="titleSlash">&#8260;<span class="titleSpan">${paramArr[1]}</span></p>`
+    `<p id="slash">&#8260;<span class="title-span">${paramArr[1]}</span></p>`
   );
-
+  console.log(sectionTitle);
   fetchExercises('/exercises', {
     params: {
       // limit: '8',
@@ -62,6 +64,7 @@ galleryDalley.addEventListener('click', event => {
     .then(response => {
       // console.log(response.data.results);
       renderExercises(response.data.results);
+      // console.log(titleSlash);
     })
     .catch(error => {
       iziToast.error({

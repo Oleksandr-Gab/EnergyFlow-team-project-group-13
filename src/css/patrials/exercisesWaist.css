@@ -8,7 +8,7 @@
   padding-bottom: 20px;
 }
 
-.titleSpan {
+.title-span {
   color: rgba(27, 27, 27, 0.5);
 
   font-family: 'DM Sans';
@@ -19,7 +19,7 @@
   letter-spacing: -0.4px;
 }
 
-.titleSlash {
+.title-slash {
   display: inline-block;
   margin-left: 8px;
   margin-right: 8px;
