@@ -7,6 +7,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
+const WAIST = document.querySelector('.waist');
 
 //create instance of API
 export const API_BASE_URL = axios.create({
@@ -17,11 +18,15 @@ export let exercisesData;
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
+let pagesButton;
 
-// Виклик функції з фільтром за default при завантаженні сторінки
+// слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
+  //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('active');
+  pagesButton = document.querySelector('.pg-num-btn');
+  pagesButton.classList.add('pg-num-btn-active');
 });
 
 //функція запиту на DATA
@@ -47,9 +52,13 @@ FILTER_LIST.addEventListener('click', event => {
   //очищення карток та сторінок
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
+  WAIST.innerHTML = '';
+  // document.removeEventListener('DOMContentLoaded');
   if (event.target.tagName === 'BUTTON') {
     MUSCLES_BUTTON.classList.remove('active');
-    //виклик функції з отриманним значенням фільтра
+    // PAGES_BUTTON.classList.remove('pg-num-btn-active');
+
+    //виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
   }
 });
@@ -72,12 +81,12 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     const renderExercises = await getExercisesData({ filter, page, limit });
     const quantityBtnPgs = () => {
       const totalPages = renderExercises.data.totalPages;
-      let btnPgs = '';
+      let markupBtnPgs = '';
       for (let i = 1; i <= totalPages; i++) {
-        btnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}"
+        markupBtnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}"
  >${i}</button>`;
       }
-      return btnPgs;
+      return markupBtnPgs;
     };
 
     const imgs = renderExercises.data.results.reduce(
@@ -91,15 +100,15 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
             />            
             </div>
             <div class="card-description">
-            <p class="name-description" id="{filter:${filter}, namePart:${name}}">${name}</p>
+            <p class="name-description" id="${filter}:${name}">${name}</p>
             <p class="filter-description">${filter}</p>
             </div>
           </li>`,
       ''
     );
-    const pgs = quantityBtnPgs();
+    const markupBtnPgs = quantityBtnPgs();
 
-    PAGES_LIST.insertAdjacentHTML('afterbegin', pgs);
+    PAGES_LIST.insertAdjacentHTML('afterbegin', markupBtnPgs);
     GALLERY.insertAdjacentHTML('afterbegin', imgs);
   } catch (error) {
     console.error(error);
