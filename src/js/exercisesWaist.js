@@ -71,7 +71,7 @@ const abs = 'abs';
 
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
-  console.log(event.target.tagName);
+  console.log(event.target.id);
 
   galleryDalley.innerHTML = '';
   searchPart.style.display = 'block';
