@@ -2,7 +2,13 @@
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+  background-color: var(--greyBackground);
+
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
+
+/* (--greyBackground) (#808080)*/
 
 .gallery-card {
   background-color: #fff;
@@ -12,6 +18,9 @@
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* .gallery-search {
@@ -79,6 +88,9 @@
   justify-content: flex-start;
   align-items: center;
   column-gap: 8px;
+  /* border: 1px solid #1b1b1b;
+  padding-left: 10px;
+  padding-bottom: 10px; */
 }
 
 /* --blackColorText-Background  (#1b1b1b)*/
@@ -94,6 +106,9 @@
 
   background-color: inherit;
   border: none;
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
 }
 
 .title-card {
@@ -171,28 +186,64 @@
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 14px;
-    /* height: calc((100% - 20px * 3) / 4); */
+    padding-left: 32px;
+    padding-right: 32px;
+
+    padding-top: 50px;
+  }
+  .gallery-card {
+    width: 310px;
+    /* width: calc((100% - 14px) / 2); */
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .information-cards {
+    width: 1080px;
+    row-gap: 28px;
+    column-gap: 24px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 32px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
+  .gallery-card {
+    max-width: 424px;
+  }
+}
+
+.errorEmageContainer {
+  margin: auto;
+  text-align: center;
+  /* padding-left: 20px;
+  padding-right: 20px; */
 }
 /* ------------------------------------------------------------- */
 
+.search-block {
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1b1b1b;
+  display: none;
+}
+
 /* +++++++++++++++++++++++++++++++ */
-.cards-container {
+/* .cards-container {
   display: flex;
   flex-direction: column;
 
   justify-content: center;
   align-items: flex-start;
   row-gap: 20px;
-  /* background: #fff; */
-  /* ----------------------------- */
+  
   background-color: var(--greyBackground);
   margin-left: auto;
   margin-right: auto;
   align-items: stretch;
-}
+} */

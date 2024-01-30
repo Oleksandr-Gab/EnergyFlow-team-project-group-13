@@ -1,13 +1,19 @@
 .favoritePart {
+    margin-left: auto;
+    margin-right: auto;
+}
+.favorite-part-container {
     background-color: var(--greyBackground);
     border-radius: 30px;
-    height: 450px;
+    width: auto;
     padding: 20px 40px;
+    max-width: 335px;
 }
 
 .favoritePart-titel {
     font-size: 32px;
     line-height: 1;
+    text-align: start;
 }
 
 .favoritePartInfo {
@@ -32,11 +38,22 @@
     margin-top: 28px;
 }
 
+@media screen and (min-width: 375px) {
+    .favoritePart {
+        width: 375px;
+    }
+}
+
+
 @media screen and (min-width: 768px) {
     .favoritePart {
+        width: 768px;
+    }
+
+    .favorite-part-container {
         border-radius: 50px;
-        height: 928px;
         padding: 48px 64px;
+        max-width: 736px;
     }
     
     .favoritePart-titel {
@@ -61,7 +78,10 @@
   }
   @media screen and (min-width: 1440px) {
     .favoritePart {
-        height: 687px;
+        width:1440px;
+    }
+    .favorite-part-container {
+        max-width: 1408px;
     }
     
     .favoritePartInfo {

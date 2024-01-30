@@ -13,6 +13,9 @@ async function handleSubmit(event) {
     event.preventDefault();
     
     const footerEmailValue = event.currentTarget.elements.footerInput.value.trim();
+    if (!validateEmail(footerEmailValue)) {
+        return messageValidEmail();
+    }; 
 
     
     try {
@@ -45,3 +48,19 @@ async function handleSubmit(event) {
     }
 }
 
+
+
+
+const validateEmail = (email) => {
+    const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return pattern.test(email);
+}
+
+const messageValidEmail = () => {
+    iziToast.info({
+        title: '',
+        message: "Please give us a valid email.",
+        color: 'white',
+        position: 'center'
+    });
+}
