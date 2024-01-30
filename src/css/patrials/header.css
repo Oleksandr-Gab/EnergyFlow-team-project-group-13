@@ -77,9 +77,6 @@
   }
 }
 
-.menu-close {
-}
-
 .social-burger {
   display: none;
 
@@ -207,12 +204,6 @@
   align-items: center;
   gap: 200px;
 }
-/* .header-wrap-mob {
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 100px;
-} */
 
 .menu-back-drop.active .nav {
   top: 0;
@@ -224,7 +215,7 @@
 }
 
 .menu-back-drop.active {
-  position: fixed;
+  position: static;
   z-index: 10;
 }
 
@@ -280,6 +271,4 @@
   width: 32px;
   height: 32px;
   stroke: #f4f4f4;
-}
-.menu-open {
 }
