@@ -108,6 +108,7 @@
     border-radius: 50px;
     width: 576px;
     height: 302px;
+    box-sizing: content-box;
   }
   .quote-runner {
     margin-right: 16px;
@@ -154,6 +155,7 @@
     padding-right: 64px;
     border-radius: 50px;
     width: 704px;
+    box-sizing: border-box;
   }
 
   .quote-back-img {
