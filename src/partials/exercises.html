@@ -4,7 +4,11 @@
     <div class="search-block">
       <ul class="filter-list">
         <li class="filter-item">
-          <button class="filter-button active" type="button" name="Muscles">
+          <button
+            class="filter-button filter-active"
+            type="button"
+            name="Muscles"
+          >
             Muscles
           </button>
         </li>
@@ -19,8 +23,18 @@
           </button>
         </li>
       </ul>
-
-      <input id="search" type="text" placeholder="Search" />
+      <div class="field-search-wraper">
+        <input
+          id="search"
+          type="text"
+          name="user-search"
+          placeholder="Search"
+          pattern="[a-zA-Z']+"
+        />
+      </div>
+      <svg class="search-icon" width="18" height="18" aria-label="search icon">
+        <use href="../img/sprite.svg#icon-search"></use>
+      </svg>
     </div>
 
     <ul class="gallery"></ul>
