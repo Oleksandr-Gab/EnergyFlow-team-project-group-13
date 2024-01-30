@@ -5,25 +5,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { getExercisesData } from './exercises.js';
 import { activeModalBtn } from './modal-pop-up.js';
-
-// getExercisesData()
-//   .then(response => {
-//     // console.log(response);
-//   })
-//   .catch(error => {
-//     iziToast.error({
-//       message: error,
-//       position: 'topRight',
-//     });
-//   });
-// console.log();
-
-let page;
-let totalItems;
-let maxPages;
-const limit = 8;
 
 //  -------Текст при відсутності вправи ------
 const partError =
@@ -35,9 +17,6 @@ const sectionTitle = document.querySelector('.section-title');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const viewportWidth = innerWidth;
-const arrowRight = document.querySelector('.workout-btn-container');
-
-// console.log(viewportWidth);
 
 // -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
@@ -51,16 +30,6 @@ const fetchExercises = async (lastString, { params }) => {
   });
   return exercises;
 };
-// ---------------- Зразок параметрів ---------
-// params: {
-//   bodypart: 'waist',
-//   muscles: 'abs',
-//   equipment: 'roller',
-//   keyword: 'cable',
-//   page: '1',
-//   limit: '10',
-// },
-// -----------------------------------------------
 
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
