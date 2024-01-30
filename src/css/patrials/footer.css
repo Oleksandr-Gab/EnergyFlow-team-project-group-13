@@ -124,6 +124,10 @@
     
 }
 
+.footer-form-input:focus{
+    outline: none;
+}
+
 .footer-form-input::placeholder {
     color: var(--colorTextQuote);
     font-size: 14px;
