@@ -91,7 +91,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
             />            
             </div>
             <div class="card-description">
-            <p class="name-description" id="{filter:${filter}, namePart:${name}}">${name}</p>
+            <p class="name-description" id="${filter}:${name}">${name}</p>
             <p class="filter-description">${filter}</p>
             </div>
           </li>`,
