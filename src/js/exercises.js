@@ -8,6 +8,11 @@ const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 
+//create instance of API
+export const API_BASE_URL = axios.create({
+  baseURL: 'https://energyflow.b.goit.study/api',
+});
+
 export let exercisesData;
 
 //button MUSCLES active by default
@@ -20,18 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 //функція запиту на DATA
-export const getExercisesData = async (filter, page, limit) => {
-  // console.log(filter, page, limit);
+export const getExercisesData = async ({ filter, page, limit }) => {
   try {
-    const API = axios.create({
-      baseURL: 'https://energyflow.b.goit.study/api',
-      params: {
-        filter: filter,
-        page: page,
-        limit: limit,
-      },
+    exercisesData = await API_BASE_URL.get('/filters', {
+      params: { filter: filter, page: page, limit: limit },
     });
-    exercisesData = await API.get('/filters');
     return exercisesData;
   } catch (error) {
     console.error(error);
@@ -46,12 +44,10 @@ export const getExercisesData = async (filter, page, limit) => {
 //делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
-  //очищення розмітці перед новим пошуком
+  //очищення карток та сторінок
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
-  // перевірка if a button was clicked
   if (event.target.tagName === 'BUTTON') {
-    // отримаємо значення атрибута "name" button
     MUSCLES_BUTTON.classList.remove('active');
     //виклик функції з отриманним значенням фільтра
     callApiWithQuery({ filter: event.target.name });
@@ -62,7 +58,7 @@ FILTER_LIST.addEventListener('click', event => {
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
 
-  // перевірка if a button was clicked
+  // гортання сторінок
   if (event.target.tagName === 'BUTTON') {
     PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
@@ -70,11 +66,10 @@ PAGES_LIST.addEventListener('click', event => {
   }
 });
 
-// виклик API та створення розмітки за обраним фільтром
+// пагінація та генерація розмітки
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
-    const renderExercises = await getExercisesData(filter, page, limit);
-
+    const renderExercises = await getExercisesData({ filter, page, limit });
     const quantityBtnPgs = () => {
       const totalPages = renderExercises.data.totalPages;
       let btnPgs = '';
@@ -89,20 +84,21 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-           <div class="card" >            
+          <div class="card" >            
              <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"            
             />            
             </div>
             <div class="card-description">
-            <p class="name-description">${name}</p>
+            <p class="name-description" id="{filter:${filter}, namePart:${name}}">${name}</p>
             <p class="filter-description">${filter}</p>
+            </div>
           </li>`,
       ''
     );
-
     const pgs = quantityBtnPgs();
+
     PAGES_LIST.insertAdjacentHTML('afterbegin', pgs);
     GALLERY.insertAdjacentHTML('afterbegin', imgs);
   } catch (error) {
