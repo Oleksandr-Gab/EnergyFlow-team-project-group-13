@@ -1,4 +1,4 @@
-// import { openModal } from './modal-pop-up';
+import { openModal } from './modal-pop-up';
 
 import axios from 'axios';
 
@@ -8,18 +8,17 @@ import 'izitoast/dist/css/iziToast.min.css';
 import { getExercisesData } from './exercises.js';
 import { activeModalBtn } from './modal-pop-up.js';
 
-
-getExercisesData()
-  .then(response => {
-    // console.log(response);
-  })
-  .catch(error => {
-    iziToast.error({
-      message: error,
-      position: 'topRight',
-    });
-  });
-console.log();
+// getExercisesData()
+//   .then(response => {
+//     // console.log(response);
+//   })
+//   .catch(error => {
+//     iziToast.error({
+//       message: error,
+//       position: 'topRight',
+//     });
+//   });
+// console.log();
 
 let page;
 let totalItems;
@@ -29,77 +28,67 @@ const limit = 8;
 //  -------Текст при відсутності вправи ------
 const partError =
   'Unfortunately, no results were found. You may want to consider other search options to find the exercise you are looking for. Our range is wide and you have the opportunity to find more options that suit your needs.';
+// ------------------------------------------------
 
 const galleryDalley = document.querySelector('.gallery');
-const filterBtns = document.querySelector('.filter-list');
-// const galleryWaist = document.querySelector('.waist');
+// const filterBtns = document.querySelector('.filter-list');
+const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
-const searchBlock = document.querySelector('.search-block');
 const viewportWidth = innerWidth;
-const arrowRight = document.querySelector('.workout-btn');
+const arrowRight = document.querySelector('.workout-btn-container');
+
 // console.log(viewportWidth);
 
+// -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
 
-// export const fetchExercises = async request => {
-//   const exercises = await apiWaist.get(request);
-
-//   return exercises;
-// };
-
-// -------------------------------------------------------------
-
-// galleryDalley.addEventListener('click', handClick);
-
-// bodypart
-// muscles
-// equipment
-
-// keyword
-
-// galleryWaist.removeEventListener('click', handClick);
-
-const fetchExercises = async request => {
-  const exercises = await apiWaist.get(request, {
-    params: {
-      // ----- papam for input --------
-      // bodypart: 'waist',
-      // muscles: 'abs',
-      // equipment: 'roller',
-      // keyword: 'cable',
-      // ---------------------------------------------------
-      page: '1',
-      // -------ліміт ---------------------- ???????????????
-      // limit: '10',
-    },
+// ----- Функція запиту -----------------------------
+const fetchExercises = async (lastString, { params }) => {
+  const exercises = await apiWaist.get(lastString, {
+    params,
   });
   return exercises;
 };
+// ---------------- Зразок параметрів ---------
+// params: {
+//   bodypart: 'waist',
+//   muscles: 'abs',
+//   equipment: 'roller',
+//   keyword: 'cable',
+//   page: '1',
+//   limit: '10',
+// },
+// -----------------------------------------------
 
 // ---example ----
 const abs = 'abs';
+// const objectClick = {
+//   filter: ${ filters },
+//   namePart:${name}
+// }
 
 galleryDalley.addEventListener('click', event => {
-  // console.log('hi');
   event.preventDefault();
+  console.log(event.target.tagName);
+
   galleryDalley.innerHTML = '';
   searchPart.style.display = 'block';
-  // searchBlock.style.display = 'block';
-  // ------------------------------------
-
-  galleryDalley.classList.add('information-cards');
+  galleryWaist.classList.add('information-cards');
 
   apiWaist.defaults.params = {
-    //  дані, отримані при кліку на фото на приклад: (muscles: 'abs')
-    // currentButton: 'clickOnPhoto-id...',
-    limit: '8',
+    limit: viewportWidth > 1400 ? '9' : '8',
   };
-  fetchExercises('/exercises')
-    .then(response => {
-      // console.log(response.data);
 
+  fetchExercises('/exercises', {
+    params: {
+      // + Параметри отримані при кліку на картинку (приклад: equipment: 'roller',)
+      // limit: '8',
+    },
+  })
+    .then(response => {
+      console.log(response.data.results);
       renderExercises(response.data.results);
     })
     .catch(error => {
@@ -112,66 +101,44 @@ galleryDalley.addEventListener('click', event => {
 
 // -----------------------------------------------------------
 
+// ----- Пошук вправи за інпутом -----------------------------
+
+// let partName;
+// let typingTimer;
 // searchPart.addEventListener('input', event => {
 //   clearTimeout(typingTimer);
 
 //   typingTimer = setTimeout(function () {
-//     let emailValue = searchPart.value;
 //     partName = searchPart.value;
-
 //     console.log(partName);
-//     console.log('Введенное значение после задержки:', emailValue);
-//   }, 2000);
+//   }, 1000);
+
+//   searchBlock.addEventListener('click', event => {
+//     console.log(partName.toLowerCase());
+
+//     if (partName.trim() !== 'input-value') {
+//       galleryDalley.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
+//       return;
+//     }
+//     apiWaist.defaults.params = {
+
+//       limit: '8',
+//     };
+//     fetchExercises('/exercises')
+//       .then(response => {
+//         console.log(response);
+//       })
+//       .catch(error => {
+//         iziToast.error({
+//           message: error,
+//           position: 'topRight',
+//         });
+//       });
+//   });
 // });
 
-// ----- Пошук вправи за інпутом -----------------------------
-
-let partName;
-let typingTimer;
-searchPart.addEventListener('input', event => {
-  clearTimeout(typingTimer);
-
-  typingTimer = setTimeout(function () {
-    partName = searchPart.value;
-    console.log(partName);
-  }, 1000);
-
-  searchBlock.addEventListener('click', event => {
-    console.log(partName.toLowerCase());
-    // ----------- Підставляемо значення інпут "Назва вправи" ----------------
-    if (partName.trim() !== 'input-value') {
-      galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-      return;
-    }
-    // -------Запит --------------
-    galleryDalley.classList.add('information-cards');
-    apiWaist.defaults.params = {
-      //  дані, отримані з 'input search' приклад: (muscles: 'abs')
-      // keydown: 'inputValue',
-      limit: '8',
-    };
-    fetchExercises('/exercises')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        iziToast.error({
-          message: error,
-          position: 'topRight',
-        });
-      });
-  });
-
-  // console.log(partName.trim());
-});
-
 function renderExercises(arr) {
-  // ---Підвид вправи----- id картки -----
-  // let part = 'abs';
-  // const listPart = arr.filter(item => item.target === part);
-
-  // ---------------------
-  galleryDalley.insertAdjacentHTML(
+  galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
@@ -186,7 +153,7 @@ function renderExercises(arr) {
             </svg>
         </div>
                  
-        <div class="workout-btn-container">
+        <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="../img/sprite.svg#icon-right"></use>
