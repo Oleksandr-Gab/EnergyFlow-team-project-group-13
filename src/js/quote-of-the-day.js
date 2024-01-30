@@ -46,7 +46,7 @@ function renderQuote(data) {
 }
 
 
-
+//! CHECK DAY AND GET NEW QUOTE
 async function checkDay() {
     const storedDate = localStorage.getItem(DATE_STORAGE);
 if (isNaN(storedDate)) {
@@ -72,6 +72,7 @@ if (parseInt(storedDate) === dayOfMonth) {
 
 checkDay();
 
+//! ANIMATION 
 new TypeIt("#quote", {
     speed: 26,
     startDelay: 300,
