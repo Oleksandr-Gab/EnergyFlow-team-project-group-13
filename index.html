@@ -277,7 +277,7 @@
                     <form class="footer-form" method="post">
                         <label class="footer-form-label">Subscribe and learn about new exercises! </label>
 
-                        <input name="footerInput" type="email" class="footer-form-input" placeholder="Email" required>
+                        <input name="footerInput" type="email" class="footer-form-input" placeholder="Email" pattern = "/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/" required>
 
                         <button type="submit" class="footer-form-btn">Send</button>
                     </form>
