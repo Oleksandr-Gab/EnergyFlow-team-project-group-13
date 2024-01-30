@@ -224,13 +224,13 @@
 }
 /* ------------------------------------------------------------- */
 
-.search-block {
+.new-search-btn {
   width: 60px;
   height: 20px;
   border-radius: 10px;
   border: none;
   background-color: #1b1b1b;
-  display: none;
+  /* display: none; */
 }
 
 /* +++++++++++++++++++++++++++++++ */

@@ -1,4 +1,4 @@
-// import { openModal } from './modal-pop-up';
+import { openModal } from './modal-pop-up';
 
 import axios from 'axios';
 
@@ -8,17 +8,17 @@ import 'izitoast/dist/css/iziToast.min.css';
 import { getExercisesData } from './exercises.js';
 import { activeModalBtn } from './modal-pop-up.js';
 
-getExercisesData()
-  .then(response => {
-    // console.log(response);
-  })
-  .catch(error => {
-    iziToast.error({
-      message: error,
-      position: 'topRight',
-    });
-  });
-console.log();
+// getExercisesData()
+//   .then(response => {
+//     // console.log(response);
+//   })
+//   .catch(error => {
+//     iziToast.error({
+//       message: error,
+//       position: 'topRight',
+//     });
+//   });
+// console.log();
 
 let page;
 let totalItems;
@@ -32,13 +32,15 @@ const partError =
 
 const galleryDalley = document.querySelector('.gallery');
 const filterBtns = document.querySelector('.filter-list');
-// const galleryWaist = document.querySelector('.waist');
+const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const searchBlock = document.querySelector('.search-block');
 const viewportWidth = innerWidth;
-const arrowRight = document.querySelector('.workout-btn');
+const arrowRight = document.querySelector('.workout-btn-container');
+
 // console.log(viewportWidth);
 
+// -------- Екземпляр AXIOS ---------------
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
@@ -46,12 +48,6 @@ const apiWaist = axios.create({
 // -------------------------------------------------------------
 
 // galleryDalley.addEventListener('click', handClick);
-
-// bodypart
-// muscles
-// equipment
-
-// keyword
 
 // galleryWaist.removeEventListener('click', handClick);
 
@@ -81,20 +77,18 @@ const abs = 'abs';
 // }
 
 galleryDalley.addEventListener('click', event => {
-  console.log(event.target.id);
-
   event.preventDefault();
+  console.log(event.target.tagName);
+
   galleryDalley.innerHTML = '';
   searchPart.style.display = 'block';
-  // searchBlock.style.display = 'block';
-  // ------------------------------------
 
-  galleryDalley.classList.add('information-cards');
+  galleryWaist.classList.add('information-cards');
 
   fetchExercises('/exercises', {
     params: {
       // + Параметри отримані при кліку на картинку (приклад: equipment: 'roller',)
-      limit: '21',
+      limit: '8',
     },
   })
     .then(response => {
@@ -111,6 +105,11 @@ galleryDalley.addEventListener('click', event => {
 });
 
 // -----------------------------------------------------------
+
+// arrowRight.addEventListener('click', event => {
+//   event.preventDefault();
+//   console.log(event.target.id);
+// });
 
 // searchPart.addEventListener('input', event => {
 //   clearTimeout(typingTimer);
@@ -139,10 +138,10 @@ searchPart.addEventListener('input', event => {
   searchBlock.addEventListener('click', event => {
     console.log(partName.toLowerCase());
     // ----------- Підставляемо значення інпут "Назва вправи" ----------------
-    // if (partName.trim() !== 'input-value') {
-    //   galleryDalley.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-    //   return;
-    // }
+    if (partName.trim() !== 'input-value') {
+      galleryDalley.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
+      return;
+    }
     // -------Запит --------------
     apiWaist.defaults.params = {
       //  дані, отримані з 'input search' приклад: (muscles: 'abs')
@@ -165,12 +164,7 @@ searchPart.addEventListener('input', event => {
 });
 
 function renderExercises(arr) {
-  // ---Підвид вправи----- id картки -----
-  // let part = 'abs';
-  // const listPart = arr.filter(item => item.target === part);
-
-  // ---------------------
-  galleryDalley.insertAdjacentHTML(
+  galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
@@ -185,7 +179,7 @@ function renderExercises(arr) {
             </svg>
         </div>
                  
-        <div class="workout-btn-container">
+        <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="../img/sprite.svg#icon-right"></use>
