@@ -44,18 +44,49 @@ export const activeModalBtn = () => {
 function renderCard(data) {
     const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
     const modalHtml = `
-        <img src="${gifUrl}" alt="${name}">
+
+        <div class="gif">
+        <img src="${gifUrl}" alt="${name}" >
+        </div>
+
+        <div class = "text">
+
         <h2>${name}</h2>
-        <p>Rating: ${rating}</p>
-        <p>Target: ${target}</p>
-        <p>Body Part: ${bodyPart}</p>
-        <p>Equipment: ${equipment}</p>
-        <p>Popular: ${popularity}</p>
-        <p>Burned Calories: ${burnedCalories}</p>
-        <p>Description: ${description}</p>`;
+        
+        <div class="rating-container">
+            <p>${rating}</p>
+            <svg class="icon-star" width="12" height="12">
+                <use href="../img/sprite.svg#icon-star"></use>
+            </svg>
+        </div>
+
+        <ul class="info-block">
+    <li class="info-item">
+        <span class="info-text">Target</span> ${target}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Body Part</span> ${bodyPart}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Equipment</span> ${equipment}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Popular</span> ${popularity}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Burned Calories</span> ${burnedCalories}/${time}min
+    </li>
+</ul>
+
+
+        <p class="description">Description: ${description}</p> 
+        </div>`;
+    
     console.log(modalHtml);
     exerciseInfo.innerHTML = modalHtml;
     openModal();
+
+    
 }
 
 // --- Відкриття модалки
