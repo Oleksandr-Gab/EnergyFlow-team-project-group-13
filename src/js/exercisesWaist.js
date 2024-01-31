@@ -14,10 +14,12 @@ const partError =
 
 const galleryDalley = document.querySelector('.gallery');
 const sectionTitle = document.querySelector('.section-title');
-const titleSlash = document.querySelector('#slash');
+let titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const viewportWidth = innerWidth;
+
+// console.log(titleSlash);
 
 // -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
@@ -38,6 +40,8 @@ galleryDalley.addEventListener('click', event => {
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
 
+  titleSlash.innerHTML = '';
+
   searchPart.style.display = 'block';
   galleryWaist.classList.add('information-cards');
 
@@ -51,11 +55,11 @@ galleryDalley.addEventListener('click', event => {
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
   // ------------------------------------------------
-  sectionTitle.insertAdjacentHTML(
+  titleSlash.insertAdjacentHTML(
     'beforeend',
-    `<p id="slash">&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
   );
-  console.log(sectionTitle);
+
   fetchExercises('/exercises', {
     params: {
       // limit: '8',
@@ -64,7 +68,6 @@ galleryDalley.addEventListener('click', event => {
     .then(response => {
       // console.log(response.data.results);
       renderExercises(response.data.results);
-      // console.log(titleSlash);
     })
     .catch(error => {
       iziToast.error({
@@ -73,8 +76,6 @@ galleryDalley.addEventListener('click', event => {
       });
     });
 });
-
-// -----------------------------------------------------------
 
 // ----- Пошук вправи за інпутом -----------------------------
 
