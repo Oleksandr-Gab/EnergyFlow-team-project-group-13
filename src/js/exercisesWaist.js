@@ -134,14 +134,14 @@ export function renderExercises(arr) {
         <div class="rating">
             <p>${rating}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href=${'./img/sprite.svg#icon-star'}></use>
+                <use href=${'../../img/sprite.svg#icon-star'}></use>
             </svg>
         </div>
                  
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="./img/sprite.svg#icon-right"></use>
+                <use href="../../img/sprite.svg#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -150,7 +150,7 @@ export function renderExercises(arr) {
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="./img/sprite.svg#run"></use>
+                  <use href="../../img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>
