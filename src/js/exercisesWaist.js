@@ -13,8 +13,8 @@ const partError =
 // ------------------------------------------------
 
 const galleryDalley = document.querySelector('.gallery');
-const sectionTitle = document.querySelector('.section-title');
-const titleSlash = document.querySelector('#slash');
+const searchBtn = document.querySelector('.search-icon');
+let titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const viewportWidth = innerWidth;
@@ -37,6 +37,7 @@ galleryDalley.addEventListener('click', event => {
 
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
+  titleSlash.innerHTML = '';
 
   searchPart.style.display = 'block';
   galleryWaist.classList.add('information-cards');
@@ -51,20 +52,18 @@ galleryDalley.addEventListener('click', event => {
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
   // ------------------------------------------------
-  sectionTitle.insertAdjacentHTML(
+  titleSlash.insertAdjacentHTML(
     'beforeend',
-    `<p id="slash">&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
   );
-  console.log(sectionTitle);
+
   fetchExercises('/exercises', {
     params: {
       // limit: '8',
     },
   })
     .then(response => {
-      // console.log(response.data.results);
       renderExercises(response.data.results);
-      // console.log(titleSlash);
     })
     .catch(error => {
       iziToast.error({
@@ -74,47 +73,52 @@ galleryDalley.addEventListener('click', event => {
     });
 });
 
-// -----------------------------------------------------------
-
 // ----- Пошук вправи за інпутом -----------------------------
 
 let partName;
 let typingTimer;
-searchPart.addEventListener('input', event => {
-  clearTimeout(typingTimer);
+// searchPart.addEventListener('input', event => {
+//   clearTimeout(typingTimer);
 
-  typingTimer = setTimeout(function () {
-    partName = searchPart.value;
-    console.log(partName);
-  }, 1000);
+typingTimer = setTimeout(function () {
+  partName = searchPart.value;
+  // console.log(partName);
+  // apiWaist.defaults.params = {
+  //   keyword: 'body',
+  // };
+}, 1000);
 
-  searchBlock.addEventListener('click', event => {
-    console.log(partName.toLowerCase());
+searchBtn.addEventListener('click', event => {
+  // console.log(partName.toLowerCase());
 
-    if (partName.trim() !== 'input-value') {
-      galleryDalley.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-      return;
-    }
-    apiWaist.defaults.params = {
-      limit: viewportWidth > 1400 ? '9' : '8',
-    };
-    fetchExercises('/exercises', {
-      params: {
-        keyword: event.target.value,
-      },
+  galleryWaist.innerHTML = '';
+  galleryDalley.innerHTML = '';
+
+  // if (partName.trim() !== 'input-value') {
+  //   galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
+  //   return;
+  // }
+  apiWaist.defaults.params = {
+    limit: viewportWidth > 1400 ? '9' : '8',
+    keyword: 'roll',
+  };
+  fetchExercises('/exercises', {
+    params: {
+      // keyword: 'roll',
+    },
+  })
+    .then(response => {
+      console.log(response.data);
+      renderExercises(response.data.results);
     })
-      .then(response => {
-        console.log(response.data);
-        renderExercises(response.data.results);
-      })
-      .catch(error => {
-        iziToast.error({
-          message: error.message,
-          position: 'topRight',
-        });
+    .catch(error => {
+      iziToast.error({
+        message: error.message,
+        position: 'topRight',
       });
-  });
+    });
 });
+// });
 
 export function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
