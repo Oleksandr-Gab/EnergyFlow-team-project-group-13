@@ -64,19 +64,24 @@ async function renderCard(data) {
 
         <ul class="info-block">
     <li class="info-item">
-        <span class="info-text">Target</span> ${target}
+        <h3 class="info-text">Target</h3>
+        <p class="modal-pop-descr">${target}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Body Part</span> ${bodyPart}
+        <h3 class="info-text">Body Part</h3>
+        <p class="modal-pop-descr">${bodyPart}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Equipment</span> ${equipment}
+        <h3 class="info-text">Equipment</h3>
+        <p class="modal-pop-descr">${equipment}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Popular</span> ${popularity}
+        <h3 class="info-text">Popular</h3>
+        <p class="modal-pop-descr">${popularity}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Burned Calories</span> ${burnedCalories}/${time}min
+        <h3 class="info-text">Burned Calories</h3>
+        <p class="modal-pop-descr">${burnedCalories}/${time}min</p>
     </li>
 </ul>
 
