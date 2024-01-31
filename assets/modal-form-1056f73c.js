@@ -17,19 +17,24 @@ import{a as b,i as M,T as I,b as _}from"./vendor-8598a644.js";(function(){const 
 
         <ul class="info-block">
     <li class="info-item">
-        <span class="info-text">Target</span> ${v}
+        <h3 class="info-text">Target</h3>
+        <p class="modal-pop-descr">${v}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Body Part</span> ${t}
+        <h3 class="info-text">Body Part</h3>
+        <p class="modal-pop-descr">${t}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Equipment</span> ${s}
+        <h3 class="info-text">Equipment</h3>
+        <p class="modal-pop-descr">${s}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Popular</span> ${g}
+        <h3 class="info-text">Popular</h3>
+        <p class="modal-pop-descr">${g}</p>
     </li>
     <li class="info-item">
-        <span class="info-text">Burned Calories</span> ${o}/${y}min
+        <h3 class="info-text">Burned Calories</h3>
+        <p class="modal-pop-descr">${o}/${y}min</p>
     </li>
 </ul>
 
@@ -41,4 +46,4 @@ function H(e){const t=[e];ee.innerHTML=t.reduce((o,{quote:i,author:s})=>o+`<p cl
         <h3 class="quote-author">${s}</h3>`,"")}//! CHECK DAY AND GET NEW QUOTE
 async function ne(){const e=localStorage.getItem(E);if(isNaN(e)){M.error({timeout:5e3,title:"Error",message:error.message,position:"topRight"});return}if(parseInt(e)===S){const t=localStorage.getItem(j);if(t){const o=JSON.parse(t);H(o)}return}await oe(),localStorage.setItem(E,S.toString())}ne();//! ANIMATION 
 new I(".quote-info",{speed:26,startDelay:300,waitUntilVisible:!0,afterComplete:function(e){e.destroy()}}).go();new I("#motivation-txt",{speed:26,startDelay:300,waitUntilVisible:!0,afterComplete:function(e){e.destroy()}}).go();const ae=100,w=document.querySelector(".skroll-btn"),re=()=>window.scrollY||document.documentElement.scrollTop;window.addEventListener("scroll",()=>{re()>ae?w.classList.add("skroll-btn-active"):w.classList.remove("skroll-btn-active")});w.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});let U;const a={ratingModal:document.querySelector(".js-backdrop-modal"),closeBtn:document.querySelector(".js-rating-close"),rateStars:document.querySelector(".js-stars-list"),star:document.querySelectorAll(".js-rating-star"),openModalsBtn:document.querySelector(".exersizes-cards-container"),openRatingBtn:document.querySelector(".modal-button-rating"),exerciseModal:document.querySelector(".modal"),closeExerciseBtn:document.querySelector(".modal-button-close"),exsCont:document.querySelector(".exs-container")};document.addEventListener("click",ie);document.addEventListener("click",ue);document.addEventListener("keydown",me);function ie(e){e.target.classList.contains("exersizes-card-btn")?ce(e):e.target.classList.contains("modal-button-rating")&&le()}async function ce(e){try{const t=await getData(e.target.dataset.id);a.exsCont.innerHTML=createMarkup(t.data),a.exerciseModal.classList.add("is-open"),U=e.target.dataset.id,de()}catch(t){throw new Error(t.message)}}function le(e){a.ratingModal.classList.toggle("is-open")}function de(){const e=document.querySelector(".ex-rating-active"),t=document.querySelector(".modal-rating-value");e.style.width=`${parseFloat(t.textContent)/.05}%`}function ue(e){e.target.classList.contains("backdrop")&&a.ratingModal.classList.contains("is-open")?a.ratingModal.classList.remove("is-open"):e.target.classList.contains("backdrop")&&a.exerciseModal.classList.contains("is-open")||e.target.classList.contains("modal-button-close")||e.target.classList.contains("modal-button-close-icon")||e.target.classList.contains("modal-button-close-use")?a.exerciseModal.classList.remove("is-open"):(e.target.classList.contains("rating-close")||e.target.classList.contains("rating-close-svg")||e.target.classList.contains("rating-close-use"))&&a.ratingModal.classList.remove("is-open")}function me(e){e.code==="Escape"&&a.ratingModal.classList.contains("is-open")?a.ratingModal.classList.remove("is-open"):e.code==="Escape"&&a.exerciseModal.classList.contains("is-open")&&a.exerciseModal.classList.remove("is-open")}const l={modalBackdrop:document.querySelector(".js-backdrop-modal"),form:document.querySelector(".js-rating-form"),exerciseModal:document.querySelector(".modal"),rateValue:document.querySelector(".js-rating-data"),starsContainer:document.querySelector(".js-stars-list")};l.form.addEventListener("submit",ge);l.starsContainer.addEventListener("click",pe);function pe(e){e.target.classList.contains("rating-label")&&(l.rateValue.textContent=`${e.target.dataset.rate}.0`)}async function ge(e){e.preventDefault();try{const t=await b.patch(`https://energyflow.b.goit.study/api/exercises/${U}/rating`,{rate:parseInt(e.target.elements.rating.value),email:e.target.elements.email.value.trim(),review:e.target.elements.comment.value.trim()});_.operationSuccess()}catch(t){throw new Error(t.message)}finally{fe()}}function fe(){l.modalBackdrop.classList.remove("is-open"),l.exerciseModal.classList.remove("is-open"),l.rateValue.textContent="0.0",l.form.reset()}export{W as a};
-//# sourceMappingURL=modal-form-d7111fad.js.map
+//# sourceMappingURL=modal-form-1056f73c.js.map
