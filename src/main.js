@@ -21,4 +21,4 @@ import './js/prize.js';
 // модалки
 import './js/modal-pop-up.js';
 import './js/modal-form';
-// import './js/modals-functions';
+import './js/modals-functions';

@@ -1,7 +1,7 @@
 import { getData, createMarkup } from './modal-pop-up';
 import { resetForm } from './modal-form';
 // import { LOCAL_STORAGE_KEY } from './add-to-favorites';   не валідне значення
-import { operationSuccess } from './izitoasts';
+// import { operationSuccess } from './izitoasts';           не валідне значення
 
 export let id;
 const refs = {
