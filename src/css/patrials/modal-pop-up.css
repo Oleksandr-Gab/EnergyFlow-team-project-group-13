@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  display: none;
+  z-index: 1000;
 }
 
 #exerciseModal.open {
@@ -33,7 +33,7 @@ body #exerciseModal.open {
 .button-container {
   position: absolute;
   bottom: 40px;
-  left: 20px;
+  right: 20px;
   width: 295px;
 }
 
@@ -42,6 +42,7 @@ body #exerciseModal.open {
   color: var(--whiteBackground);
   width: 295px;
   height: 48px;
+  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   border: none;
   cursor: pointer;
@@ -59,6 +60,7 @@ body #exerciseModal.open {
   color: #1b1b1b;
   width: 295px;
   height: 48px;
+  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   border: 1px solid #000000;
   border-radius: 24px;
@@ -71,10 +73,10 @@ body #exerciseModal.open {
 }
 
 .heart {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   vertical-align: middle;
-  margin-left: 9px;
+  margin-left: 8px;
 
   fill: var(--greyColorText-Background-Btn);
   stroke: var(--whiteBackground);
@@ -200,19 +202,31 @@ body #exerciseModal.open {
     height: 480px;
   }
 
+  .icon-close {
+    top: 16px;
+    right: 16px;
+  }
+
   .button-container {
     position: absolute;
     bottom: 40px;
-    left: 334px;
+    right: 40px;
     width: 342px;
     display: flex;
   }
 
   #addToFavoritesBtn {
+    font-size: 16px;
     width: 294px;
   }
 
+  .heart {
+    width: 20px;
+    height: 20px;
+  }
+
   #giveRatingBtn {
+    font-size: 16px;
     margin-left: 7px;
     width: 241px;
   }
