@@ -7,7 +7,7 @@ import './js/header.js';
 import './js/quote-of-the-day.js';
 import './js/exercises.js';
 import './js/exercisesWaist.js';
-import './js/exercisesPages.js';
+// import './js/exercisesPages.js';
 
 //------------footer----------
 import './js/footer.js';
