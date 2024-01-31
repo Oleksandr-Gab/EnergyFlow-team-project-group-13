@@ -24,7 +24,7 @@ let pagesButton;
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
   //відображати активні кнопки
-  MUSCLES_BUTTON.classList.add('active');
+  MUSCLES_BUTTON.classList.add('filter-active');
   pagesButton = document.querySelector('.pg-num-btn');
   pagesButton.classList.add('pg-num-btn-active');
 });
@@ -55,7 +55,7 @@ FILTER_LIST.addEventListener('click', event => {
   WAIST.innerHTML = '';
   // document.removeEventListener('DOMContentLoaded');
   if (event.target.tagName === 'BUTTON') {
-    MUSCLES_BUTTON.classList.remove('active');
+    MUSCLES_BUTTON.classList.remove('filter-active');
     // PAGES_BUTTON.classList.remove('pg-num-btn-active');
 
     //виклик функції з обраним користувачем значенням фільтра
