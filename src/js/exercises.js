@@ -31,7 +31,6 @@ export const getExercisesData = async ({ filter, page, limit }) => {
     });
     return exercisesData;
   } catch (error) {
-    console.error(error);
     iziToast.error({
       message: error.message,
       color: 'red',

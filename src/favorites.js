@@ -12,4 +12,5 @@ import './js/skroll-btn.js';
 
 // модалки
 import './js/modal-pop-up.js';
-// import './js/modal-form.js';
+import './js/modal-form';
+import './js/modals-functions';

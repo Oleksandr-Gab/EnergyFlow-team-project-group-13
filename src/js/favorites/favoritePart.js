@@ -1,4 +1,6 @@
 import { activeModalBtn } from '../modal-pop-up';
+// import { deleteToFavorite } from '../modal-pop-up';
+
 
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
@@ -16,39 +18,50 @@ async function saveExercises() {
 
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
-
-    await renderFavorites(arrFavorite);
-    activeModalBtn();
+      try {
+        console.log('sssss');
+        await renderFavorites(arrFavorite);
+        activeModalBtn();
+      } catch (error) {
+        iziToast.error({
+          message: "Помилка, запиту. повторіть запит.",
+          color: 'red',
+          position: 'topCenter',
+        });
+      }
   } else {
+    console.log('DDDDDDDDD');
       favoritePartInfo.innerHTML = favoriteInfo;
   }
 }
 
 async function renderFavorites(arr) {
   let favCard = arr.reduce(
-      (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
+      (html, { burnedCalories, name, bodyPart, time, target, _id }) =>
         html +
-        `<li class="gallery-card">
+        `<li class="fav-gallery-card">
       <div class="header-card">
-        <div class="workout">WORKOUT</div>
-        <div class="rating">
-            <p>${rating}</p>
-            <svg class="icon-star" width="12" height="12">
-                <use href="../../img/sprite.svg#icon-star"></use>
-            </svg>
-        </div>
+        <div class="fav-titel-card">  
+          <div class="workout">WORKOUT</div>
+            <div class="trash">
+              <svg class="icon-trash" width="16" height="16">
+                <use href="./img/sprite.svg#trash"></use>
+              </svg>
+            </div>
+          </div>
+
         <div class="workout-btn-container" data-action="right">
-            <button class="workout-btn" id="${_id}">Start
+          <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="../img/sprite.svg#icon-right"></use>
+                <use href="./img/sprite.svg#icon-right"></use>
             </svg>
-            </button>
+          </button>
         </div>
       </div>
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="../img/sprite.svg#run"></use>
+                  <use href="./img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>
@@ -65,3 +78,8 @@ async function renderFavorites(arr) {
 
     activeModalBtn();
 }
+
+// favTrash = () => {
+
+// }
+// deleteToFavorite
