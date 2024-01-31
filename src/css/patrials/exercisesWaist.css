@@ -28,7 +28,7 @@
 .search-block {
   display: flex;
   flex-direction: column;
-  /* box-sizing: border-box; */
+  padding-right: 48px;
 }
 
 .field-search-wraper {
@@ -38,19 +38,26 @@
 #search {
   padding: 12px 14px;
   width: 295px;
-  height: 42px;
-  /* box-sizing: border-box; */
-  /* display: block; */
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--bodyBackground);
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
 .search-icon {
   fill: transparent;
   position: relative;
   /* top: 150px; */
-  bottom: 80px;
-  left: 280px;
+  bottom: 26px;
+  left: 266px;
 }
 
+.invalid-name {
+  text-align: center;
+  padding: 20px;
+}
 /* (--greyBackground) (#808080)*/
 
 .gallery-card {
@@ -65,28 +72,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-/* .gallery-search {
-  margin-bottom: 40px;
-  margin-top: 20px;
-  margin: 20px auto 40px auto;
-} */
-
-/* .gallery-input {
-  border-radius: 30px;
-  padding: 12px 14px;
-  border: none;
-} */
-
-/* .gallery-input::placeholder {
-  color: var(--blackColorText-Background);
-
-  font-family: 'DM Sans';
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.29;
-} */
 
 .header-card {
   display: flex;
@@ -131,9 +116,6 @@
   justify-content: flex-start;
   align-items: center;
   column-gap: 8px;
-  /* border: 1px solid #1b1b1b;
-  padding-left: 10px;
-  padding-bottom: 10px; */
 }
 
 /* --blackColorText-Background  (#1b1b1b)*/
@@ -141,7 +123,6 @@
 .workout-btn {
   color: var(--blackColorText-Background);
 
-  /* font-family: 'DM Sans'; */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -161,7 +142,6 @@
   column-gap: 16px;
 
   color: #1b1b1b;
-  /* font-family: 'DM Sans'; */
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -179,7 +159,6 @@
 
   color: var(--blackColorText-Background);
   font-feature-settings: 'clig' off, 'liga' off;
-  /* font-family: 'DM Sans'; */
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -240,6 +219,19 @@
     margin-left: 0;
     margin-right: 0;
   }
+  .search-block {
+    flex-direction: row;
+  }
+  .field-search-wraper {
+    padding-top: 40px;
+    width: 246px;
+  }
+  #search {
+    width: 246px;
+  }
+  .search-icon {
+    left: 216px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -256,6 +248,15 @@
   }
   .gallery-card {
     max-width: 424px;
+  }
+  .field-search-wraper {
+    width: 273px;
+  }
+  #search {
+    width: 273px;
+  }
+  .search-icon {
+    left: 240px;
   }
 }
 

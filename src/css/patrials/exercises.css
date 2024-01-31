@@ -60,9 +60,7 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-    /* display: flex; */
-    /* position: relative;     */
-    display: none;
+  display: none;
 }
 /* #search {
   display: inline-flex;
@@ -74,6 +72,7 @@
   gap: 10px;
   font-size: 14px;
   height: 38px;
+
 }
 .search-icon {
     position: absolute;
@@ -82,6 +81,7 @@
     width: 18px;
     height: 18px;
     fill:transparent;    
+
 } */
 
 .gallery {
@@ -196,6 +196,7 @@
     padding-left: 48px;
   }
   .search-block {
+    justify-content: space-between;
     padding-left: 48px;
     gap: 35px;
   }
