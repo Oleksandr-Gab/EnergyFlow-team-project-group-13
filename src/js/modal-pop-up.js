@@ -2,9 +2,9 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-document.addEventListener('DOMContentLoaded', () => {
-    activeModalBtn();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     activeModalBtn();
+// });
 
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -174,9 +174,11 @@ const deleteToFavorite = () => {
 export const auditLocal = () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
-    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
-    addToFavoritesBtn.addEventListener('click', addToFavorite);
-    addToFavoritesBtn.innerText = "Add to favorites";
+
+    if (!localFavCart) {addToFavoritesBtn.addEventListener('click', addToFavorite);
+                        addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+                        addToFavoritesBtn.innerText = "Add to favorites";
+                    }
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
@@ -191,3 +193,5 @@ export const auditLocal = () => {
         });
     }
 };
+
+

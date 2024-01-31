@@ -4,18 +4,14 @@ import { activeModalBtn } from '../modal-pop-up';
 const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
-console.log(savedFavorites);
 let arrFavorite = [];
 
 
-
-async function saveExercises() {
+function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
       try {
-        console.log('sssss');
-        await renderFavorites(arrFavorite);
-        activeModalBtn();
+        renderFavorites(arrFavorite);
       } catch (error) {
         iziToast.error({
           message: "Помилка, запиту. повторіть запит.",
@@ -68,12 +64,21 @@ async function renderFavorites(arr) {
       ''
     )
     favoritePartInfo.innerHTML = favCard;
+  activeModalBtn();
 }
-
-// favTrash = () => {
-
-// }
-// deleteToFavorite
 
 
 saveExercises();
+
+// favoritePartInfo.addEventListener('click', event => {
+//     event.preventDefault();
+//     console.log(event.currentTarget.id);
+//   })
+// // deleteToFavorite
+
+
+
+// // const actBtnTrash = () = {
+
+// //   const btnsTrash.
+// // }
