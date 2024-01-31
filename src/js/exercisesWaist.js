@@ -1,5 +1,3 @@
-import { openModal } from './modal-pop-up';
-
 import axios from 'axios';
 
 import iziToast from 'izitoast';
@@ -11,13 +9,19 @@ import { activeModalBtn } from './modal-pop-up.js';
 const partError =
   'Unfortunately, no results were found. You may want to consider other search options to find the exercise you are looking for. Our range is wide and you have the opportunity to find more options that suit your needs.';
 // ------------------------------------------------
-
+const searchContainer = document.querySelector('.field-search-wraper');
+const heightViewport = document.querySelector('.search-block');
 const galleryDalley = document.querySelector('.gallery');
 const searchBtn = document.querySelector('.search-icon');
 let titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
+// paginationBtn = document.querySelector('.pagination-btn');
 const viewportWidth = innerWidth;
+let paramArr;
+let paramObj;
+let page;
+let totalPages;
 
 // -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
@@ -32,6 +36,7 @@ const fetchExercises = async (lastString, { params }) => {
   return exercises;
 };
 
+// ----Запит --------------------------------------------
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
 
@@ -39,7 +44,8 @@ galleryDalley.addEventListener('click', event => {
   galleryDalley.innerHTML = '';
   titleSlash.innerHTML = '';
 
-  searchPart.style.display = 'block';
+  // paginationBtn.style.display = 'block';
+  searchContainer.style.display = 'block';
   galleryWaist.classList.add('information-cards');
 
   // ---------------- Костиль ----------------------
@@ -48,22 +54,23 @@ galleryDalley.addEventListener('click', event => {
 
   const paramObj = event.target.id;
   const paramArr = paramObj.split(':');
+
   apiWaist.defaults.params = {
+    page: 1,
     limit: viewportWidth > 1400 ? '9' : '8',
     muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-  // ------------------------------------------------
+  // -------------------------------------------------------------
+
   titleSlash.insertAdjacentHTML(
     'beforeend',
     `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
   );
 
   fetchExercises('/exercises', {
-    params: {
-      // limit: '8',
-    },
+    params: {},
   })
     .then(response => {
       renderExercises(response.data.results);
@@ -78,40 +85,33 @@ galleryDalley.addEventListener('click', event => {
 
 // ----- Пошук вправи за інпутом -----------------------------
 
-let partName;
-let typingTimer;
-// searchPart.addEventListener('input', event => {
-//   clearTimeout(typingTimer);
-
-typingTimer = setTimeout(function () {
-  partName = searchPart.value;
-  // console.log(partName);
-  // apiWaist.defaults.params = {
-  //   keyword: 'body',
-  // };
-}, 1000);
+let inputValue;
+searchPart.addEventListener('input', event => {
+  inputValue = event.target.value;
+});
 
 searchBtn.addEventListener('click', event => {
-  // console.log(partName.toLowerCase());
-
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
-
-  // if (partName.trim() !== 'input-value') {
-  //   galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-  //   return;
-  // }
+  // -------------------------------------------------------------
   apiWaist.defaults.params = {
+    page: 1,
     limit: viewportWidth > 1400 ? '9' : '8',
-    keyword: 'roll',
+    keyword: inputValue,
+    muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
+    bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
+    equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
+  // -------------------------------------------------------------
+
   fetchExercises('/exercises', {
-    params: {
-      // keyword: 'roll',
-    },
+    params: {},
   })
     .then(response => {
-      console.log(response.data);
+      console.log(response.data.totalPages);
+      if (response.data.totalPages === null) {
+        galleryWaist.innerHTML = `${partError}`;
+      }
       renderExercises(response.data.results);
     })
     .catch(error => {
@@ -119,10 +119,13 @@ searchBtn.addEventListener('click', event => {
         message: error.message,
         position: 'topRight',
       });
+    })
+    .finally(() => {
+      searchPart.value = '';
     });
 });
-// });
 
+// ---Рендер карток --------------------------------
 export function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
@@ -135,14 +138,14 @@ export function renderExercises(arr) {
         <div class="rating">
             <p>${rating}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="../../img/sprite.svg#icon-star"></use>
+                <use href=${'./img/sprite.svg#icon-star'}></use>
             </svg>
         </div>
                  
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="../img/sprite.svg#icon-right"></use>
+                <use href="./img/sprite.svg#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -151,7 +154,7 @@ export function renderExercises(arr) {
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="../img/sprite.svg#run"></use>
+                  <use href="./img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>
@@ -168,21 +171,3 @@ export function renderExercises(arr) {
   );
   activeModalBtn();
 }
-
-// ------------------------------------------------------------------------------
-
-// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// galleryWaist.addEventListener('click', event => {
-//   event.preventDefault();
-
-// ---- ПИШИ В ІНШОМУ ФАЙЛІ -----------------------------
-
-//   const galleryCard = event.target.closest('.gallery-card');
-//   if (galleryCard) {
-//     const cardId = galleryCard.dataset.id;
-//     openModal();
-//   }
-// });
-
-// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

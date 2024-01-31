@@ -73,7 +73,7 @@ if (parseInt(storedDate) === dayOfMonth) {
 checkDay();
 
 //! ANIMATION 
-new TypeIt("#quote", {
+new TypeIt(".quote-info", {
     speed: 26,
     startDelay: 300,
     waitUntilVisible: true,

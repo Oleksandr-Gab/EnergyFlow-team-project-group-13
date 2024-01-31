@@ -1,6 +1,5 @@
-// для додавання 'npm install axios'
+
 import axios from 'axios';
-// для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 //HELLO
@@ -10,27 +9,25 @@ const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
 
-//create instance of API
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
 
 export let exercisesData;
 
-//button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 
-// слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
+
   //відображати активні кнопки
+ 
   MUSCLES_BUTTON.classList.add('filter-active');
   let pagesButton = document.querySelector('.pg-num-btn');
   console.log(pagesButton);
   // pagesButton.classList.add('pg-num-btn-active');
 });
 
-//функція запиту на DATA
 export const getExercisesData = async ({ filter, page, limit }) => {
   try {
     exercisesData = await API_BASE_URL.get('/filters', {
@@ -47,11 +44,11 @@ export const getExercisesData = async ({ filter, page, limit }) => {
   }
 };
 
-//делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
 
   //очищення карток та сторінок
+
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
@@ -61,15 +58,11 @@ FILTER_LIST.addEventListener('click', event => {
       button.classList.remove('filter-active');
     });
 
-    // додавання "filter-active" класу до клікнутої кнопки
     event.target.classList.add('filter-active');
-
-    // виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
   }
 });
 
-//делегування слухача на PAGES_LIST
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
   // гортання сторінок
@@ -86,6 +79,7 @@ PAGES_LIST.addEventListener('click', event => {
 });
 
 // генерація розмітки
+
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
     const renderExercises = await getExercisesData({ filter, page, limit });
@@ -130,8 +124,8 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
 
     const markupBtnPgs = quantityBtnPgs();
 
-    PAGES_LIST.insertAdjacentHTML('afterbegin', markupBtnPgs);
-    GALLERY.insertAdjacentHTML('afterbegin', imgs);
+    PAGES_LIST.innerHTML = markupBtnPgs;
+    GALLERY.innerHTML = imgs;
   } catch (error) {
     console.error(error);
     iziToast.error({
@@ -141,17 +135,3 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     });
   }
 }
-
-//функція плавної прокрутки scrollToNextGroup
-/* const scrollToNextGroup = () => {
-  const firstGalleryItem = document.querySelector('.gallery-item');
-  //отримаємо у коді висоту однієї карточки галереї
-  const galleryItemHeight = firstGalleryItem.getBoundingClientRect().height;
-
-  // The method scrolls the document into the window by the specified amount. сінтаксіс: scrollBy(x - coord, y - coord)  або   scrollBy({options});
-  window.scrollBy({
-    top: galleryItemHeight * 2,
-    behavior: 'smooth',
-  });
-};
- */
