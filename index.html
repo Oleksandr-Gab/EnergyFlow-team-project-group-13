@@ -7,9 +7,9 @@
     <title>EnergyFlow-team-project-group-13</title>
     
     <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/commonHelpers2.js"></script>
-    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/vendor-3806a34f.js">
-    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/skroll-btn-25847db5.js">
-    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/skroll-btn-999a65b0.css">
+    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/vendor-8598a644.js">
+    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/skroll-btn-b2eb1dbf.js">
+    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/skroll-btn-08f198e1.css">
     <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -401,24 +401,32 @@
   </div>
 </div>
 
-    <div class="backdrop is-hidden">
+    <div class="backdrop js-backdrop-modal">
     <div class="rating-modal-wrapper">
         <button class="rating-close js-rating-close" type="button">
             <svg class="rating-close-svg" width="28" height="28">
-                <use href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#cross"></use>
+                <use class="rating-close-use" href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#cross"></use>
             </svg>
         </button>
 
-        <form class="rating-form">
+        <form class="rating-form js-rating-form">
             <p class="rating-title">Rating</p>
             <div class="rating-stars-wrapper">
-                <p class="rating-data">0.0</p>
-                <div class="rating-stars-list js-stars-list">
-                    <div class="rating-star-svg js-rating-star" data-rate="5"></div>
-                    <div class="rating-star-svg js-rating-star" data-rate="4"></div>
-                    <div class="rating-star-svg js-rating-star" data-rate="3"></div>
-                    <div class="rating-star-svg js-rating-star" data-rate="2"></div>
-                    <div class="rating-star-svg js-rating-star" data-rate="1"></div>
+                <p class="rating-data js-rating-data">0.0</p>
+                <div class="simple-rating">
+                    <div class="rating-stars-list js-stars-list">
+                        <input class="rating-stars-item" id="rating_5" type="radio" value="5" name="rating" />
+                        <label class="rating-label" for="rating_5" data-rate="5"></label>
+
+                        <input class="rating-stars-item" id="rating_4" type="radio" value="4" name="rating" />
+                        <label class="rating-label" for="rating_4" data-rate="4"></label>
+                        <input class="rating-stars-item" id="rating_3" type="radio" value="3" name="rating" />
+                        <label class="rating-label" for="rating_3" data-rate="3"></label>
+                        <input class="rating-stars-item" id="rating_2" type="radio" value="2" name="rating" />
+                        <label class="rating-label" for="rating_2" data-rate="2"></label>
+                        <input class="rating-stars-item" id="rating_1" type="radio" value="1" name="rating" />
+                        <label class="rating-label" for="rating_1" data-rate="1"></label>
+                    </div>
                 </div>
             </div>
             <label>
@@ -432,7 +440,6 @@
         </form>
     </div>
 </div>
-<div class="a"></div>
 
     
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
