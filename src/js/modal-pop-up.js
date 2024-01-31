@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const exerciseInfo = document.getElementById('information');
+const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
+
 let openModalBtn;
+let modallResponseData;
 
 async function getData(id) {
     try {
@@ -17,8 +20,7 @@ async function getData(id) {
             baseURL: 'https://energyflow.b.goit.study/api/exercises',
         });
         const responseModall = await modallApi.get(id);
-        const modallResponseData = responseModall.data;
-        console.log(modallResponseData);
+        modallResponseData = responseModall.data;
         renderCard(modallResponseData);
 
     } catch (error) {
@@ -41,7 +43,7 @@ export const activeModalBtn = () => {
     });
 };
 
-function renderCard(data) {
+async function renderCard(data) {
     const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
     const modalHtml = `
 
@@ -82,11 +84,9 @@ function renderCard(data) {
         <p class="description">Description: ${description}</p> 
         </div>`;
     
-    console.log(modalHtml);
     exerciseInfo.innerHTML = modalHtml;
+    await auditLocal();
     openModal();
-
-    
 }
 
 // --- Відкриття модалки
@@ -98,6 +98,7 @@ export function openModal() {
     closeModalBtn.addEventListener('click', closeModal);
     document.addEventListener('mouseup', outsideClick);
     document.addEventListener('keydown', escapeKey);
+
 }
 
 // --- Закриття модалки 
@@ -109,6 +110,8 @@ function closeModal() {
     document.removeEventListener('keydown', escapeKey);
     exerciseInfo.innerHTML = '';
     document.body.style.overflow = '';
+    addToFavoritesBtn.removeEventListener('click', addToFavorite)
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
 }
 
 // --- Кліки по бєкдропу та esc
@@ -123,5 +126,62 @@ const outsideClick = function (event) {
 const escapeKey = function (event) {
     if (event.key === 'Escape') {
         closeModal();
+    }
+};
+
+// отримання масива даних для передавання в localStor
+
+const getObj = (data) => {
+    const { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
+    return { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time };
+}
+
+// функція додавання інфи в localStor
+
+const addToFavorite = () => {
+    let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = [];
+
+    if (localFavCart != null) {
+        newLocalFavCart = JSON.parse(localFavCart);
+};
+    const newObj = getObj(modallResponseData);
+    newLocalFavCart.push(newObj);
+
+    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+    auditLocal()
+};
+
+// функція  видалення інфи в localStor
+
+const deleteToFavorite = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
+    
+    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+    auditLocal();
+}
+
+// Функція перевірки localStor
+length
+const auditLocal = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+    addToFavoritesBtn.addEventListener('click', addToFavorite);
+    addToFavoritesBtn.innerHTML = "Add to favorites";
+    if (localFavCart != null) {
+        JSON.parse(localFavCart).forEach(el => {
+            if (el._id == _id) {
+                addToFavoritesBtn.innerHTML = "Delete favorite";
+                addToFavoritesBtn.removeEventListener('click', addToFavorite)
+                addToFavoritesBtn.addEventListener('click', deleteToFavorite)
+            } else {
+                addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+                addToFavoritesBtn.addEventListener('click', addToFavorite);
+                addToFavoritesBtn.innerHTML = "Add to favorites";
+            }
+        });
     }
 };
