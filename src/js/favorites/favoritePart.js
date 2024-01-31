@@ -4,13 +4,14 @@ import { activeModalBtn } from '../modal-pop-up';
 const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
-let arrFavorite = [];
+let arrFavorite;
 
 
 function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
       try {
+        favoritePartInfo.innerHTML = '';
         renderFavorites(arrFavorite);
       } catch (error) {
         iziToast.error({
@@ -20,7 +21,7 @@ function saveExercises() {
         });
       }
   } else {
-      favoritePartInfo.innerHTML = favoriteInfo;
+      favoritePartInfo.insertAdjacentHTML('afterbegin', favoriteInfo);
   }
 }
 
@@ -70,15 +71,22 @@ async function renderFavorites(arr) {
 
 saveExercises();
 
-// favoritePartInfo.addEventListener('click', event => {
-//     event.preventDefault();
-//     console.log(event.currentTarget.id);
-//   })
+// actBtnTrash();
 // // deleteToFavorite
 
 
 
-// // const actBtnTrash = () = {
+// const actBtnTrash = () => {
+//     const btnsTrash = document.querySelectorAll(".trash");
+//     btnsTrash.forEach(el => console.log(el))
+//     //   el.addEventListener('click'), event => 
+//     // console.log(event));
 
-// //   const btnsTrash.
-// // }
+
+//     favoritePartInfo.addEventListener('click', event => {
+//     event.preventDefault();
+//     console.log(event.currentTarget.id);
+//   })
+   
+// }
+
