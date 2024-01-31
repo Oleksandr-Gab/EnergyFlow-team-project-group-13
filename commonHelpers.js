@@ -1,4 +1,4 @@
-import{a as t}from"./assets/skroll-btn-b2eb1dbf.js";import"./assets/vendor-8598a644.js";const e=document.querySelector(".favoritePartInfo"),a=localStorage.getItem("favoritesCard");let s=[];const p=`
+import{a as t}from"./assets/skroll-btn-150cf32a.js";import"./assets/vendor-8598a644.js";const e=document.querySelector(".favoritePartInfo"),a=localStorage.getItem("favoritesCard");let s=[];const p=`
  '<img class="favoritePart-img" src="./img/dumbbell.svg" alt="">',
  '<p class="favoritePart-text">It appears that you havent added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;h();async function h(){a!=null?(s=JSON.parse(a),await f(s),t()):e.innerHTML=p}async function f(r){let i=r.reduce((o,{burnedCalories:c,name:l,bodyPart:n,rating:d,time:v,target:u,_id:g})=>o+`<li class="gallery-card">
       <div class="header-card">
