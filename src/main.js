@@ -8,7 +8,7 @@ import './js/quote-of-the-day.js';
 import './js/exercises.js';
 
 import './js/exercisesWaist.js';
-// import './js/exercisesPages.js';
+import './js/exercisesPages.js';
 
 //------------footer----------
 import './js/footer.js';
@@ -19,8 +19,4 @@ import './js/skroll-btn.js';
 // модалки
 import './js/prize';
 import './js/modal-pop-up.js';
-
-// до моменту випралення помилки
-import './js/exercisesPages.js'; 
-
 import './js/modal-form.js';
