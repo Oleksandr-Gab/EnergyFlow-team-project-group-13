@@ -16,7 +16,7 @@ import{a as j}from"./assets/skroll-btn-25847db5.js";import{a as b,i as n}from"./
         <div class="rating">
             <p>${u}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="../../img/sprite.svg#icon-star"></use>
+                <use href="../img/sprite.svg#icon-star"></use>
             </svg>
         </div>
                  
