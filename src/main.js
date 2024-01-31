@@ -19,7 +19,7 @@ import './js/skroll-btn.js';
 import './js/prize.js';
 
 // друга сторінка
-import './favorites/favoritePart.js';
+import './js/favorites/favoritePart.js';
 
 // модалки
 import './js/modal-pop-up.js';
