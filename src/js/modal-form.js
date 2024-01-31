@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { id } from './modals-functions';
-import { operationSuccess } from './izitoasts';
+
+import { operationSuccess } from 'izitoast';
 
 const refs = {
   modalBackdrop: document.querySelector('.js-backdrop-modal'),
