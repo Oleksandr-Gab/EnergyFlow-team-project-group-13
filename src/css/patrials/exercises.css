@@ -1,10 +1,10 @@
 /* mobile 0-767px */
 
-.exercises {  
+.exercises {
   margin: 20px 0;
 }
 
-.exercises-wraper {     
+.exercises-wraper {
   display: flex;
   padding: 40px 0;
   flex-direction: column;
@@ -32,7 +32,6 @@
   margin-top: 20px;
   display: flex;
   gap: 6px;
-  
 }
 
 .filter-button {
@@ -61,28 +60,27 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-    display: flex;
-    position: relative;    
-    display: none;
+  display: flex;
+  position: relative;
+  display: none;
 }
 #search {
   display: inline-flex;
-  padding: 12px 236px 12px 14px;  
+  padding: 12px 236px 12px 14px;
   border: none;
   border-radius: 30px;
-  background-color: var(--bodyBackground);  
-  gap: 10px;  
-  font-size: 14px;  
+  background-color: var(--bodyBackground);
+  gap: 10px;
+  font-size: 14px;
   height: 38px;
-  
 }
 .search-icon {
-    position: absolute;
-    right: 14px;
-    top: 12px;    
-    width: 18px;
-    height: 18px;
-    fill:transparent;    
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  width: 18px;
+  height: 18px;
+  fill: transparent;
 }
 
 .gallery {
@@ -161,7 +159,7 @@
   letter-spacing: 0.04em;
 }
 .pg-num-btn {
-  display: flex;  
+  display: flex;
   width: 32px;
   height: 32px;
   align-items: center;
@@ -184,56 +182,52 @@
 
 /* tablet 768px + */
 @media screen and (min-width: 768px) {
-  .exercises-wraper {          
+  .exercises-wraper {
     padding-top: 64px;
     padding-bottom: 64px;
     border-radius: 50px;
     width: 736px;
-  } 
+  }
   .section-title {
     font-size: 44px;
-    line-height: 1.1;           
-    padding-left: 48px;     
-   }
-   .search-block {       
-    padding-left: 48px;       
+    line-height: 1.1;
+    padding-left: 48px;
+  }
+  .search-block {
+    padding-left: 48px;
     gap: 35px;
-   }
+  }
 
-   .filter-list {
-       margin-top: 42px;       
-       gap: 8px;
-
-   }
+  .filter-list {
+    margin-top: 42px;
+    gap: 8px;
+  }
 
   .gallery {
-    margin-top: 32px;    
+    margin-top: 32px;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 14px;
   }
 
-.card {
-  width: 313px;
-  height: 250px;
-}
+  .card {
+    width: 313px;
+    height: 250px;
+  }
 
-.filter-button {
-padding: 10px 20px;
-}
-
+  .filter-button {
+    padding: 10px 20px;
+  }
 }
 
 /* desctop 1440px + */
 @media screen and (min-width: 1440px) {
-    .exercises-wraper {
-        width: 1408px;    
-    }
-    .filter-list {
-    margin-top: 32px;   
-    
-    }
-    
+  .exercises-wraper {
+    width: 1408px;
+  }
+  .filter-list {
+    margin-top: 32px;
+  }
 
   .custom-pagination-btn {
     display: flex;

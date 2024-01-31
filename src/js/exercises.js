@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   /*  scrollToNextGroup(); */
   //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('filter-active');
+
+  /*   pagesButton.forEach(button => {
+    button.classList.add('pg-num-btn-active');
+  }); */
+
   pagesButton = document.querySelector('.pg-num-btn');
   pagesButton.classList.add('pg-num-btn-active');
 });
@@ -80,11 +85,27 @@ PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
 
   // гортання сторінок
-  if (event.target.tagName === 'BUTTON') {
+  if (
+    event.target.tagName === 'BUTTON' &&
+    event.target.classList.contains('pg-num-btn')
+  ) {
+    // Remove the 'pg-num-btn-active' class from all buttons
+    document.querySelectorAll('.pg-num-btn').forEach(button => {
+      button.classList.remove('pg-num-btn-active');
+    });
+
+    // Add the 'pg-num-btn-active' class to the clicked button
+    event.target.classList.add('pg-num-btn-active');
+
+    // Call the API with the selected page
+    GALLERY.innerHTML = ''; // Clear existing content
+    callApiWithQuery({ filter: event.target.name, page: event.target.id });
+  }
+  /* if (event.target.tagName === 'BUTTON') {
     PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
     callApiWithQuery({ filter: event.target.name, page: event.target.id });
-  }
+  } */
 });
 
 // пагінація та генерація розмітки
