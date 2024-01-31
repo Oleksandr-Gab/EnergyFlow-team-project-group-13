@@ -48,9 +48,13 @@ galleryDalley.addEventListener('click', event => {
   searchContainer.style.display = 'block';
   galleryWaist.classList.add('information-cards');
 
-  // ------------------------------------------------------------
-  paramObj = event.target.id;
-  paramArr = paramObj.split(':');
+  // ---------------- Костиль ----------------------
+  /* получение объекта с параметрами выбраного фильтра exercises
+  console.log(JSON.parse(event.target.id)); */
+
+  const paramObj = event.target.id;
+  const paramArr = paramObj.split(':');
+
   apiWaist.defaults.params = {
     page: 1,
     limit: viewportWidth > 1400 ? '9' : '8',

@@ -2,6 +2,7 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+//HELLO
 
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
@@ -15,13 +16,16 @@ export const API_BASE_URL = axios.create({
 export let exercisesData;
 
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
-let pagesButton;
 
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
+
+  //відображати активні кнопки
+ 
   MUSCLES_BUTTON.classList.add('filter-active');
-  pagesButton = document.querySelector('.pg-num-btn');
-  pagesButton.classList.add('pg-num-btn-active');
+  let pagesButton = document.querySelector('.pg-num-btn');
+  console.log(pagesButton);
+  // pagesButton.classList.add('pg-num-btn-active');
 });
 
 export const getExercisesData = async ({ filter, page, limit }) => {
@@ -42,6 +46,9 @@ export const getExercisesData = async ({ filter, page, limit }) => {
 
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
+
+  //очищення карток та сторінок
+
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
@@ -58,20 +65,20 @@ FILTER_LIST.addEventListener('click', event => {
 
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
-
-  if (
-    event.target.tagName === 'BUTTON' &&
-    event.target.classList.contains('pg-num-btn')
-  ) {
-    document.querySelectorAll('.pg-num-btn').forEach(button => {
-      button.classList.remove('pg-num-btn-active');
-    });
-
-    event.target.classList.add('pg-num-btn-active');
+  // гортання сторінок
+  if (event.target.tagName === 'BUTTON') {
+    PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
-    callApiWithQuery({ filter: MUSCLES_BUTTON.name, page: event.target.id });
+
+    //виклик ф-ції з обраним користувачем фільтром та сторінкою
+    callApiWithQuery({
+      filter: event.target.name,
+      page: event.target.id,
+    });
   }
 });
+
+// генерація розмітки
 
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
@@ -80,28 +87,41 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       const totalPages = renderExercises.data.totalPages;
       let markupBtnPgs = '';
       for (let i = 1; i <= totalPages; i++) {
-        markupBtnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}">${i}</button>`;
+        //если значение ключа page приведенное к Number = счетчику
+        if (Number(page) === i) {
+          //добавить в разметку класс pg-num-btn-active
+          markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn pg-num-btn-active" type="button" name="${filter}"
+ >${i}</button></li> `;
+        } else {
+          markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn" type="button" name="${filter}"
+ >${i}</button></li> `;
+        }
       }
       return markupBtnPgs;
     };
-
     const imgs = renderExercises.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-          <div class="card" >            
+          <div class="card" >
              <img class="gallery-image"
              src="${imgUrl}"
-             alt="${filter}"            
-            />            
+             alt="${filter}"
+            />
             </div>
             <div class="card-description">
-            <p class="name-description" id="${filter}:${name}">${name}</p>
+            <p class="name-description" id="${filter}:${name}">${name}"</p>
             <p class="filter-description">${filter}</p>
             </div>
           </li>`,
       ''
     );
+
+    /* var.2
+    передача через id объекта параметров выбранного фильтра
+    <p class="name-description" id='${JSON.stringify({filter, name, })}'>${name}</p>
+    */
+
     const markupBtnPgs = quantityBtnPgs();
 
     PAGES_LIST.innerHTML = markupBtnPgs;
