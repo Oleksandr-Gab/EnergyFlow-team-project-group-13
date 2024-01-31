@@ -60,9 +60,6 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-  /* display: flex;
-  position: relative; */
-
   display: none;
 }
 /* #search {
@@ -75,14 +72,16 @@
   gap: 10px;
   font-size: 14px;
   height: 38px;
-} */
-/* .search-icon {
-  position: absolute;
-  right: 14px;
-  top: 12px;
-  width: 18px;
-  height: 18px;
-  fill: transparent;
+
+}
+.search-icon {
+    position: absolute;
+    right: 14px;
+    top: 12px;    
+    width: 18px;
+    height: 18px;
+    fill:transparent;    
+
 } */
 
 .gallery {
@@ -180,6 +179,7 @@
   color: inherit;
   border-radius: 50%;
   border: 1px solid #1b1b1b;
+  
 }
 
 /* tablet 768px + */
