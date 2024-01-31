@@ -116,7 +116,7 @@ searchPart.addEventListener('input', event => {
   });
 });
 
-function renderExercises(arr) {
+export function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
