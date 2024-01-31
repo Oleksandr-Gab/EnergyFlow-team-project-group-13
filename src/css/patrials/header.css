@@ -57,7 +57,7 @@
     position: fixed;
     top: 0;
     max-width: 335px;
-    max-height: 771px;
+    max-height: 100vh;
     border-radius: 30px;
     right: -120%;
     background-color: var(--greyColorText-Background-Btn);
