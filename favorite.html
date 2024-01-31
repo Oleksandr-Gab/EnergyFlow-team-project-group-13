@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Favorites</title>
     
-    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/vendor-29bef8ec.js"></script>
-    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/assets/main-15f474e9.js"></script>
+    <script type="module" crossorigin src="/EnergyFlow-team-project-group-13/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/vendor-29bef8ec.js">
+    <link rel="modulepreload" crossorigin href="/EnergyFlow-team-project-group-13/assets/modal-form-2099e469.js">
     <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/vendor-e5212ee8.css">
-    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/main-3abcea2c.css">
+    <link rel="stylesheet" href="/EnergyFlow-team-project-group-13/assets/modal-form-3abcea2c.css">
   </head>
   <body>
     <header class="header">
@@ -173,6 +174,117 @@
         </div>
     </div>
 </section>
+
+
+    <div class="div-skroll-btn">
+    <button type="button" class="skroll-btn" >
+        <svg class="skroll-btn-icon">
+            <use href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#icon-up"></use>
+        </svg>
+    </button>
+</div> 
+
+    <div id="exerciseModal">
+  <div id="modal">
+    <button class="close" id="closeModalBtn">
+      <svg class="icon-close">
+        <use href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <div class="modal-content">
+      <div id="information"></div>
+    </div>
+
+    <div class="button-container">
+      <button id="addToFavoritesBtn">
+        Add to favorites
+        <svg class="heart">
+          <use href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#heart"></use>
+        </svg>
+      </button>
+
+      <button id="giveRatingBtn">Give a rating</button>
+    </div>
+  </div>
+</div>
+
+    <div class="backdrop is-hidden">
+    <div class="rating-modal-wrapper">
+        <button class="rating-close js-rating-close" type="button">
+            <svg class="rating-close-svg" width="28" height="28">
+                <use href="/EnergyFlow-team-project-group-13/assets/sprite-aea79390.svg#cross"></use>
+            </svg>
+        </button>
+
+        <form class="rating-form">
+            <p class="rating-title">Rating</p>
+            <div class="rating-stars-wrapper">
+                <p class="rating-data">0.0</p>
+                <div class="rating-stars-list js-stars-list">
+                    <div class="rating-star-svg js-rating-star" data-rate="5"></div>
+                    <div class="rating-star-svg js-rating-star" data-rate="4"></div>
+                    <div class="rating-star-svg js-rating-star" data-rate="3"></div>
+                    <div class="rating-star-svg js-rating-star" data-rate="2"></div>
+                    <div class="rating-star-svg js-rating-star" data-rate="1"></div>
+                </div>
+            </div>
+            <label>
+                <input class="rating-input" type="email" name="email" placeholder="Email" required />
+            </label>
+            <label>
+                <textarea class="rating-comment" name="comment" maxlength="10000" placeholder="Your comment"
+                    required></textarea>
+            </label>
+            <button class="rating-submit js-raiting-submit">Send</button>
+        </form>
+    </div>
+</div>
+<div class="a"></div>
+    <!-- <button id="openModalBtnPrize">Відкрити модальне вікно</button> -->
+<div class="prize-container">
+  <div id="myModalPrize">
+    <div class="modal-content-prize">
+      <button id="closeModalPrize" style="cursor: pointer; float: right">
+        &times;
+      </button>
+      <div id="introMessagePrize" class="intro-message-prize">
+        <h2 class="wheel-h2">DO YOU WANT TO RECEIVE A GIFT?</h2>
+        <p class="wheel-p">Press the button and spin the wheel...</p>
+      </div>
+      <div id="congratulationsMessage" class="congratulations-message">
+        <p id="congratulationMessage"></p>
+        <p id="congratulationMessage1"></p>
+        <p id="prizeMessage"></p>
+      </div>
+      <div class="get-prize-container">
+        <form id="prizeForm">
+          <label class="label-get" for="email"></label>
+          <input
+            type="email"
+            id="email-prize"
+            name="email"
+            class="input-get"
+            placeholder="email..."
+            required
+          />
+
+          <button type="button" class="button-get">Get</button>
+        </form>
+      </div>
+      <div class="deal-wheel">
+        <!-- блок с призами -->
+        <ul class="spinner"></ul>
+        <!-- язычок барабана -->
+        <div class="ticker"></div>
+        <!-- кнопка -->
+        <button class="btn-spin">Try your luck</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- подключаем скрипт -->
 
 
     

@@ -1,0 +1,2 @@
+import"./assets/modal-form-2099e469.js";import"./assets/vendor-29bef8ec.js";const t=document.querySelector(".favoritePartInfo");localStorage.getItem("favorite");const e=['<img class="favoritePart-img" src="./img/dumbbell.svg" alt="">','<p class="favoritePart-text">It appears that you havent added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>'];t.innerHTML=e.join(" ");
+//# sourceMappingURL=commonHelpers.js.map
