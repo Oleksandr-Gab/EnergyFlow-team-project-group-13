@@ -19,15 +19,15 @@ export let exercisesData;
 
 //button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
-let pagesButton;
 
 // слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
   //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('filter-active');
-  pagesButton = document.querySelector('.pg-num-btn');
-  pagesButton.classList.add('pg-num-btn-active');
+  let pagesButton = document.querySelector('.pg-num-btn');
+  console.log(pagesButton);
+  // pagesButton.classList.add('pg-num-btn-active');
 });
 
 //функція запиту на DATA
@@ -67,18 +67,11 @@ FILTER_LIST.addEventListener('click', event => {
     // виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
   }
-  /*  MUSCLES_BUTTON.classList.remove('filter-active');
-    // PAGES_BUTTON.classList.remove('pg-num-btn-active');
-
-    //виклик функції з обраним користувачем значенням фільтра
-    callApiWithQuery({ filter: event.target.name });
-  } */
 });
 
 //делегування слухача на PAGES_LIST
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
-
   // гортання сторінок
   if (event.target.tagName === 'BUTTON') {
     PAGES_LIST.innerHTML = '';
@@ -89,24 +82,10 @@ PAGES_LIST.addEventListener('click', event => {
       filter: event.target.name,
       page: event.target.id,
     });
-
-    // видаляемо клас "pg-num-btn-active" з всіх кнопок сторінок
-    document.querySelectorAll('.pg-num-btn').forEach(button => {
-      button.classList.remove('pg-num-btn-active');
-    });
-    // додавання "pg-num-btn-active" класу до клікнутої кнопки
-    event.target.classList.add('pg-num-btn-active');
-    console.log(event.target);
-
-    // clicks on the button, scroll to the top of the document
-    // function topFunction() {
-    //   document.body.scrollTop = 0; // For Safari
-    //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    // }
   }
 });
 
-// пагінація та генерація розмітки
+// генерація розмітки
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
     const renderExercises = await getExercisesData({ filter, page, limit });
@@ -114,21 +93,27 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       const totalPages = renderExercises.data.totalPages;
       let markupBtnPgs = '';
       for (let i = 1; i <= totalPages; i++) {
-        markupBtnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}"
- >${i}</button>`;
+        //если значение ключа page приведенное к Number = счетчику
+        if (Number(page) === i) {
+          //добавить в разметку класс pg-num-btn-active
+          markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn pg-num-btn-active" type="button" name="${filter}"
+ >${i}</button></li> `;
+        } else {
+          markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn" type="button" name="${filter}"
+ >${i}</button></li> `;
+        }
       }
       return markupBtnPgs;
     };
-
     const imgs = renderExercises.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-          <div class="card" >            
+          <div class="card" >
              <img class="gallery-image"
              src="${imgUrl}"
-             alt="${filter}"            
-            />            
+             alt="${filter}"
+            />
             </div>
             <div class="card-description">
             <p class="name-description" id="${filter}:${name}">${name}"</p>
