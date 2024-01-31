@@ -1,4 +1,4 @@
-// для додавання 'npm install axios'
+// для додавання ''
 import axios from 'axios';
 // для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
