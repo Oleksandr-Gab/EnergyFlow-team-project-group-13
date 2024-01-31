@@ -4,10 +4,10 @@ import { activeModalBtn } from '../modal-pop-up';
 
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
-
+console.log(saveExercises);
 let arrFavorite = [];
 
- const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+//  const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 
 
  saveExercises();
@@ -29,7 +29,7 @@ async function saveExercises() {
       }
   } else {
     console.log('DDDDDDDDD');
-      favoritePartInfo.innerHTML = favoriteInfo;
+      // favoritePartInfo.innerHTML = favoriteInfo;
   }
 }
 
@@ -73,8 +73,6 @@ async function renderFavorites(arr) {
       ''
     )
     favoritePartInfo.innerHTML = favCard;
-
-    activeModalBtn();
 }
 
 // favTrash = () => {
