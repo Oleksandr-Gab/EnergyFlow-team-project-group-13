@@ -1,177 +1,129 @@
-// import { openModal } from './modal-pop-up';
-
 import axios from 'axios';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { getExercisesData } from './exercises.js';
 import { activeModalBtn } from './modal-pop-up.js';
-
-
-getExercisesData()
-  .then(response => {
-    // console.log(response);
-  })
-  .catch(error => {
-    iziToast.error({
-      message: error,
-      position: 'topRight',
-    });
-  });
-console.log();
-
-let page;
-let totalItems;
-let maxPages;
-const limit = 8;
 
 //  -------Текст при відсутності вправи ------
 const partError =
   'Unfortunately, no results were found. You may want to consider other search options to find the exercise you are looking for. Our range is wide and you have the opportunity to find more options that suit your needs.';
-
+// ------------------------------------------------
+const searchContainer = document.querySelector('.field-search-wraper');
+const heightViewport = document.querySelector('.search-block');
 const galleryDalley = document.querySelector('.gallery');
-const filterBtns = document.querySelector('.filter-list');
-// const galleryWaist = document.querySelector('.waist');
+const searchBtn = document.querySelector('.search-icon');
+let titleSlash = document.querySelector('#slash');
+const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
-const searchBlock = document.querySelector('.search-block');
+// paginationBtn = document.querySelector('.pagination-btn');
 const viewportWidth = innerWidth;
-const arrowRight = document.querySelector('.workout-btn');
-// console.log(viewportWidth);
+let paramArr;
+let paramObj;
+let page;
+let totalPages;
 
+// -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
 
-// export const fetchExercises = async request => {
-//   const exercises = await apiWaist.get(request);
-
-//   return exercises;
-// };
-
-// -------------------------------------------------------------
-
-// galleryDalley.addEventListener('click', handClick);
-
-// bodypart
-// muscles
-// equipment
-
-// keyword
-
-// galleryWaist.removeEventListener('click', handClick);
-
-const fetchExercises = async request => {
-  const exercises = await apiWaist.get(request, {
-    params: {
-      // ----- papam for input --------
-      // bodypart: 'waist',
-      // muscles: 'abs',
-      // equipment: 'roller',
-      // keyword: 'cable',
-      // ---------------------------------------------------
-      page: '1',
-      // -------ліміт ---------------------- ???????????????
-      // limit: '10',
-    },
+// ----- Функція запиту -----------------------------
+const fetchExercises = async (lastString, { params }) => {
+  const exercises = await apiWaist.get(lastString, {
+    params,
   });
   return exercises;
 };
 
-// ---example ----
-const abs = 'abs';
-
+// ----Запит --------------------------------------------
 galleryDalley.addEventListener('click', event => {
-  // console.log('hi');
   event.preventDefault();
+
+  galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
-  searchPart.style.display = 'block';
-  // searchBlock.style.display = 'block';
-  // ------------------------------------
+  titleSlash.innerHTML = '';
 
-  galleryDalley.classList.add('information-cards');
+  // paginationBtn.style.display = 'block';
+  searchContainer.style.display = 'block';
+  galleryWaist.classList.add('information-cards');
 
+  // ------------------------------------------------------------
+  paramObj = event.target.id;
+  paramArr = paramObj.split(':');
   apiWaist.defaults.params = {
-    //  дані, отримані при кліку на фото на приклад: (muscles: 'abs')
-    // currentButton: 'clickOnPhoto-id...',
-    limit: '8',
+    page: 1,
+    limit: viewportWidth > 1400 ? '9' : '8',
+    muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
+    bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
+    equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-  fetchExercises('/exercises')
-    .then(response => {
-      // console.log(response.data);
+  // -------------------------------------------------------------
 
+  titleSlash.insertAdjacentHTML(
+    'beforeend',
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+  );
+
+  fetchExercises('/exercises', {
+    params: {},
+  })
+    .then(response => {
       renderExercises(response.data.results);
     })
     .catch(error => {
       iziToast.error({
-        message: error,
+        message: error.message,
         position: 'topRight',
       });
     });
 });
 
-// -----------------------------------------------------------
-
-// searchPart.addEventListener('input', event => {
-//   clearTimeout(typingTimer);
-
-//   typingTimer = setTimeout(function () {
-//     let emailValue = searchPart.value;
-//     partName = searchPart.value;
-
-//     console.log(partName);
-//     console.log('Введенное значение после задержки:', emailValue);
-//   }, 2000);
-// });
-
 // ----- Пошук вправи за інпутом -----------------------------
 
-let partName;
-let typingTimer;
+let inputValue;
 searchPart.addEventListener('input', event => {
-  clearTimeout(typingTimer);
-
-  typingTimer = setTimeout(function () {
-    partName = searchPart.value;
-    console.log(partName);
-  }, 1000);
-
-  searchBlock.addEventListener('click', event => {
-    console.log(partName.toLowerCase());
-    // ----------- Підставляемо значення інпут "Назва вправи" ----------------
-    if (partName.trim() !== 'input-value') {
-      galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-      return;
-    }
-    // -------Запит --------------
-    galleryDalley.classList.add('information-cards');
-    apiWaist.defaults.params = {
-      //  дані, отримані з 'input search' приклад: (muscles: 'abs')
-      // keydown: 'inputValue',
-      limit: '8',
-    };
-    fetchExercises('/exercises')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        iziToast.error({
-          message: error,
-          position: 'topRight',
-        });
-      });
-  });
-
-  // console.log(partName.trim());
+  inputValue = event.target.value;
 });
 
-function renderExercises(arr) {
-  // ---Підвид вправи----- id картки -----
-  // let part = 'abs';
-  // const listPart = arr.filter(item => item.target === part);
+searchBtn.addEventListener('click', event => {
+  galleryWaist.innerHTML = '';
+  galleryDalley.innerHTML = '';
+  // -------------------------------------------------------------
+  apiWaist.defaults.params = {
+    page: 1,
+    limit: viewportWidth > 1400 ? '9' : '8',
+    keyword: inputValue,
+    muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
+    bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
+    equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
+  };
+  // -------------------------------------------------------------
 
-  // ---------------------
-  galleryDalley.insertAdjacentHTML(
+  fetchExercises('/exercises', {
+    params: {},
+  })
+    .then(response => {
+      console.log(response.data.totalPages);
+      if (response.data.totalPages === null) {
+        galleryWaist.innerHTML = `${partError}`;
+      }
+      renderExercises(response.data.results);
+    })
+    .catch(error => {
+      iziToast.error({
+        message: error.message,
+        position: 'topRight',
+      });
+    })
+    .finally(() => {
+      searchPart.value = '';
+    });
+});
+
+// ---Рендер карток --------------------------------
+export function renderExercises(arr) {
+  galleryWaist.insertAdjacentHTML(
     'afterbegin',
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
@@ -182,14 +134,14 @@ function renderExercises(arr) {
         <div class="rating">
             <p>${rating}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="../img/sprite.svg#icon-star"></use>
+                <use href=${'./img/sprite.svg#icon-star'}></use>
             </svg>
         </div>
                  
-        <div class="workout-btn-container">
+        <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="../img/sprite.svg#icon-right"></use>
+                <use href="./img/sprite.svg#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -198,7 +150,7 @@ function renderExercises(arr) {
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="../img/sprite.svg#run"></use>
+                  <use href="./img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>
@@ -215,21 +167,3 @@ function renderExercises(arr) {
   );
   activeModalBtn();
 }
-
-// ------------------------------------------------------------------------------
-
-// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// galleryWaist.addEventListener('click', event => {
-//   event.preventDefault();
-
-// ---- ПИШИ В ІНШОМУ ФАЙЛІ -----------------------------
-
-//   const galleryCard = event.target.closest('.gallery-card');
-//   if (galleryCard) {
-//     const cardId = galleryCard.dataset.id;
-//     openModal();
-//   }
-// });
-
-// !!!!!!!!!!!!!!!!!! НЕ ПИШИ В ЦЬОМУ ФАЙЛІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

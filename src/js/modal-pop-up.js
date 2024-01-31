@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const exerciseInfo = document.getElementById('information');
+const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
+
 let openModalBtn;
+let modallResponseData;
 
 async function getData(id) {
     try {
@@ -17,8 +20,7 @@ async function getData(id) {
             baseURL: 'https://energyflow.b.goit.study/api/exercises',
         });
         const responseModall = await modallApi.get(id);
-        const modallResponseData = responseModall.data;
-        console.log(modallResponseData);
+        modallResponseData = responseModall.data;
         renderCard(modallResponseData);
 
     } catch (error) {
@@ -41,20 +43,49 @@ export const activeModalBtn = () => {
     });
 };
 
-function renderCard(data) {
+async function renderCard(data) {
     const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
     const modalHtml = `
-        <img src="${gifUrl}" alt="${name}">
+
+        <div class="gif">
+        <img src="${gifUrl}" alt="${name}" >
+        </div>
+
+        <div class = "text">
+
         <h2>${name}</h2>
-        <p>Rating: ${rating}</p>
-        <p>Target: ${target}</p>
-        <p>Body Part: ${bodyPart}</p>
-        <p>Equipment: ${equipment}</p>
-        <p>Popular: ${popularity}</p>
-        <p>Burned Calories: ${burnedCalories}</p>
-        <p>Description: ${description}</p>`;
-    console.log(modalHtml);
+        
+        <div class="rating-container">
+            <p>${rating}</p>
+            <svg class="icon-star" width="12" height="12">
+                <use href="../img/sprite.svg#icon-star"></use>
+            </svg>
+        </div>
+
+        <ul class="info-block">
+    <li class="info-item">
+        <span class="info-text">Target</span> ${target}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Body Part</span> ${bodyPart}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Equipment</span> ${equipment}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Popular</span> ${popularity}
+    </li>
+    <li class="info-item">
+        <span class="info-text">Burned Calories</span> ${burnedCalories}/${time}min
+    </li>
+</ul>
+
+
+        <p class="description">Description: ${description}</p> 
+        </div>`;
+    
     exerciseInfo.innerHTML = modalHtml;
+
     openModal();
 }
 
@@ -67,6 +98,7 @@ export function openModal() {
     closeModalBtn.addEventListener('click', closeModal);
     document.addEventListener('mouseup', outsideClick);
     document.addEventListener('keydown', escapeKey);
+    auditLocal()
 }
 
 // --- Закриття модалки 
@@ -78,6 +110,8 @@ function closeModal() {
     document.removeEventListener('keydown', escapeKey);
     exerciseInfo.innerHTML = '';
     document.body.style.overflow = '';
+    addToFavoritesBtn.removeEventListener('click', addToFavorite)
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
 }
 
 // --- Кліки по бєкдропу та esc
@@ -94,3 +128,73 @@ const escapeKey = function (event) {
         closeModal();
     }
 };
+
+// отримання масива даних для передавання в localStor
+
+const getObj = (data) => {
+    const { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
+    return { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time };
+}
+
+// функція додавання інфи в localStor
+
+const addToFavorite = () => {
+    let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = [];
+
+    if (localFavCart != null) {
+        newLocalFavCart = JSON.parse(localFavCart);
+};
+    const newObj = getObj(modallResponseData);
+    newLocalFavCart.push(newObj);
+
+    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+    auditLocal()
+};
+
+// функція  видалення інфи в localStor
+
+const deleteToFavorite = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
+        if (newLocalFavCart.length != 0) {
+            localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+        } else {
+            localStorage.removeItem('favoritesCard');
+        };
+    auditLocal();
+}
+
+// Функція перевірки localStor
+
+export const auditLocal = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+    addToFavoritesBtn.addEventListener('click', addToFavorite);
+    addToFavoritesBtn.innerHTML = "Add to favorites";
+    if (localFavCart != null) {
+        JSON.parse(localFavCart).forEach(el => {
+            if (el._id == _id) {
+                addToFavoritesBtn.innerHTML = "Delete favorite";
+                addToFavoritesBtn.removeEventListener('click', addToFavorite)
+                addToFavoritesBtn.addEventListener('click', deleteToFavorite)
+            } else {
+                addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+                addToFavoritesBtn.addEventListener('click', addToFavorite);
+                addToFavoritesBtn.innerHTML = "Add to favorites";
+                addToFavoritesBtn.appendChild(svgElement);
+            }
+        });
+    }
+};
+
+const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svgElement.setAttribute("class", "heart");
+
+const useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
+useElement.setAttribute("href", "./img/sprite.svg#heart");
+
+svgElement.appendChild(useElement);
+

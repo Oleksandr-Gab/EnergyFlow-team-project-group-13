@@ -9,8 +9,8 @@
 
 .quote-sportswear-img {
     background-image: image-set(
-        url('../../img/favorites.img/women-sportswear-torn-left_mob@1x.jpg') 1x,
-        url('../../img/favorites.img/women-sportswear-torn-left_mob@2x.jpg') 2x
+        url('../../img/favorites/women-sportswear-torn-left_mob@1x.jpg') 1x,
+        url('../../img/favorites/women-sportswear-torn-left_mob@2x.jpg') 2x
     );
     background-position: center;
     display: grid;
@@ -65,8 +65,8 @@
 
     .quote-sportswear-img {
         background-image: image-set(
-            url('../../img/favorites.img/women-sportswear-torn-left_tab@1x.jpg') 1x,
-            url('../../img/favorites.img/women-sportswear-torn-left_tab@2x.jpg') 2x
+            url('../../img/favorites/women-sportswear-torn-left_tab@1x.jpg') 1x,
+            url('../../img/favorites/women-sportswear-torn-left_tab@2x.jpg') 2x
         );
 
         height: 302px;
