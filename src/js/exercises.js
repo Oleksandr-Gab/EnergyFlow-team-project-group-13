@@ -1,4 +1,4 @@
-// для додавання 'npm install axios'
+// для додавання ''
 import axios from 'axios';
 // для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
@@ -24,9 +24,14 @@ let pagesButton;
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
   //виклик функції плавного scroll
-  scrollToNextGroup();
+  /*  scrollToNextGroup(); */
   //відображати активні кнопки
-  MUSCLES_BUTTON.classList.add('active');
+  MUSCLES_BUTTON.classList.add('filter-active');
+
+  /*   pagesButton.forEach(button => {
+    button.classList.add('pg-num-btn-active');
+  }); */
+
   pagesButton = document.querySelector('.pg-num-btn');
   pagesButton.classList.add('pg-num-btn-active');
 });
@@ -57,12 +62,22 @@ FILTER_LIST.addEventListener('click', event => {
   WAIST.innerHTML = '';
 
   if (event.target.tagName === 'BUTTON') {
-    MUSCLES_BUTTON.classList.remove('active');
+    document.querySelectorAll('.filter-button').forEach(button => {
+      button.classList.remove('filter-active');
+    });
+
+    // додавання "filter-active" класу до клікнутої кнопки
+    event.target.classList.add('filter-active');
+
+    // виклик функції з обраним користувачем значенням фільтра
+    callApiWithQuery({ filter: event.target.name });
+  }
+  /*  MUSCLES_BUTTON.classList.remove('filter-active');
     // PAGES_BUTTON.classList.remove('pg-num-btn-active');
 
     //виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
-  }
+  } */
 });
 
 //делегування слухача на PAGES_LIST
@@ -70,11 +85,27 @@ PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
 
   // гортання сторінок
-  if (event.target.tagName === 'BUTTON') {
+  if (
+    event.target.tagName === 'BUTTON' &&
+    event.target.classList.contains('pg-num-btn')
+  ) {
+    // Remove the 'pg-num-btn-active' class from all buttons
+    document.querySelectorAll('.pg-num-btn').forEach(button => {
+      button.classList.remove('pg-num-btn-active');
+    });
+
+    // Add the 'pg-num-btn-active' class to the clicked button
+    event.target.classList.add('pg-num-btn-active');
+
+    // Call the API with the selected page
+    GALLERY.innerHTML = ''; // Clear existing content
+    callApiWithQuery({ filter: event.target.name, page: event.target.id });
+  }
+  /* if (event.target.tagName === 'BUTTON') {
     PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
     callApiWithQuery({ filter: event.target.name, page: event.target.id });
-  }
+  } */
 });
 
 // пагінація та генерація розмітки
@@ -123,7 +154,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
 }
 
 //функція плавної прокрутки scrollToNextGroup
-const scrollToNextGroup = () => {
+/* const scrollToNextGroup = () => {
   const firstGalleryItem = document.querySelector('.gallery-item');
   //отримаємо у коді висоту однієї карточки галереї
   const galleryItemHeight = firstGalleryItem.getBoundingClientRect().height;
@@ -134,3 +165,4 @@ const scrollToNextGroup = () => {
     behavior: 'smooth',
   });
 };
+ */

@@ -136,7 +136,7 @@ export function renderExercises(arr) {
         <div class="rating">
             <p>${rating}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="../img/sprite.svg#icon-star"></use>
+                <use href="../../img/sprite.svg#icon-star"></use>
             </svg>
         </div>
                  
