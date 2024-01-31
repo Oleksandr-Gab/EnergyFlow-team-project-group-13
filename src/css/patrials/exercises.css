@@ -2,11 +2,10 @@
 
 .exercises {
   /* min-width: 335px;  */
- 
+
   margin: 20px 0;
 }
-.exercises-wraper { 
-    
+.exercises-wraper {
   display: flex;
   padding: 40px 0;
   flex-direction: column;
@@ -61,32 +60,31 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-    display: flex;
-    position: relative; 
-    /* width: 370px;
+  display: flex;
+  position: relative;
+  /* width: 370px;
     margin: 0 auto; */
-    display: none;
+  display: none;
 }
 #search {
   display: inline-flex;
-  padding: 12px 236px 12px 14px;  
+  padding: 12px 236px 12px 14px;
   border: none;
   border-radius: 30px;
   background-color: var(--bodyBackground);
   /* align-items: center; */
   /* justify-content: center; */
-  gap: 10px;  
-  font-size: 14px;  
+  gap: 10px;
+  font-size: 14px;
   height: 38px;
-  
 }
 .search-icon {
-    position: absolute;
-    right: 14px;
-    top: 12px;    
-    width: 18px;
-    height: 18px;
-    fill:transparent;    
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  width: 18px;
+  height: 18px;
+  fill: transparent;
 }
 
 .gallery {
@@ -165,7 +163,7 @@
   letter-spacing: 0.04em;
 }
 .pg-num-btn {
-  display: flex;  
+  display: flex;
   width: 32px;
   height: 32px;
   align-items: center;
