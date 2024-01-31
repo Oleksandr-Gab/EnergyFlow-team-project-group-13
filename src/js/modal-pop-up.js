@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const exerciseInfo = document.getElementById('information');
-const addToFavoritesBtn = document.getElementById('addToFavoritesBtn')
+const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
+
 let openModalBtn;
 let modallResponseData;
 
@@ -20,6 +21,7 @@ async function getData(id) {
         });
         const responseModall = await modallApi.get(id);
         modallResponseData = responseModall.data;
+        auditLocal();
         renderCard(modallResponseData);
 
     } catch (error) {
@@ -85,8 +87,6 @@ function renderCard(data) {
     
     exerciseInfo.innerHTML = modalHtml;
     openModal();
-
-    
 }
 
 // --- Відкриття модалки
@@ -98,6 +98,7 @@ export function openModal() {
     closeModalBtn.addEventListener('click', closeModal);
     document.addEventListener('mouseup', outsideClick);
     document.addEventListener('keydown', escapeKey);
+
 }
 
 // --- Закриття модалки 
@@ -109,6 +110,8 @@ function closeModal() {
     document.removeEventListener('keydown', escapeKey);
     exerciseInfo.innerHTML = '';
     document.body.style.overflow = '';
+    addToFavoritesBtn.removeEventListener('click', addToFavorite)
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
 }
 
 // --- Кліки по бєкдропу та esc
@@ -126,23 +129,58 @@ const escapeKey = function (event) {
     }
 };
 
+// отримання масива даних для передавання в localStor
 
-// функція додавання інфи в локал
+const getObj = (data) => {
+    const { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
+    return { _id, bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time };
+}
 
-addToFavoritesBtn.addEventListener('click', async () => {
-    let newLocalFavCart = [];
+// функція додавання інфи в localStor
+
+const addToFavorite = () => {
     let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = [];
 
     if (localFavCart != null) {
         newLocalFavCart = JSON.parse(localFavCart);
-    };
-
-    const newDataCard = await JSON.stringify(modallResponseData);
-    newLocalFavCart.push(newDataCard);
+};
+    const newObj = getObj(modallResponseData);
+    newLocalFavCart.push(newObj);
 
     localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
-});
+    auditLocal()
+};
 
+// функція  видалення інфи в localStor
 
+const deleteToFavorite = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
+    
+    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+    auditLocal();
+}
 
+// Функція перевірки localStor
 
+const auditLocal = () => {
+    const { _id } = modallResponseData;
+    let localFavCart = localStorage.getItem('favoritesCard');
+    addToFavoritesBtn.addEventListener('click', addToFavorite);
+    addToFavoritesBtn.innerHTML = "Add to favorites";
+    if (localFavCart != null) {
+        JSON.parse(localFavCart).forEach(el => {
+            if (el._id == _id) {
+                addToFavoritesBtn.innerHTML = "Delete favorite";
+                addToFavoritesBtn.removeEventListener('click', addToFavorite)
+                addToFavoritesBtn.addEventListener('click', deleteToFavorite)
+            } else {
+                addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+                addToFavoritesBtn.addEventListener('click', addToFavorite);
+                addToFavoritesBtn.innerHTML = "Add to favorites";
+            }
+        });
+    }
+};
