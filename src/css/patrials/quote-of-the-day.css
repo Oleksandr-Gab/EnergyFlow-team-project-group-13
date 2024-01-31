@@ -1,0 +1,173 @@
+/*! MAIN STYLE */
+.quote-container {
+  height: 545px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+.quote-back-img {
+  background-image: url(../../img/quote-section-img/quote-wear-mobile.jpg);
+  height: 272px;
+  background-size: auto;
+  border-radius: 30px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.quote-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 272px;
+  background: var(--greyColorText-Background-Btn);
+  border-radius: 30px;
+  margin-top: 0;
+}
+.quote-card {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.quote-runner {
+  fill: var(--textCardTitle);
+  margin-right: 12px;
+}
+.quote-title {
+  min-width: 160px;
+  color: var(--textCardTitle);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.quote-commas {
+  fill: var(--textCardTitle);
+  margin-left: 24px;
+}
+.quote-info {
+  padding-left: 44px;
+  min-height: 100px;
+}
+.quote-text {
+  color: var(--colorTextQuote);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.28;
+
+  margin-bottom: 14px;
+}
+.quote-author {
+  color: var(--textCardTitle);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+/*! MOBILE STYLE */
+@media screen and (min-width: 375px) {
+  .quote-container {
+    width: 335px;
+    margin-top: 16px;
+  }
+  .quote-main {
+    width: 335px;
+  }
+  .quote-commas {
+    margin-left: 61px;
+  }
+  .quote-back-img {
+    background-size: 100%;
+  }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 375px),
+  screen and (min-resolution: 2dppx) and (min-width: 375px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 375px) {
+  .quote-back-img {
+    background-image: url(../../img/quote-section-img/quote-wear-mobile@2x.jpg);
+  }
+}
+/*! TABLET STYLE */
+@media screen and (min-width: 768px) {
+  .quote-container {
+    width: 736px;
+    height: 604px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .quote-back-img {
+    background-image: url(../../img/quote-section-img/quote-wear-tablet.jpg);
+    background-size: 100%;
+    height: 302px;
+    border-radius: 50px;
+  }
+  .quote-main {
+    align-items: flex-start;
+    padding-left: 80px;
+    padding-right: 80px;
+    border-radius: 50px;
+    width: 576px;
+    height: 302px;
+    box-sizing: content-box;
+  }
+  .quote-runner {
+    margin-right: 16px;
+  }
+  .quote-title {
+    min-width: 192px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+  .quote-commas {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    right: -290px;
+    top: -30px;
+    margin-left: 0px;
+  }
+  .quote-info {
+    padding-left: 50px;
+  }
+  .quote-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px),
+  screen and (min-resolution: 2dppx) and (min-width: 768px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+  .quote-back-img {
+    background-image: url(../../img/quote-section-img/quote-wear-tablet@2x.jpg);
+  }
+}
+/*! DESKTOP STYLE  */
+@media screen and (min-width: 1440px) {
+  .quote-container {
+    display: flex;
+    width: 1408px;
+    height: 302px;
+  }
+  .quote-main {
+    align-items: flex-start;
+    padding-left: 64px;
+    padding-right: 64px;
+    border-radius: 50px;
+    width: 704px;
+    box-sizing: border-box;
+  }
+
+  .quote-back-img {
+    background-image: url(../../img/quote-section-img/quote-wear-desktop.jpg);
+    width: 704px;
+    height: 302px;
+  }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 1440px),
+  screen and (min-resolution: 2dppx) and (min-width: 1440px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
+  .quote-back-img {
+    background-image: url(../../img/quote-section-img/quote-wear-desktop@2x.jpg);
+  }
+}

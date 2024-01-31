@@ -1,18 +1,23 @@
-<div id="exerciseModal" class="modal is-hidden">
-  <button class="close" id="closeModalBtn">&#10006;</button>
-
-  <div class="modal-content">
-    <div id="infomation"></div>
-  </div>
-
-  <div class="button-container">
-    <button id="addToFavoritesBtn">
-      Add to favorites
-      <svg class="heart">
-        <use href="./img/sprite.svg#heart"></use>
+<div id="exerciseModal">
+  <div id="modal">
+    <button class="close" id="closeModalBtn">
+      <svg class="icon-close">
+        <use href="./img/sprite.svg#icon-close"></use>
       </svg>
     </button>
 
-    <button id="giveRatingBtn">Give a rating</button>
+    <div class="modal-content">
+      <div id="information"></div>
+    </div>
+
+    <div class="button-container">
+      <div>
+        <button id="addToFavoritesBtn">Add to favorites</button>
+        <svg class="icon-heart" width="32" height="32">
+          <use href="./img/sprite.svg#heart"></use>
+        </svg>
+      </div>
+     <button id="giveRatingBtn">Give a rating</button>
+    </div>
   </div>
 </div>

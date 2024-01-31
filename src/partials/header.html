@@ -1,20 +1,33 @@
-<header class="header container">
-  <div class="header-wrap">
+<header class="header">
+  <div class="header-wrap container">
     <a href="./index.html" class="logo-link">energy.flow</a>
     <div class="menu-back-drop">
-      <nav class="nav">
-        <button type="button" class="menu-btn-close">
-          <svg width="20" height="20" aria-label="button menu">
-            <use class="menu-close" href="./img/sprite.svg#"></use>
-          </svg>
-        </button>
+      <nav class="nav" data-menu>
+        <div class="header-wrap-mob index-page">
+          <a href="./index.html" class="logo-link">energy.flow</a>
+          <button type="button" class="menu-btn-close" data-menu-close>
+            <svg width="32" height="32" aria-label="button-menu">
+              <use class="menu-close" href="./img/sprite.svg#icon-close"></use>
+            </svg>
+          </button>
+        </div>
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="./index.html" class="nav-link current">Home</a>
+            <a
+              href="./index.html"
+              class="nav-link current"
+              data-action="homepage"
+              >Home</a
+            >
           </li>
 
           <li class="nav-item">
-            <a href="./favorite.html" class="nav-link">Favorites</a>
+            <a
+              href="./favorite.html"
+              class="nav-link"
+              data-action="favoritespage"
+              >Favorites</a
+            >
           </li>
         </ul>
         <div class="social">
@@ -95,7 +108,7 @@
       </ul>
     </div>
 
-    <button type="button" class="menu-button-open">
+    <button type="button" class="menu-button-open" data-menu-open>
       <svg width="32" height="18" aria-label="button menu">
         <use class="menu-open" href="./img/sprite.svg#menu-burher"></use>
       </svg>

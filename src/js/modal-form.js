@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { id } from './modals-functions';
-import { operationSuccess } from './izitoasts';
+// для додавання 'npm install izitoast --save'
+
+import { operationSuccess } from 'izitoast';
 
 const refs = {
   modalBackdrop: document.querySelector('.js-backdrop-modal'),
@@ -21,7 +23,6 @@ function handleStarClick(e) {
 
 async function handleSubmit(e) {
   e.preventDefault();
-
   try {
     const response = await axios.patch(
       `https://energyflow.b.goit.study/api/exercises/${id}/rating`,

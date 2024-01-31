@@ -1,21 +1,50 @@
-<section class="Container ExercisesSectionContainer">
-  <h2 class="SectionTitle">Exercises</h2>
-  <ul class="FilterList">
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Muscles">Muscles</button>
-    </li>
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Body%20parts">
-        Body parts
-      </button>
-    </li>
-    <li class="FilterItem">
-      <button class="FilterButton" type="button" name="Equipment">
-        Equipment
-      </button>
-    </li>
-  </ul>
-  <div class="CardsContainer">
-    <ul class="Gallery"></ul>
+<section id="section-exercises" class="exercises">
+  <div class="container exercises-wraper">
+    <h2 class="section-title">Exercises <span id="slash"></span></h2>
+    <div class="search-block">
+      <ul class="filter-list">
+        <li class="filter-item">
+          <button
+            class="filter-button filter-active"
+            type="button"
+            name="Muscles"
+          >
+            Muscles
+          </button>
+        </li>
+        <li class="filter-item">
+          <button class="filter-button" type="button" name="Body parts">
+            Body parts
+          </button>
+        </li>
+        <li class="filter-item">
+          <button class="filter-button" type="button" name="Equipment">
+            Equipment
+          </button>
+        </li>
+      </ul>
+      <div class="field-search-wraper">
+        <input
+          id="search"
+          type="text"
+          name="user-search"
+          placeholder="Search"
+          pattern="[a-zA-Z']+"
+        />
+        <svg
+          class="search-icon"
+          width="18"
+          height="18"
+          aria-label="search icon"
+        >
+          <use href="./img/sprite.svg#icon-search"></use>
+        </svg>
+      </div>
+    </div>
+
+    <ul class="gallery"></ul>
+    <ul class="waist"></ul>
+
+    <ul class="pagination-btn custom-pagination-btn"></ul>
   </div>
 </section>

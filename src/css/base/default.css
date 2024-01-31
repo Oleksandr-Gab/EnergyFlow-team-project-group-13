@@ -8,6 +8,8 @@ body {
   color: var(--blackColorText-Background);
   background-color: var(--bodyBackground);
   box-sizing: border-box;
+  
+
 }
 
 .container {
@@ -15,11 +17,14 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
+    margin-top: 20px;
+    box-sizing: border-box;
   }
   
   @media screen and (min-width: 375px) {
     .container {
       width: 375px;
+      margin-top: 16px;
     }
   }
   
