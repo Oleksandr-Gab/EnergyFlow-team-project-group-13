@@ -28,8 +28,8 @@
 
 .motivation-img {
     background-image: image-set(
-        url('../img/daly-norm-section/women-sportswear-mob@sm1x.jpg') 1x,
-        url('../img/daly-norm-section/women-sportswear-mob@sm2x.jpg') 2x
+        url('../../img/daly-norm-section/women-sportswear-mob@sm1x.jpg') 1x,
+        url('../../img/daly-norm-section/women-sportswear-mob@sm2x.jpg') 2x
     );
     background-position: center;
     display: grid;
@@ -120,8 +120,8 @@
 
     .motivation-img {
         background-image: image-set(
-            url('../img/daly-norm-section/women-sportswear-tablet@1x.jpg') 1x,
-            url('../img/daly-norm-section/women-sportswear-tablet@2x.jpg') 2x
+            url('../../img/daly-norm-section/women-sportswear-tablet@1x.jpg') 1x,
+            url('../../img/daly-norm-section/women-sportswear-tablet@2x.jpg') 2x
         );
         height: 302px;
     }
@@ -169,8 +169,8 @@
 
     .motivation-img {
         background-image: image-set(
-            url('../img/daly-norm-section/women-sportswear-dexstop1x.jpg') 1x,
-            url('../img/daly-norm-section/women-sportswear-dexstop2x.jpg') 2x
+            url('../../img/daly-norm-section/women-sportswear-dexstop1x.jpg') 1x,
+            url('../../img/daly-norm-section/women-sportswear-dexstop2x.jpg') 2x
         );
         height: 302px;
         width: 704px
