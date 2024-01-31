@@ -3,6 +3,7 @@ import axios from 'axios';
 // для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+//HELLO
 
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
@@ -23,8 +24,6 @@ let pagesButton;
 // слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
-  //виклик функції плавного scroll
-  /*  scrollToNextGroup(); */
   //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('filter-active');
   pagesButton = document.querySelector('.pg-num-btn');
@@ -51,6 +50,7 @@ export const getExercisesData = async ({ filter, page, limit }) => {
 //делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
+
   //очищення карток та сторінок
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
@@ -83,7 +83,26 @@ PAGES_LIST.addEventListener('click', event => {
   if (event.target.tagName === 'BUTTON') {
     PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
-    callApiWithQuery({ filter: event.target.name, page: event.target.id });
+
+    //виклик ф-ції з обраним користувачем фільтром та сторінкою
+    callApiWithQuery({
+      filter: event.target.name,
+      page: event.target.id,
+    });
+
+    // видаляемо клас "pg-num-btn-active" з всіх кнопок сторінок
+    document.querySelectorAll('.pg-num-btn').forEach(button => {
+      button.classList.remove('pg-num-btn-active');
+    });
+    // додавання "pg-num-btn-active" класу до клікнутої кнопки
+    event.target.classList.add('pg-num-btn-active');
+    console.log(event.target);
+
+    // clicks on the button, scroll to the top of the document
+    // function topFunction() {
+    //   document.body.scrollTop = 0; // For Safari
+    //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    // }
   }
 });
 
@@ -112,12 +131,18 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
             />            
             </div>
             <div class="card-description">
-            <p class="name-description" id="${filter}:${name}">${name}</p>
+            <p class="name-description" id="${filter}:${name}">${name}"</p>
             <p class="filter-description">${filter}</p>
             </div>
           </li>`,
       ''
     );
+
+    /* var.2
+    передача через id объекта параметров выбранного фильтра
+    <p class="name-description" id='${JSON.stringify({filter, name, })}'>${name}</p>
+    */
+
     const markupBtnPgs = quantityBtnPgs();
 
     PAGES_LIST.insertAdjacentHTML('afterbegin', markupBtnPgs);

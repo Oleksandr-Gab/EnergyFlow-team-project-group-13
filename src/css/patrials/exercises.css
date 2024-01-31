@@ -61,11 +61,11 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-    display: flex;
-    position: relative;    
+    /* display: flex; */
+    /* position: relative;     */
     display: none;
 }
-#search {
+/* #search {
   display: inline-flex;
   padding: 12px 236px 12px 14px;  
   border: none;
@@ -83,7 +83,7 @@
     width: 18px;
     height: 18px;
     fill:transparent;    
-}
+} */
 
 .gallery {
   margin-top: 40px;
@@ -180,6 +180,7 @@
   color: inherit;
   border-radius: 50%;
   border: 1px solid #1b1b1b;
+  background: tomato;
 }
 
 /* tablet 768px + */
