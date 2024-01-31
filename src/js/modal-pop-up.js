@@ -158,8 +158,11 @@ const deleteToFavorite = () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
     let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
-    
-    localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+        if (newLocalFavCart.length != 0) {
+            localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+        } else {
+            localStorage.removeItem('favoritesCard');
+        };
     auditLocal();
 }
 
