@@ -108,4 +108,4 @@ const params = {
 const btnActive = 69 / itemsPerPage;
 
 // обробник подій для кнопок пагінації
-// renderBtnListElement.addEventListener('click', handlePaginationButtonClick);
+renderBtnListElement.addEventListener('click', handlePaginationButtonClick);
