@@ -11,6 +11,5 @@ import './js/favoritePart.js';
 import './js/skroll-btn.js';
 
 // модалки
-import './js/prize.js';
 import './js/modal-pop-up.js';
 import './js/modal-form.js';
