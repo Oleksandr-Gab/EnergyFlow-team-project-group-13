@@ -16,15 +16,11 @@ import './js/footer.js';
 // кнопка скрол
 import './js/skroll-btn.js';
 
-// друга сторінка
-import './js/favoritePart.js';
-
 // модалки
 import './js/prize';
 import './js/modal-pop-up.js';
 
 // до моменту випралення помилки
 import './js/exercisesPages.js'; 
-
 
 import './js/modal-form.js';
