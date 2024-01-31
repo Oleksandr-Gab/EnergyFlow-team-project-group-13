@@ -85,7 +85,7 @@ async function renderCard(data) {
         </div>`;
     
     exerciseInfo.innerHTML = modalHtml;
-    await auditLocal();
+
     openModal();
 }
 
@@ -98,7 +98,7 @@ export function openModal() {
     closeModalBtn.addEventListener('click', closeModal);
     document.addEventListener('mouseup', outsideClick);
     document.addEventListener('keydown', escapeKey);
-
+    auditLocal()
 }
 
 // --- Закриття модалки 
@@ -167,8 +167,8 @@ const deleteToFavorite = () => {
 }
 
 // Функція перевірки localStor
-length
-const auditLocal = () => {
+
+export const auditLocal = () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
     addToFavoritesBtn.removeEventListener('click', deleteToFavorite);

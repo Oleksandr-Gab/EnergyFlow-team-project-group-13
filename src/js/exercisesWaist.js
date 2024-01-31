@@ -1,5 +1,3 @@
-import { openModal } from './modal-pop-up';
-
 import axios from 'axios';
 
 import iziToast from 'izitoast';
