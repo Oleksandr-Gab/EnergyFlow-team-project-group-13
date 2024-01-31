@@ -8,7 +8,7 @@
     width: auto;
     padding: 20px 40px;
     max-width: 335px;
-    min-height: 450px;
+    height: 450px;
 }
 
 .favoritePart-titel {
@@ -23,6 +23,7 @@
     margin-top: 20px;
     flex-wrap: wrap;
     row-gap: 20px;
+    overflow-y: scroll;
 }
 
 .favoritePart-img {
@@ -53,6 +54,7 @@
   }
   
 
+
 @media screen and (min-width: 375px) {
     .favoritePart {
         width: 375px;
@@ -69,6 +71,7 @@
         border-radius: 50px;
         padding: 60px 40px;
         max-width: 100%;
+        height: 928px;
     }
     
     .favoritePart-titel {
@@ -101,6 +104,7 @@
     }
     .favorite-part-container {
         max-width: 1408px;
+        height: 687px;
     }
     
     .favoritePartInfo {
@@ -119,10 +123,6 @@
     flex-direction: column;
 }
 
-@media screen and (min-width: 768px){
-.fav-gallery-card {
-}
-}
 @media screen and (min-width: 1440px){
 .fav-gallery-card {
     max-width: 400px;
@@ -135,3 +135,21 @@
 }
 }
 
+.none-fav {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+  } 
+
+
+@media screen and (min-width: 768px){
+    .none-fav {
+        margin-top: 208px;
+      } 
+    
+}
+
+  .none-fav {
+    margin-top: 146px;
+
+  } 
