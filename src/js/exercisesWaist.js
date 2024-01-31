@@ -13,13 +13,11 @@ const partError =
 // ------------------------------------------------
 
 const galleryDalley = document.querySelector('.gallery');
-const sectionTitle = document.querySelector('.section-title');
+const searchBtn = document.querySelector('.search-icon');
 let titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const viewportWidth = innerWidth;
-
-// console.log(titleSlash);
 
 // -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
@@ -39,7 +37,6 @@ galleryDalley.addEventListener('click', event => {
 
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
-
   titleSlash.innerHTML = '';
 
   searchPart.style.display = 'block';
@@ -66,7 +63,6 @@ galleryDalley.addEventListener('click', event => {
     },
   })
     .then(response => {
-      // console.log(response.data.results);
       renderExercises(response.data.results);
     })
     .catch(error => {
@@ -81,41 +77,48 @@ galleryDalley.addEventListener('click', event => {
 
 let partName;
 let typingTimer;
-searchPart.addEventListener('input', event => {
-  clearTimeout(typingTimer);
+// searchPart.addEventListener('input', event => {
+//   clearTimeout(typingTimer);
 
-  typingTimer = setTimeout(function () {
-    partName = searchPart.value;
-    console.log(partName);
-  }, 1000);
+typingTimer = setTimeout(function () {
+  partName = searchPart.value;
+  // console.log(partName);
+  // apiWaist.defaults.params = {
+  //   keyword: 'body',
+  // };
+}, 1000);
 
-  searchBlock.addEventListener('click', event => {
-    console.log(partName.toLowerCase());
+searchBtn.addEventListener('click', event => {
+  // console.log(partName.toLowerCase());
 
-    if (partName.trim() !== 'input-value') {
-      galleryDalley.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
-      return;
-    }
-    apiWaist.defaults.params = {
-      limit: viewportWidth > 1400 ? '9' : '8',
-    };
-    fetchExercises('/exercises', {
-      params: {
-        keyword: event.target.value,
-      },
+  galleryWaist.innerHTML = '';
+  galleryDalley.innerHTML = '';
+
+  // if (partName.trim() !== 'input-value') {
+  //   galleryWaist.innerHTML = `<div class="errorEmageContainer">${partError}</div>`;
+  //   return;
+  // }
+  apiWaist.defaults.params = {
+    limit: viewportWidth > 1400 ? '9' : '8',
+    keyword: 'roll',
+  };
+  fetchExercises('/exercises', {
+    params: {
+      // keyword: 'roll',
+    },
+  })
+    .then(response => {
+      console.log(response.data);
+      renderExercises(response.data.results);
     })
-      .then(response => {
-        console.log(response.data);
-        renderExercises(response.data.results);
-      })
-      .catch(error => {
-        iziToast.error({
-          message: error.message,
-          position: 'topRight',
-        });
+    .catch(error => {
+      iziToast.error({
+        message: error.message,
+        position: 'topRight',
       });
-  });
+    });
 });
+// });
 
 function renderExercises(arr) {
   galleryWaist.insertAdjacentHTML(
