@@ -60,12 +60,12 @@
   background: var(--colorHoverBtn);
 }
 .field-search-wraper {
-  display: flex;
-  position: relative;
+  /* display: flex;
+  position: relative; */
 
   display: none;
 }
-#search {
+/* #search {
   display: inline-flex;
   padding: 12px 236px 12px 14px;
   border: none;
@@ -75,15 +75,15 @@
   gap: 10px;
   font-size: 14px;
   height: 38px;
-}
-.search-icon {
+} */
+/* .search-icon {
   position: absolute;
   right: 14px;
   top: 12px;
   width: 18px;
   height: 18px;
   fill: transparent;
-}
+} */
 
 .gallery {
   margin-top: 40px;
@@ -196,6 +196,7 @@
     padding-left: 48px;
   }
   .search-block {
+    justify-content: space-between;
     padding-left: 48px;
     gap: 35px;
   }

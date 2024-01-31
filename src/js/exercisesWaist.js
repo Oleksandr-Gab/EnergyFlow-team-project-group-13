@@ -10,7 +10,7 @@ const partError =
   'Unfortunately, no results were found. You may want to consider other search options to find the exercise you are looking for. Our range is wide and you have the opportunity to find more options that suit your needs.';
 // ------------------------------------------------
 const searchContainer = document.querySelector('.field-search-wraper');
-const heightViewport = document.querySelector('.search-block');
+const heightViewport = document.querySelector('.exercises-wraper');
 const galleryDalley = document.querySelector('.gallery');
 const searchBtn = document.querySelector('.search-icon');
 let titleSlash = document.querySelector('#slash');
@@ -106,7 +106,8 @@ searchBtn.addEventListener('click', event => {
     .then(response => {
       console.log(response.data.totalPages);
       if (response.data.totalPages === null) {
-        galleryWaist.innerHTML = `${partError}`;
+        heightViewport.style.height = '100vh';
+        galleryWaist.innerHTML = `<div class='invalid-name'>${partError}</div>`;
       }
       renderExercises(response.data.results);
     })
