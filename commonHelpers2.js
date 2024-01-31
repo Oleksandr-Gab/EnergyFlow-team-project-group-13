@@ -16,14 +16,14 @@ import{a as j}from"./assets/skroll-btn-25847db5.js";import{a as b,i as n}from"./
         <div class="rating">
             <p>${u}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="../img/sprite.svg#icon-star"></use>
+                <use href="./img/sprite.svg#icon-star"></use>
             </svg>
         </div>
                  
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${i}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="../img/sprite.svg#icon-right"></use>
+                <use href="./img/sprite.svg#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -32,7 +32,7 @@ import{a as j}from"./assets/skroll-btn-25847db5.js";import{a as b,i as n}from"./
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="../img/sprite.svg#run"></use>
+                  <use href="./img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${s}</h3>
