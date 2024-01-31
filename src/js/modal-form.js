@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { id } from './modals-functions';
+// для додавання 'npm install izitoast --save'
 
 import { operationSuccess } from 'izitoast';
 
