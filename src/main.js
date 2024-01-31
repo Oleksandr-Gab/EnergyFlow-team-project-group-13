@@ -6,9 +6,8 @@ import './js/header.js';
 
 import './js/quote-of-the-day.js';
 import './js/exercises.js';
-// import './js/exercisesPages.js';
 import './js/exercisesWaist.js';
-
+import './js/exercisesPages.js';
 
 //------------footer----------
 import './js/footer.js';
@@ -17,7 +16,11 @@ import './js/footer.js';
 import './js/skroll-btn.js';
 
 // приз
-import './js/prize';
+import './js/prize.js';
+
+// друга сторінка
+import './favorites/favoritePart.js';
+
 // модалки
 import './js/modal-pop-up.js';
 import './js/modal-form.js';
