@@ -1,6 +1,6 @@
-import{a}from"./assets/skroll-btn-74a8efb4.js";import"./assets/vendor-3806a34f.js";const t=document.querySelector(".favoritePartInfo"),p=localStorage.getItem("favoritesCard");let s;const h=`
+import{a as t}from"./assets/skroll-btn-74a8efb4.js";import"./assets/vendor-3806a34f.js";const e=document.querySelector(".favoritePartInfo"),a=localStorage.getItem("favoritesCard");let s=[];const p=`
  '<img class="favoritePart-img" src="./img/dumbbell.svg" alt="">',
- '<p class="favoritePart-text">It appears that you havent added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;e();async function e(){e!=null?(s=JSON.parse(p),console.log(s),await f(s),a()):(t.innerHTML=h,console.log("ssssssssssssss"))}async function f(r){let i=r.reduce((o,{burnedCalories:c,name:l,bodyPart:n,rating:d,time:v,target:g,_id:u})=>o+`<li class="gallery-card">
+ '<p class="favoritePart-text">It appears that you havent added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;h();async function h(){a!=null?(s=JSON.parse(a),await f(s),t()):e.innerHTML=p}async function f(r){let i=r.reduce((o,{burnedCalories:c,name:l,bodyPart:n,rating:d,time:v,target:u,_id:g})=>o+`<li class="gallery-card">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -10,7 +10,7 @@ import{a}from"./assets/skroll-btn-74a8efb4.js";import"./assets/vendor-3806a34f.j
             </svg>
         </div>
         <div class="workout-btn-container" data-action="right">
-            <button class="workout-btn" id="${u}">Start
+            <button class="workout-btn" id="${g}">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="../img/sprite.svg#icon-right"></use>
             </svg>
@@ -28,7 +28,7 @@ import{a}from"./assets/skroll-btn-74a8efb4.js";import"./assets/vendor-3806a34f.j
       <ul class="params-card">
             <li class="calories"><span class="params-text">Burned calories:</span> ${c}/${v}min</li>
             <li class="body-part"><span class="params-text">Body part:</span> ${n}</li>
-            <li class="target"><span class="params-text">Target:</span> ${g}</li>
+            <li class="target"><span class="params-text">Target:</span> ${u}</li>
       </ul>
-    </li>`,"");t.innerHTML=i,a()}
+    </li>`,"");e.innerHTML=i,t()}
 //# sourceMappingURL=commonHelpers.js.map
