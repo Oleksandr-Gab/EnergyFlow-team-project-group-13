@@ -1,6 +1,5 @@
-// для додавання ''
+
 import axios from 'axios';
-// для додавання 'npm install izitoast --save'
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -9,34 +8,22 @@ const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
 
-//create instance of API
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
 
 export let exercisesData;
 
-//button MUSCLES active by default
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 let pagesButton;
 
-// слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
-  //виклик функції плавного scroll
-  /*  scrollToNextGroup(); */
-  //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('filter-active');
-
-  /*   pagesButton.forEach(button => {
-    button.classList.add('pg-num-btn-active');
-  }); */
-
   pagesButton = document.querySelector('.pg-num-btn');
   pagesButton.classList.add('pg-num-btn-active');
 });
 
-//функція запиту на DATA
 export const getExercisesData = async ({ filter, page, limit }) => {
   try {
     exercisesData = await API_BASE_URL.get('/filters', {
@@ -53,10 +40,8 @@ export const getExercisesData = async ({ filter, page, limit }) => {
   }
 };
 
-//делегування слухача на FILTER_LIST
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
-  //очищення карток та сторінок
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
@@ -66,49 +51,28 @@ FILTER_LIST.addEventListener('click', event => {
       button.classList.remove('filter-active');
     });
 
-    // додавання "filter-active" класу до клікнутої кнопки
     event.target.classList.add('filter-active');
-
-    // виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
   }
-  /*  MUSCLES_BUTTON.classList.remove('filter-active');
-    // PAGES_BUTTON.classList.remove('pg-num-btn-active');
-
-    //виклик функції з обраним користувачем значенням фільтра
-    callApiWithQuery({ filter: event.target.name });
-  } */
 });
 
-//делегування слухача на PAGES_LIST
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
 
-  // гортання сторінок
   if (
     event.target.tagName === 'BUTTON' &&
     event.target.classList.contains('pg-num-btn')
   ) {
-    // Remove the 'pg-num-btn-active' class from all buttons
     document.querySelectorAll('.pg-num-btn').forEach(button => {
       button.classList.remove('pg-num-btn-active');
     });
 
-    // Add the 'pg-num-btn-active' class to the clicked button
     event.target.classList.add('pg-num-btn-active');
-
-    // Call the API with the selected page
-    GALLERY.innerHTML = ''; // Clear existing content
-    callApiWithQuery({ filter: event.target.name, page: event.target.id });
-  }
-  /* if (event.target.tagName === 'BUTTON') {
-    PAGES_LIST.innerHTML = '';
     GALLERY.innerHTML = '';
-    callApiWithQuery({ filter: event.target.name, page: event.target.id });
-  } */
+    callApiWithQuery({ filter: MUSCLES_BUTTON.name, page: event.target.id });
+  }
 });
 
-// пагінація та генерація розмітки
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
     const renderExercises = await getExercisesData({ filter, page, limit });
@@ -116,8 +80,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       const totalPages = renderExercises.data.totalPages;
       let markupBtnPgs = '';
       for (let i = 1; i <= totalPages; i++) {
-        markupBtnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}"
- >${i}</button>`;
+        markupBtnPgs += `<button id="${i}" class="pg-num-btn" type="button" name="${filter}">${i}</button>`;
       }
       return markupBtnPgs;
     };
@@ -141,8 +104,8 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     );
     const markupBtnPgs = quantityBtnPgs();
 
-    PAGES_LIST.insertAdjacentHTML('afterbegin', markupBtnPgs);
-    GALLERY.insertAdjacentHTML('afterbegin', imgs);
+    PAGES_LIST.innerHTML = markupBtnPgs;
+    GALLERY.innerHTML = imgs;
   } catch (error) {
     console.error(error);
     iziToast.error({
@@ -152,17 +115,3 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     });
   }
 }
-
-//функція плавної прокрутки scrollToNextGroup
-/* const scrollToNextGroup = () => {
-  const firstGalleryItem = document.querySelector('.gallery-item');
-  //отримаємо у коді висоту однієї карточки галереї
-  const galleryItemHeight = firstGalleryItem.getBoundingClientRect().height;
-
-  // The method scrolls the document into the window by the specified amount. сінтаксіс: scrollBy(x - coord, y - coord)  або   scrollBy({options});
-  window.scrollBy({
-    top: galleryItemHeight * 2,
-    behavior: 'smooth',
-  });
-};
- */
