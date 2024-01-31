@@ -1,10 +1,9 @@
 import { activeModalBtn } from '../modal-pop-up';
-// import { }
 
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
 
-let arrFavorite;
+let arrFavorite = [];
 
  const favoriteInfo = `
  '<img class="favoritePart-img" src="./img/dumbbell.svg" alt="">',
@@ -14,19 +13,18 @@ let arrFavorite;
  saveExercises();
 
 async function saveExercises() {
-  if (saveExercises != null) {
+
+  if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
-    console.log(arrFavorite);
+
     await renderFavorites(arrFavorite);
     activeModalBtn();
   } else {
       favoritePartInfo.innerHTML = favoriteInfo;
-      console.log('ssssssssssssss');
   }
 }
 
 async function renderFavorites(arr) {
-  const { burnedCalories, name, bodyPart, rating, time, target, _id } = arr;
   let favCard = arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
