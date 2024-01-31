@@ -52,8 +52,8 @@ galleryDalley.addEventListener('click', event => {
   /* получение объекта с параметрами выбраного фильтра exercises
   console.log(JSON.parse(event.target.id)); */
 
-  const paramObj = event.target.id;
-  const paramArr = paramObj.split(':');
+  paramObj = event.target.id;
+  paramArr = paramObj.split(':');
 
   apiWaist.defaults.params = {
     page: 1,
@@ -64,6 +64,8 @@ galleryDalley.addEventListener('click', event => {
   };
   // -------------------------------------------------------------
 
+  // console.log(paramArr[0]);
+  // console.log(paramObj);
   titleSlash.insertAdjacentHTML(
     'beforeend',
     `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
@@ -93,6 +95,8 @@ searchPart.addEventListener('input', event => {
 searchBtn.addEventListener('click', event => {
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
+  console.log(paramArr);
+  console.log(paramObj);
   // -------------------------------------------------------------
   apiWaist.defaults.params = {
     page: 1,
@@ -133,7 +137,7 @@ export function renderExercises(arr) {
     arr.reduce(
       (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
         html +
-        `<li class="gallery-card">
+        `<li class="waist-gallery-card">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
