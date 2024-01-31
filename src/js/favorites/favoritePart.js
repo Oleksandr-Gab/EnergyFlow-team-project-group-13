@@ -1,4 +1,4 @@
-import { renderExercises } from './exercisesWaist.js';
+import { renderExercises } from '../exercisesWaist.js';
 
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem("favorite");
@@ -13,7 +13,7 @@ function saveExercises() {
   } else {
       const savingFavoritesData = JSON.parse(saveExercises);
       console.log(savingFavoritesData);
-      
+
   }
 }
 
