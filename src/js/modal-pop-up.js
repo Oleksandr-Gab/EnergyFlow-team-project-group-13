@@ -46,7 +46,6 @@ export const activeModalBtn = () => {
 async function renderCard(data) {
     const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
     const modalHtml = `
-
         <div class="gif">
         <img src="${gifUrl}" alt="${name}" >
         </div>
@@ -89,8 +88,7 @@ async function renderCard(data) {
         <p class="description">Description: ${description}</p> 
         </div>`;
     
-    exerciseInfo.innerHTML = modalHtml;
-
+    exerciseInfo.insertAdjacentHTML('afterbegin', modalHtml);
     openModal();
 }
 
@@ -178,18 +176,17 @@ export const auditLocal = () => {
     let localFavCart = localStorage.getItem('favoritesCard');
     addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
     addToFavoritesBtn.addEventListener('click', addToFavorite);
-    addToFavoritesBtn.innerHTML = "Add to favorites";
+    addToFavoritesBtn.innerText = "Add to favorites";
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
-                addToFavoritesBtn.innerHTML = "Delete favorite";
+                addToFavoritesBtn.innerText = "Delete favorite";
                 addToFavoritesBtn.removeEventListener('click', addToFavorite)
                 addToFavoritesBtn.addEventListener('click', deleteToFavorite)
             } else {
                 addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
                 addToFavoritesBtn.addEventListener('click', addToFavorite);
-                addToFavoritesBtn.innerHTML = "Add to favorites";
-                addToFavoritesBtn.appendChild(svgElement);
+                addToFavoritesBtn.innerText = "Add to favorites";
             }
         });
     }
