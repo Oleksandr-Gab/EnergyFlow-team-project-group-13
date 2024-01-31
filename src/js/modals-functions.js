@@ -1,4 +1,4 @@
-import { getData, createMarkup } from './exercises';
+// import { getData, createMarkup } from './exercises';
 
 export let id;
 const refs = {
