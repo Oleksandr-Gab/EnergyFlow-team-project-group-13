@@ -184,7 +184,17 @@ export const auditLocal = () => {
                 addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
                 addToFavoritesBtn.addEventListener('click', addToFavorite);
                 addToFavoritesBtn.innerHTML = "Add to favorites";
+                addToFavoritesBtn.appendChild(svgElement);
             }
         });
     }
 };
+
+const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svgElement.setAttribute("class", "heart");
+
+const useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
+useElement.setAttribute("href", "./img/sprite.svg#heart");
+
+svgElement.appendChild(useElement);
+
