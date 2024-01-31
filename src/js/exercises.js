@@ -23,6 +23,8 @@ let pagesButton;
 // слухач на завантаження сторінки та виклик функції з обраним фільтром за default
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
+  //виклик функції плавного scroll
+  scrollToNextGroup();
   //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('active');
   pagesButton = document.querySelector('.pg-num-btn');
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 export const getExercisesData = async ({ filter, page, limit }) => {
   try {
     exercisesData = await API_BASE_URL.get('/filters', {
-      params: { filter: filter, page: page, limit: limit },
+      params: { filter, page, limit },
     });
     return exercisesData;
   } catch (error) {
@@ -53,7 +55,7 @@ FILTER_LIST.addEventListener('click', event => {
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
-  // document.removeEventListener('DOMContentLoaded');
+
   if (event.target.tagName === 'BUTTON') {
     MUSCLES_BUTTON.classList.remove('active');
     // PAGES_BUTTON.classList.remove('pg-num-btn-active');
@@ -119,3 +121,16 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     });
   }
 }
+
+//функція плавної прокрутки scrollToNextGroup
+const scrollToNextGroup = () => {
+  const firstGalleryItem = document.querySelector('.gallery-item');
+  //отримаємо у коді висоту однієї карточки галереї
+  const galleryItemHeight = firstGalleryItem.getBoundingClientRect().height;
+
+  // The method scrolls the document into the window by the specified amount. сінтаксіс: scrollBy(x - coord, y - coord)  або   scrollBy({options});
+  window.scrollBy({
+    top: galleryItemHeight * 2,
+    behavior: 'smooth',
+  });
+};
