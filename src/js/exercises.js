@@ -24,7 +24,7 @@ let pagesButton;
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
   //виклик функції плавного scroll
-  scrollToNextGroup();
+  /*  scrollToNextGroup(); */
   //відображати активні кнопки
   MUSCLES_BUTTON.classList.add('filter-active');
   pagesButton = document.querySelector('.pg-num-btn');
@@ -57,12 +57,22 @@ FILTER_LIST.addEventListener('click', event => {
   WAIST.innerHTML = '';
 
   if (event.target.tagName === 'BUTTON') {
-    MUSCLES_BUTTON.classList.remove('filter-active');
+    document.querySelectorAll('.filter-button').forEach(button => {
+      button.classList.remove('filter-active');
+    });
+
+    // додавання "filter-active" класу до клікнутої кнопки
+    event.target.classList.add('filter-active');
+
+    // виклик функції з обраним користувачем значенням фільтра
+    callApiWithQuery({ filter: event.target.name });
+  }
+  /*  MUSCLES_BUTTON.classList.remove('filter-active');
     // PAGES_BUTTON.classList.remove('pg-num-btn-active');
 
     //виклик функції з обраним користувачем значенням фільтра
     callApiWithQuery({ filter: event.target.name });
-  }
+  } */
 });
 
 //делегування слухача на PAGES_LIST
@@ -123,7 +133,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
 }
 
 //функція плавної прокрутки scrollToNextGroup
-const scrollToNextGroup = () => {
+/* const scrollToNextGroup = () => {
   const firstGalleryItem = document.querySelector('.gallery-item');
   //отримаємо у коді висоту однієї карточки галереї
   const galleryItemHeight = firstGalleryItem.getBoundingClientRect().height;
@@ -134,3 +144,4 @@ const scrollToNextGroup = () => {
     behavior: 'smooth',
   });
 };
+ */
