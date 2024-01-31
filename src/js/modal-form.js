@@ -21,7 +21,6 @@ function handleStarClick(e) {
 
 async function handleSubmit(e) {
   e.preventDefault();
-
   try {
     const response = await axios.patch(
       `https://energyflow.b.goit.study/api/exercises/${id}/rating`,

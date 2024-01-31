@@ -1,5 +1,5 @@
 /* нормалізатор та скид стилів*/
-@import url('./base/modern-normalize.css'); 
+@import url('./base/modern-normalize.css');
 @import url('./base/reset.css');
 
 /* змінні для використання */
@@ -12,11 +12,17 @@
 @import url('./patrials/hero.css');
 @import url('./patrials/quote-of-the-day.css');
 @import url('./patrials/exercises.css');
+@import url('./patrials/exercisesWaist.css');
+@import url('./patrials/exercisesPages.css');
+
 @import url('./patrials/daily-norm.css');
 @import url('./patrials/footer.css');
 
 @import url('./patrials/favoritePart.css');
+@import url('./patrials/quote-day-norm.css');
 
+@import url('./patrials/skroll-btn.css');
 /* стилі модалок */
 @import url('./patrials/modal-pop-up.css');
 @import url('./patrials/modal-form.css');
+@import url('./patrials/prize.css');
