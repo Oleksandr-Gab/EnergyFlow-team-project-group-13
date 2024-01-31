@@ -17,14 +17,14 @@ import{a as W}from"./assets/modal-form-1056f73c.js";import{a as M,i as n}from"./
         <div class="rating">
             <p>${d}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href=./img/sprite.svg#icon-star></use>
+                <use href=../../img/sprite.svg#icon-star></use>
             </svg>
         </div>
                  
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${i}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="./img/sprite.svg#icon-right"></use>
+                <use href="../../img/sprite.svg#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -33,7 +33,7 @@ import{a as W}from"./assets/modal-form-1056f73c.js";import{a as M,i as n}from"./
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="./img/sprite.svg#run"></use>
+                  <use href="../../img/sprite.svg#run"></use>
               </svg>
           </div>
           <h3>${r}</h3>
