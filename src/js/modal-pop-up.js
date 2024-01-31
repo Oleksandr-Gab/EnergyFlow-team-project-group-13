@@ -21,7 +21,6 @@ async function getData(id) {
         });
         const responseModall = await modallApi.get(id);
         modallResponseData = responseModall.data;
-        auditLocal();
         renderCard(modallResponseData);
 
     } catch (error) {
@@ -44,7 +43,7 @@ export const activeModalBtn = () => {
     });
 };
 
-function renderCard(data) {
+async function renderCard(data) {
     const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
     const modalHtml = `
 
@@ -86,6 +85,7 @@ function renderCard(data) {
         </div>`;
     
     exerciseInfo.innerHTML = modalHtml;
+    await auditLocal();
     openModal();
 }
 
@@ -164,10 +164,11 @@ const deleteToFavorite = () => {
 }
 
 // Функція перевірки localStor
-
+length
 const auditLocal = () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
     addToFavoritesBtn.addEventListener('click', addToFavorite);
     addToFavoritesBtn.innerHTML = "Add to favorites";
     if (localFavCart != null) {
