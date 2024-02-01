@@ -4,6 +4,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { activeModalBtn } from './modal-pop-up.js';
+import iconURL from '../../img/sprite.svg';
 
 //  -------Текст при відсутності вправи ------
 const partError =
@@ -16,7 +17,7 @@ const searchBtn = document.querySelector('.search-icon');
 let titleSlash = document.querySelector('#slash');
 const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
-const svgPath = '../../img/sprite.svg';
+
 // paginationBtn = document.querySelector('.pagination-btn');
 const viewportWidth = innerWidth;
 let paramArr;
@@ -144,14 +145,14 @@ export function renderExercises(arr) {
         <div class="rating">
             <p>${rating}</p>
             <svg class="icon-star" width="12" height="12">
-                <use href="${svgPath}#icon-star"></use>
+                <use href="${iconURL}#icon-star"></use>
             </svg>
         </div>
                  
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="${svgPath}#icon-right"></use>
+                <use href="${iconURL}#icon-right"></use>
             </svg>
             </button>
         </div>
@@ -160,7 +161,7 @@ export function renderExercises(arr) {
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="${svgPath}#run"></use>
+                  <use href="${iconURL}#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>
