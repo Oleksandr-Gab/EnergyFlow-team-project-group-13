@@ -99,7 +99,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(0deg, rgba(16, 16, 16, 0.7) 0%, rgba(16, 16, 16, 0.7) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(16, 16, 16, 0.7) 0%,
+    rgba(16, 16, 16, 0.7) 100%
+  );
   border-radius: 12px;
 }
 
@@ -232,7 +236,11 @@
     width: 313px;
     height: 250px;
   }
-
+  .gallery {
+    gap: 0;
+    column-gap: 20px;
+    row-gap: 40px;
+  }
   .custom-pagination-btn {
     display: flex;
     align-items: center;
