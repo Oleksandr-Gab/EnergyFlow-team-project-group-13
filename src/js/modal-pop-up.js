@@ -45,6 +45,7 @@ export const activeModalBtn = () => {
         item.addEventListener('click', (event) =>{
             event.preventDefault();
             let id = event.target.id;
+            if (!id) return 
             getData(id);
         });
     });
