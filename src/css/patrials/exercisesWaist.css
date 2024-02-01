@@ -191,6 +191,13 @@
   stroke: var(--blackColorText-Background);
 }
 
+.waist-pagination {
+  display: flex;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* .pagination-btn {
   column-gap: 8px;
   margin-left: auto;
@@ -213,8 +220,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
     column-gap: 14px;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-left: 48px;
+    padding-right: 48px;
 
     padding-top: 50px;
   }

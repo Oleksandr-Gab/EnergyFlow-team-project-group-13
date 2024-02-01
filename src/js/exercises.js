@@ -3,10 +3,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 //HELLO
 
+const searchWraper = document.querySelector('.field-search-wraper');
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
+const paginatWaist = document.querySelector('.waist-pagination');
 let titleSlash = document.querySelector('#slash');
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
@@ -45,12 +47,15 @@ export const getExercisesData = async ({ filter, page, limit }) => {
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
 
+  // -- приховуємо інпут ------------------------------
+  searchWraper.style.display = 'none';
   //очищення карток та сторінок
 
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
-titleSlash.innerHTML = '';
+  titleSlash.innerHTML = '';
+  paginatWaist.innerHTML = '';
   if (event.target.tagName === 'BUTTON') {
     document.querySelectorAll('.filter-button').forEach(button => {
       button.classList.remove('filter-active');
