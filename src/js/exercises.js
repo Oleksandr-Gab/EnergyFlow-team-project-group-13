@@ -7,7 +7,7 @@ const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
-
+let titleSlash = document.querySelector('#slash');
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
@@ -50,7 +50,7 @@ FILTER_LIST.addEventListener('click', event => {
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
-
+titleSlash.innerHTML = '';
   if (event.target.tagName === 'BUTTON') {
     document.querySelectorAll('.filter-button').forEach(button => {
       button.classList.remove('filter-active');
@@ -101,15 +101,15 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       (html, { name, filter, imgUrl }) =>
         html +
         `<li class="gallery-item" id=${name}>
-          <div class="card" >
+          <div class="card" id="${filter}:${name}">
              <img class="gallery-image"
              src="${imgUrl}"
              alt="${filter}"
             />
             </div>
-            <div class="card-description">
+            <div class="card-description" id="${filter}:${name}">
             <p class="name-description" id="${filter}:${name}">${name}</p>
-            <p class="filter-description">${filter}</p>
+            <p class="filter-description" id="${filter}:${name}">${filter}</p>
             </div>
           </li>`,
       ''

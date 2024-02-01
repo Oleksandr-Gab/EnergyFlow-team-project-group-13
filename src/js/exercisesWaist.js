@@ -41,7 +41,7 @@ const fetchExercises = async (lastString, { params }) => {
 // ----Запит --------------------------------------------
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
-
+if (event.target.nodeName !== 'DIV' && event.target.nodeName !== 'H3' && event.target.nodeName !== 'P') {return} 
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
   titleSlash.innerHTML = '';
