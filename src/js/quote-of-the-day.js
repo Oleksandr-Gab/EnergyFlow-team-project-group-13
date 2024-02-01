@@ -47,7 +47,7 @@ function renderQuote(data) {
 
 
 //! CHECK DAY AND GET NEW QUOTE
-async function checkDay() {
+export async function checkDay() {
     const storedDate = localStorage.getItem(DATE_STORAGE);
 if (isNaN(storedDate)) {
      iziToast.error({
@@ -73,7 +73,7 @@ if (parseInt(storedDate) === dayOfMonth) {
 checkDay();
 
 //! ANIMATION 
-new TypeIt(".quote-info", {
+new TypeIt("#quote", {
     speed: 26,
     startDelay: 300,
     waitUntilVisible: true,
@@ -82,7 +82,7 @@ new TypeIt(".quote-info", {
       }
   }).go();
 
-  new TypeIt("#motivation-txt", {
+new TypeIt("#motivation-txt", {
     speed: 26,
     startDelay: 300,
     waitUntilVisible: true,

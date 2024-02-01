@@ -1,10 +1,27 @@
+import axios from 'axios';
+import iziToast from 'izitoast';
+import TypeIt from "typeit";
+import 'izitoast/dist/css/iziToast.min.css';
+import iconURL from '../../img/sprite.svg';
+
+import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
-// import { deleteToFavorite } from '../modal-pop-up';
 
 const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
 let arrFavorite;
+
+
+checkDay();
+new TypeIt("#fan-quote", {
+  speed: 26,
+  startDelay: 300,
+  waitUntilVisible: true,
+  afterComplete: function (instance) {
+      instance.destroy();
+    }
+}).go();
 
 
 function saveExercises() {
@@ -35,7 +52,7 @@ async function renderFavorites(arr) {
           <div class="workout">WORKOUT</div>
             <div class="trash">
               <svg class="icon-trash" width="16" height="16">
-                <use href="./img/sprite.svg#trash"></use>
+                <use href="${iconURL}#trash"></use>
               </svg>
             </div>
           </div>
@@ -43,7 +60,7 @@ async function renderFavorites(arr) {
         <div class="workout-btn-container" data-action="right">
           <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
-                <use href="./img/sprite.svg#icon-right"></use>
+                <use href="${iconURL}#icon-right"></use>
             </svg>
           </button>
         </div>
@@ -51,7 +68,7 @@ async function renderFavorites(arr) {
       <div class="title-card">
           <div class="icon-card">
               <svg class="run" width="24" height="24">
-                  <use href="./img/sprite.svg#run"></use>
+                  <use href="${iconURL}#run"></use>
               </svg>
           </div>
           <h3>${name}</h3>

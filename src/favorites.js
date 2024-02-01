@@ -5,7 +5,6 @@ import './js/libraies.js';
 import './js/header.js';
 
 import './js/favorites/favoritePart.js';
-import './js/quote-of-the-day.js';
 
 // кнопка скрол
 import './js/skroll-btn.js';
