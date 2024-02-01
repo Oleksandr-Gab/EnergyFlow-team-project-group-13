@@ -4,16 +4,89 @@ import TypeIt from "typeit";
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../../img/sprite.svg';
 
-import { checkDay } from '../quote-of-the-day';
+// import { checkDay } from '../quote-of-the-day';
+// import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
 
 const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
+const quoteFavContainer = document.querySelector('.quote-fav-info');
+const QUOTE_DATA_STORAGE = 'quote-of-the-day';
+const DATE_STORAGE = "date"
+const quoteDate = new Date()
+const dayOfMonth = quoteDate.getDate()
+
 let arrFavorite;
 
 
+async function getQuoteResponse() {
+  try {
+  const quoteApi = axios.create({
+      baseURL: 'https://energyflow.b.goit.study/api',
+
+  });
+      const responseQuote = await quoteApi.get('/quote'); 
+      const quoteResponseData = responseQuote.data
+      renderQuote(quoteResponseData);
+      saveQuoteAndData(quoteResponseData, dayOfMonth)
+      
+      
+} catch (error) {
+iziToast.error({
+    timeout: 5000,
+    title: "Error",
+    message: error.message,
+    position: 'topRight',
+  });
+}
+}
+
 checkDay();
+
+//! SAVE QUOTE AND DATA
+function saveQuoteAndData(data, day) {
+  localStorage.setItem(QUOTE_DATA_STORAGE, JSON.stringify(data));
+  localStorage.setItem(DATE_STORAGE, day);
+}
+
+//! RENDER QUOTE
+function renderQuote(data) {
+  const dataArray = [data];
+  quoteFavContainer.innerHTML = dataArray.reduce((acc, { quote, author }) =>
+      acc +
+      `<p class="quote-text">${quote}</p>
+      <h3 class="quote-author">${author}</h3>`, '');
+}
+
+
+//! CHECK DAY AND GET NEW QUOTE
+export async function checkDay() {
+  const storedDate = localStorage.getItem(DATE_STORAGE);
+if (isNaN(storedDate)) {
+   iziToast.error({
+    timeout: 5000,
+    title: "Error",
+    message: error.message,
+    position: 'topRight',
+   });
+  return;
+}
+if (parseInt(storedDate) === dayOfMonth) {
+      const storedQuoteData = localStorage.getItem(QUOTE_DATA_STORAGE);
+      if (storedQuoteData) {
+          const parsedData = JSON.parse(storedQuoteData);
+          renderQuote(parsedData);
+      }
+      return;
+  }
+  await getQuoteResponse();
+  localStorage.setItem(DATE_STORAGE, dayOfMonth.toString());
+}
+
+
+
+
 new TypeIt("#fan-quote", {
   speed: 26,
   startDelay: 300,
@@ -28,11 +101,11 @@ function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
       try {
-        favoritePartInfo.innerHTML = '';
+        favoritePartInfo.innerHTML = ' ';
         renderFavorites(arrFavorite);
       } catch (error) {
         iziToast.error({
-          message: "Помилка, запиту. повторіть запит.",
+          message: "Error, query. repeat the request.",
           color: 'red',
           position: 'topCenter',
         });
