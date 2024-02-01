@@ -112,6 +112,7 @@ function saveExercises() {
       }
   } else {
       favoritePartInfo.insertAdjacentHTML('afterbegin', favoriteInfo);
+      favoritePartInfo.style.justifyContent = 'center';
   }
 }
 
