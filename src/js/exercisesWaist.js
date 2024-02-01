@@ -52,7 +52,7 @@ galleryDalley.addEventListener('click', event => {
 
   if (
     event.target.nodeName !== 'DIV' &&
-    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'H2' &&
     event.target.nodeName !== 'P'
   ) {
     return;
@@ -76,7 +76,10 @@ galleryDalley.addEventListener('click', event => {
     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-
+   titleSlash.insertAdjacentHTML(
+    'beforeend',
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+  );
   //виклик ф-ції з обраним користувачем фільтром та сторінкою
   request();
 });
