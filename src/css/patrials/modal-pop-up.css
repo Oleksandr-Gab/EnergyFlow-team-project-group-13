@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
+  display: none;
 }
 
 #exerciseModal.open {
@@ -24,20 +24,17 @@ body #exerciseModal.open {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 335px;
-  /* height: 860px; */
+  height: 860px;
   background-color: var(--textCardTitle);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 24px;
-  padding: 20px;
 }
 
 .button-container {
-  /* position: absolute; */
-  /* bottom: 40px;
-  right: 20px; */
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  width: 295px;
 }
 
 #addToFavoritesBtn {
@@ -45,7 +42,6 @@ body #exerciseModal.open {
   color: var(--whiteBackground);
   width: 295px;
   height: 48px;
-  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   border: none;
   cursor: pointer;
@@ -63,7 +59,6 @@ body #exerciseModal.open {
   color: #1b1b1b;
   width: 295px;
   height: 48px;
-  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   border: 1px solid #000000;
   border-radius: 24px;
@@ -76,10 +71,10 @@ body #exerciseModal.open {
 }
 
 .heart {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
-  margin-left: 8px;
+  margin-left: 9px;
 
   fill: var(--greyColorText-Background-Btn);
   stroke: var(--whiteBackground);
@@ -119,7 +114,6 @@ body #exerciseModal.open {
 
 .description {
   margin-top: 20px;
-  margin-bottom: 40px;
   line-height: 18px;
   font-size: 14px;
   color: rgba(27, 27, 27, 0.6);
@@ -163,18 +157,25 @@ body #exerciseModal.open {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 
-  /* flex: 1 1 auto; */
+  color: var(--blackColorText-Background);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'DM Sans';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  flex: 1 1 auto;
 }
 
 .info-item {
-  /* flex: 0 0 calc(20% - 20px); */
-  /* margin-right: 20px; */
+  flex: 0 0 calc(20% - 20px);
+  margin-right: 20px;
   margin-bottom: 20px;
+  color: black;
   line-height: 18px;
+  font-weight: medium;
   font-size: 14px;
-  
 }
 .info-item .info-text,
 .info-item {
@@ -187,21 +188,8 @@ body #exerciseModal.open {
 }
 
 .info-text {
-  color: rgba(27, 27, 27, 0.40);
+  color: gray;
   font-size: 12px;
-  margin-bottom: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-.modal-pop-descr{
-  color: var(--blackColorText-Background);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 18px;
-  /* 128.571% */
-  font-weight: bold;
 }
 
 /* -------TABLET */
@@ -209,32 +197,22 @@ body #exerciseModal.open {
 @media screen and (min-width: 768px) {
   #modal {
     width: 716px;
-  }
-
-  .icon-close {
-    top: 16px;
-    right: 16px;
+    height: 480px;
   }
 
   .button-container {
-    margin-top: 32px;
-    margin-bottom: 40px;
+    position: absolute;
+    bottom: 40px;
+    left: 334px;
+    width: 342px;
     display: flex;
-    justify-content: flex-end;
   }
 
   #addToFavoritesBtn {
-    font-size: 16px;
     width: 294px;
   }
 
-  .heart {
-    width: 20px;
-    height: 20px;
-  }
-
   #giveRatingBtn {
-    font-size: 16px;
     margin-left: 7px;
     width: 241px;
   }
@@ -250,19 +228,13 @@ body #exerciseModal.open {
   .description {
     margin-left: 290px;
     width: 382px;
-    margin-bottom: 40px;
   }
 
   .info-block {
     padding: 0px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
-
-    .info-item{
-      margin-bottom: 0;
-    }
-
 }
 
 /* -------DESKTOP */
@@ -270,14 +242,19 @@ body #exerciseModal.open {
 @media screen and (min-width: 1440px) {
   #modal {
     width: 732px;
+    height: 470px;
   }
 
   .button-container {
+    position: absolute;
+    bottom: 40px;
+    left: 350px;
+    width: 342px;
     display: flex;
   }
 
-  /* #addToFavoritesBtn {
-  } */
+  #addToFavoritesBtn {
+  }
 
   #giveRatingBtn {
     margin-left: 7px;

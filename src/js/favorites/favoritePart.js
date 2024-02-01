@@ -7,6 +7,8 @@ import iconURL from '../../img/sprite.svg';
 // import { checkDay } from '../quote-of-the-day';
 // import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
+// import { auditLocal } from '../modal-pop-up';
+
 
 const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
@@ -96,7 +98,10 @@ new TypeIt("#fan-quote", {
     }
 }).go();
 
-function saveExercises() {
+
+// зчитування та додавання карток
+
+export function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
       try {
@@ -119,7 +124,7 @@ async function renderFavorites(arr) {
   let favCard = arr.reduce(
       (html, { burnedCalories, name, bodyPart, time, target, _id }) =>
         html +
-        `<li class="fav-gallery-card">
+        `<li class="fav-gallery-card" id="${_id}">
       <div class="header-card">
         <div class="fav-titel-card">  
           <div class="workout">WORKOUT</div>
@@ -160,6 +165,8 @@ async function renderFavorites(arr) {
 
 
 saveExercises();
+
+
 
 // actBtnTrash();
 // // deleteToFavorite

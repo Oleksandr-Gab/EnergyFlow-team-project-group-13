@@ -2,10 +2,12 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../img/sprite.svg';
+
+// import { saveExercises } from './favorites/favoritePart';
 // document.addEventListener('DOMContentLoaded', () => {
 //     activeModalBtn();
 // });
-const iconHeart = `<svg class="icon-heart" width="32" height="32">
+const iconHeart = `<svg class="heart" width="32" height="32">
 <use href="${iconURL}#heart"></use>
 </svg>`
 
@@ -25,7 +27,6 @@ async function getData(id) {
         const responseModall = await modallApi.get(id);
         modallResponseData = responseModall.data;
         renderCard(modallResponseData);
-
     } catch (error) {
         iziToast.error({
             title: 'Error',
@@ -92,7 +93,6 @@ async function renderCard(data) {
         </div>`;
     
     exerciseInfo.insertAdjacentHTML('afterbegin', modalHtml);
-    auditLocal()
     openModal();
 }
 
@@ -100,6 +100,7 @@ async function renderCard(data) {
 
 
 export function openModal() {
+    auditLocal();
     exerciseModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeModalBtn.addEventListener('click', closeModal);
@@ -170,6 +171,7 @@ const deleteToFavorite = () => {
             localStorage.removeItem('favoritesCard');
         };
     auditLocal();
+    // saveExercises();
 }
 
 // Функція перевірки localStor
