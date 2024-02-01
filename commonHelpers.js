@@ -1,4 +1,4 @@
-import{a as u}from"./assets/modal-form-3fabea11.js";import"./assets/vendor-8598a644.js";const g="<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>",e=document.querySelector(".favoritePartInfo"),a=localStorage.getItem("favoritesCard");let t=[];function h(){if(a!=null){t=JSON.parse(a);try{p(t)}catch{iziToast.error({message:"Помилка, запиту. повторіть запит.",color:"red",position:"topCenter"})}}else e.innerHTML=g}async function p(s){let r=s.reduce((i,{burnedCalories:o,name:c,bodyPart:l,time:n,target:d,_id:v})=>i+`<li class="fav-gallery-card">
+import{a as g}from"./assets/skroll-btn-b6f63ed5.js";import"./assets/vendor-3806a34f.js";const u="<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>",s=document.querySelector(".favoritePartInfo"),t=localStorage.getItem("favoritesCard");let e;function h(){if(t!=null){e=JSON.parse(t);try{s.innerHTML="",f(e)}catch{iziToast.error({message:"Помилка, запиту. повторіть запит.",color:"red",position:"topCenter"})}}else s.insertAdjacentHTML("afterbegin",u)}async function f(a){let r=a.reduce((i,{burnedCalories:o,name:c,bodyPart:l,time:n,target:d,_id:v})=>i+`<li class="fav-gallery-card">
       <div class="header-card">
         <div class="fav-titel-card">  
           <div class="workout">WORKOUT</div>
@@ -30,5 +30,5 @@ import{a as u}from"./assets/modal-form-3fabea11.js";import"./assets/vendor-8598a
             <li class="body-part"><span class="params-text">Body part:</span> ${l}</li>
             <li class="target"><span class="params-text">Target:</span> ${d}</li>
       </ul>
-    </li>`,"");e.innerHTML=r,u()}h();
+    </li>`,"");s.innerHTML=r,g()}h();
 //# sourceMappingURL=commonHelpers.js.map
