@@ -8,10 +8,9 @@ import iconURL from '../../img/sprite.svg';
 // import { checkDay } from '../quote-of-the-day';
 // import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
-import { deleteToFavorite } from '../modal-pop-up';
 
 
-const favoriteInfo = "<img class='favoritePart-img' src='../img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
 const quoteFavContainer = document.querySelector('.quote-fav-info');
@@ -123,7 +122,9 @@ export function saveExercises() {
 
 const delet = (data) => {
   let localFavCart = localStorage.getItem('favoritesCard');
-  let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != data);
+  let pars = JSON.parse(localFavCart)
+      try {
+      let newLocalFavCart = pars.filter(el => el._id != data);
       if (newLocalFavCart.length != 0) {
           renderFavorites(newLocalFavCart);
           localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
@@ -133,6 +134,14 @@ const delet = (data) => {
           favoritePartInfo.insertAdjacentHTML('afterbegin', favoriteInfo);
           favoritePartInfo.style.justifyContent = 'center';
       };
+      } catch (error) {
+        iziToast.error({
+          message: "Error, query. repeat the request.",
+          color: 'red',
+          position: 'topCenter',
+        });
+      }
+
 }
 
 // активація кнопочки видалення 

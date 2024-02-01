@@ -19,12 +19,14 @@ const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
 let openModalBtn;
 let modallResponseData;
 
+const fModaLApi = axios.create({
+    baseURL: 'https://energyflow.b.goit.study/api/exercises',
+});
+
+
 async function getData(id) {
     try {
-        const modallApi = axios.create({
-            baseURL: 'https://energyflow.b.goit.study/api/exercises',
-        });
-        const responseModall = await modallApi.get(id);
+        const responseModall = await fModaLApi.get(id);
         modallResponseData = responseModall.data;
         renderCard(modallResponseData);
     } catch (error) {
