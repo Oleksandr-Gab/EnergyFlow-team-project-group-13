@@ -186,7 +186,7 @@ export const auditLocal = () => {
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
-                addToFavoritesBtn.innerHTML = `remove favorite ${iconHeart}`;
+                addToFavoritesBtn.innerHTML = `Remove favorite ${iconHeart}`;
                 addToFavoritesBtn.removeEventListener('click', addToFavorite)
                 addToFavoritesBtn.addEventListener('click', deleteToFavorite)
             } else {
