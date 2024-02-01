@@ -11,7 +11,6 @@ import iconDUMURL from '../../img/dumbbell.svg';
 // import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
 
-
 const favoriteInfo = `<img class='favoritePart-img' src='${iconDUMURL}' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
