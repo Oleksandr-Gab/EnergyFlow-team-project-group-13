@@ -43,7 +43,7 @@ const fetchExercises = async (lastString, { params }) => {
 //  ----- перероблена функція ----
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
-  totalPages = 0;
+  markupBtnPgs = '';
   // гортання сторінок
   // if (event.target.tagName === 'BUTTON') {
   //   galleryWaist.innerHTML = '';
@@ -86,6 +86,7 @@ function request() {
     params: {},
   })
     .then(response => {
+      totalPages = 0;
       totalPages = response.data.totalPages;
       const quantityBtnPgs = () => {
         // let markupBtnPgs = '';
@@ -122,6 +123,7 @@ function request() {
 
 paginationWrapper.addEventListener('click', event => {
   // totalPages = 0;
+  markupBtnPgs = '';
   galleryWaist.innerHTML = '';
   console.log(totalPages);
   // paramObj = event.target.id;
