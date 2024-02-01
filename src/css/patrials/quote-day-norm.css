@@ -1,98 +1,103 @@
 .quote-day-norm {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
 }
 
 .quote-fav-container {
-    width: auto;
+  width: auto;
 }
 
 .quote-sportswear-img {
-    background-image: image-set(
-        url('../../img/favorites/women-sportswear-torn-left_mob@1x.jpg') 1x,
-        url('../../img/favorites/women-sportswear-torn-left_mob@2x.jpg') 2x
-    );
-    background-position: center;
-    display: grid;
-    place-items: center;
-    height: 272px;
-    border-radius: 30px;
+  background-image: image-set(
+    url('../../img/favorites/women-sportswear-torn-left_mob@1x.jpg') 1x,
+    url('../../img/favorites/women-sportswear-torn-left_mob@2x.jpg') 2x
+  );
+  background-position: center;
+  display: grid;
+  place-items: center;
+  height: 272px;
+  border-radius: 30px;
 }
 
 .motivation-sport3 {
-    background: var(--bodyBackground);
-    border-radius: 30px;
-    position: relative;
-    background-color: #ffffff;
-    padding: 96px 101px 97px 102px;
+  background: var(--bodyBackground);
+  border-radius: 30px;
+  position: relative;
+  background-color: #ffffff;
+  padding: 96px 101px 97px 102px;
 }
 
 .motivation-sport-item3-icon-fav {
-    fill: var(--blackColorText-Background);
-
+  fill: var(--blackColorText-Background);
 }
 
 .motivation-sport-item3-fav {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .motivation-sport-title2-fav .motivation-sport-text-fav {
-    margin-left: 70px;
+  margin-left: 70px;
 }
 
 .motivation-sport-title2-fav {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1;
-    margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
 .motivation-sport-text-fav {
-    font-size: 14px;
-    line-height: 1.29;
+  font-size: 14px;
+  line-height: 1.29;
 }
-
+.quote-fav-info {
+  padding-left: 44px;
+  min-height: 135px;
+}
 @media screen and (min-width: 375px) {
-    .quote-day-norm {
-        width: 375px;
-    }
+  .quote-day-norm {
+    width: 375px;
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .quote-day-norm  {
-        width: 768px;
-    }
+  .quote-day-norm {
+    width: 768px;
+    margin-top: 80px;
+  }
+  .quote-retreat {
+    margin-bottom: 16px;
+  }
+  .quote-sportswear-img {
+    background-image: image-set(
+      url('../../img/favorites/women-sportswear-torn-left_tab@1x.jpg') 1x,
+      url('../../img/favorites/women-sportswear-torn-left_tab@2x.jpg') 2x
+    );
 
-    .quote-sportswear-img {
-        background-image: image-set(
-            url('../../img/favorites/women-sportswear-torn-left_tab@1x.jpg') 1x,
-            url('../../img/favorites/women-sportswear-torn-left_tab@2x.jpg') 2x
-        );
+    height: 302px;
+    width: 368px;
+    border-radius: 50px;
+  }
 
-        height: 302px;
-        width: 368px;
-        border-radius: 50px;
+  .duble {
+    display: flex;
+  }
 
-    }
-
-    .duble {
-        display: flex;
-    }
-
-    .motivation-sport3 {
-        border-radius: 50px;
-        padding: 106px 118px 105px 118px;
-    }
+  .motivation-sport3 {
+    border-radius: 50px;
+    padding: 106px 118px 105px 118px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .quote-day-norm  {
-        width: 1440px;
-    }
+  .quote-day-norm {
+    width: 1440px;
+    margin-top: 64px;
+  }
 
-    .quote-fav-container {
-        display: flex;
-        height: 302px;
-    }
-    
+  .quote-fav-container {
+    display: flex;
+    height: 302px;
+  }
 }
