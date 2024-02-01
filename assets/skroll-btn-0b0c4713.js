@@ -45,4 +45,4 @@ function P(e){const t=[e];K.innerHTML=t.reduce((o,{quote:r,author:s})=>o+`<p cla
         <h3 class="quote-author">${s}</h3>`,"")}//! CHECK DAY AND GET NEW QUOTE
 async function W(){const e=localStorage.getItem(h);if(isNaN(e)){S.error({timeout:5e3,title:"Error",message:error.message,position:"topRight"});return}if(parseInt(e)===L){const t=localStorage.getItem(N);if(t){const o=JSON.parse(t);P(o)}return}await z(),localStorage.setItem(h,L.toString())}W();//! ANIMATION 
 new D(".quote-info",{speed:26,startDelay:300,waitUntilVisible:!0,afterComplete:function(e){e.destroy()}}).go();new D("#motivation-txt",{speed:26,startDelay:300,waitUntilVisible:!0,afterComplete:function(e){e.destroy()}}).go();const X=100,E=document.querySelector(".skroll-btn"),Z=()=>window.scrollY||document.documentElement.scrollTop;window.addEventListener("scroll",()=>{Z()>X?E.classList.add("skroll-btn-active"):E.classList.remove("skroll-btn-active")});E.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})});export{te as a};
-//# sourceMappingURL=skroll-btn-b6f63ed5.js.map
+//# sourceMappingURL=skroll-btn-0b0c4713.js.map
