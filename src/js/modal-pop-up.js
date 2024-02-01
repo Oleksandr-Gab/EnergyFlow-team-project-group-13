@@ -1,10 +1,13 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
+import iconURL from '../img/sprite.svg';
 // document.addEventListener('DOMContentLoaded', () => {
 //     activeModalBtn();
 // });
+const iconHeart = `<svg class="icon-heart" width="32" height="32">
+<use href="${iconURL}#heart"></use>
+</svg>`
 
 const exerciseModal = document.getElementById('exerciseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -182,13 +185,13 @@ export const auditLocal = () => {
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
-                addToFavoritesBtn.innerText = "Delete favorite";
+                addToFavoritesBtn.innerHTML = "Add to favorites" + iconHeart;
                 addToFavoritesBtn.removeEventListener('click', addToFavorite)
                 addToFavoritesBtn.addEventListener('click', deleteToFavorite)
             } else {
                 addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
                 addToFavoritesBtn.addEventListener('click', addToFavorite);
-                addToFavoritesBtn.innerText = "Add to favorites";
+                addToFavoritesBtn.innerHTML = "Add to favorites" + iconHeart;
             }
         });
     }
