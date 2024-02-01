@@ -96,7 +96,6 @@ new TypeIt("#fan-quote", {
     }
 }).go();
 
-
 function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);

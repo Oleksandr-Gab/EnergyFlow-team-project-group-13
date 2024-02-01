@@ -92,6 +92,7 @@ async function renderCard(data) {
         </div>`;
     
     exerciseInfo.insertAdjacentHTML('afterbegin', modalHtml);
+    auditLocal()
     openModal();
 }
 
@@ -104,7 +105,6 @@ export function openModal() {
     closeModalBtn.addEventListener('click', closeModal);
     document.addEventListener('mouseup', outsideClick);
     document.addEventListener('keydown', escapeKey);
-    auditLocal()
 }
 
 // --- Закриття модалки 
