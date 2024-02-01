@@ -1,13 +1,14 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-//HELLO
 
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
-let titleSlash = document.querySelector('#slash');
+const FIELD_SEARCH_WRAPER = document.querySelector('.field-search-wraper');
+const TITLE_SLASH = document.querySelector('#slash');
+//BASE URL
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
@@ -16,17 +17,14 @@ export let exercisesData;
 
 const MUSCLES_BUTTON = document.querySelector('button[name="Muscles"]');
 
+//слухач на завантаження сторінки
 document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
-
-  //відображати активні кнопки
-
+  //відображати активний фільтр Exercises
   MUSCLES_BUTTON.classList.add('filter-active');
-  let pagesButton = document.querySelector('.pg-num-btn');
-  console.log(pagesButton);
-  // pagesButton.classList.add('pg-num-btn-active');
 });
 
+//ф-ція get API DATA
 export const getExercisesData = async ({ filter, page, limit }) => {
   try {
     exercisesData = await API_BASE_URL.get('/filters', {
@@ -42,15 +40,16 @@ export const getExercisesData = async ({ filter, page, limit }) => {
   }
 };
 
+//слухач на список фільтрів
 FILTER_LIST.addEventListener('click', event => {
   event.preventDefault();
-
-  //очищення карток та сторінок
-
+  //очищення зайвої розмітки
   GALLERY.innerHTML = '';
   PAGES_LIST.innerHTML = '';
   WAIST.innerHTML = '';
-titleSlash.innerHTML = '';
+  TITLE_SLASH.innerHTML = '';
+  FIELD_SEARCH_WRAPER.style = 'display:none';
+
   if (event.target.tagName === 'BUTTON') {
     document.querySelectorAll('.filter-button').forEach(button => {
       button.classList.remove('filter-active');
@@ -61,14 +60,19 @@ titleSlash.innerHTML = '';
   }
 });
 
+//слухач на список сторінок
 PAGES_LIST.addEventListener('click', event => {
   event.preventDefault();
+
+  //очищення зайвої розмітки
+  WAIST.innerHTML = '';
+  PAGES_LIST.innerHTML = '';
+  GALLERY.innerHTML = '';
+  TITLE_SLASH.innerHTML = '';
+  FIELD_SEARCH_WRAPER.style = 'display:none';
+
   // гортання сторінок
   if (event.target.tagName === 'BUTTON') {
-    PAGES_LIST.innerHTML = '';
-    GALLERY.innerHTML = '';
-
-    //виклик ф-ції з обраним користувачем фільтром та сторінкою
     callApiWithQuery({
       filter: event.target.name,
       page: event.target.id,
@@ -76,8 +80,7 @@ PAGES_LIST.addEventListener('click', event => {
   }
 });
 
-// генерація розмітки
-
+// пагінація та генерація розмітки
 async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
   try {
     const renderExercises = await getExercisesData({ filter, page, limit });
