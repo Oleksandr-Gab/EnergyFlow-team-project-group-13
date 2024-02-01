@@ -33,59 +33,26 @@ const apiWaist = axios.create({
 
 // ----- Функція запиту -----------------------------
 const fetchExercises = async (lastString, { params }) => {
-  const exercises = await apiWaist.get(lastString, {
+  return await apiWaist.get(lastString, {
     params,
   });
-  return exercises;
 };
 
-// ----Запит --------------------------------------------
-// galleryDalley.addEventListener('click', event => {
-//   event.preventDefault();
-//   if (
-//     event.target.nodeName !== 'DIV' &&
-//     event.target.nodeName !== 'H3' &&
-//     event.target.nodeName !== 'P'
-//   ) {
-//     return;
-//   }
-//   galleryWaist.innerHTML = '';
-//   galleryDalley.innerHTML = '';
-//   titleSlash.innerHTML = '';
-//   paginationWrapper.innerHTML = '';
-//   paginationBtn.style.display = 'block';
-//   searchContainer.style.display = 'block';
-//   galleryWaist.classList.add('information-cards');
+paginationWrapper.addEventListener('click', event => {
+  event.preventDefault();
 
-//   paramObj = event.target.id;
-//   paramArr = paramObj.split(':');
-
-//   apiWaist.defaults.params = {
-//     page: page,
-//     limit: viewportWidth > 1400 ? '9' : '8',
-//     muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
-//     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
-//     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
-//   };
-
-//   titleSlash.insertAdjacentHTML(
-//     'beforeend',
-//     `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
-//   );
-
-//   fetchExercises('/exercises', {
-//     params: {},
-//   })
-//     .then(response => {
-//       renderExercises(response.data.results);
-//     })
-//     .catch(error => {
-//       iziToast.error({
-//         message: error.message,
-//         position: 'topRight',
-//       });
-//     });
-// });
+  console.log(event.target.id);
+  if (event.target.nodeName === 'BUTTON') {
+    request(event.target.id);
+  }
+  paginationBtn.innerHTML = '';
+  galleryWaist.innerHTML = '';
+  galleryDalley.innerHTML = '';
+  titleSlash.innerHTML = '';
+  paginationWrapper.innerHTML = '';
+  // paginationBtn.style.display = 'block';
+  searchContainer.style.display = 'block';
+});
 
 // ----------------------------------------------------------
 //  ----- перероблена функція ----
@@ -127,12 +94,13 @@ galleryDalley.addEventListener('click', event => {
   request();
 });
 let markupBtnPgs = '';
-function request() {
+function request(page) {
   fetchExercises('/exercises', {
-    params: {},
+    params: { page },
   })
     .then(response => {
       totalPages = response.data.totalPages;
+      let markupBtnPgs = '';
       const quantityBtnPgs = () => {
         // let markupBtnPgs = '';
         for (let i = 1; i <= totalPages; i++) {
@@ -148,7 +116,6 @@ function request() {
         }
         return markupBtnPgs;
       };
-
       const pgn = quantityBtnPgs();
       paginationWrapper.innerHTML = pgn;
       renderExercises(response.data.results);
@@ -192,7 +159,7 @@ searchBtn.addEventListener('click', event => {
       console.log(response.data.totalPages);
       if (response.data.totalPages === null) {
         heightViewport.style.height = '100vh';
-        galleryWaist.innerHTML = `<div class='invalid-name'>${partError}</div>`;
+        galleryWaist.innerHTML = `<div class="invalid-name">${partError}</div>`;
       }
       renderExercises(response.data.results);
     })
@@ -223,7 +190,7 @@ export function renderExercises(arr) {
                 <use href="${iconURL}#icon-star"></use>
             </svg>
         </div>
-                 
+
         <div class="workout-btn-container" data-action="right">
             <button class="workout-btn" id="${_id}">Start
             <svg class="icon-right" width="14" height="16">
