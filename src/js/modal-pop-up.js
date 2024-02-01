@@ -161,7 +161,7 @@ const addToFavorite = () => {
 
 // функція  видалення інфи в localStor
 
-const deleteToFavorite = () => {
+export const deleteToFavorite = async () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
     let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
@@ -171,7 +171,6 @@ const deleteToFavorite = () => {
             localStorage.removeItem('favoritesCard');
         };
     auditLocal();
-    // saveExercises();
 }
 
 // Функція перевірки localStor
