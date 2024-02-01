@@ -4,13 +4,15 @@ import TypeIt from "typeit";
 
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../../img/sprite.svg';
+import iconDUMURL from '../../img/dumbbell.svg';
+
 
 // import { checkDay } from '../quote-of-the-day';
 // import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
 
 
-const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+const favoriteInfo = `<img class='favoritePart-img' src='${iconDUMURL}' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
 const quoteFavContainer = document.querySelector('.quote-fav-info');

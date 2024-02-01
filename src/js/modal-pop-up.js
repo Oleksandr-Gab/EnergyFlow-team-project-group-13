@@ -3,6 +3,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../img/sprite.svg';
 
+
 // import { saveExercises } from './favorites/favoritePart';
 // document.addEventListener('DOMContentLoaded', () => {
 //     activeModalBtn();
