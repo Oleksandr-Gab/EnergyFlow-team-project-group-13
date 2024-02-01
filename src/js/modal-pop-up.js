@@ -180,18 +180,18 @@ export const auditLocal = () => {
 
     if (!localFavCart) {addToFavoritesBtn.addEventListener('click', addToFavorite);
                         addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
-                        addToFavoritesBtn.innerText = "Add to favorites";
+                        addToFavoritesBtn.innerHTML = `Add to favorites ${iconHeart}`
                     }
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
-                addToFavoritesBtn.innerHTML = "Add to favorites" + iconHeart;
+                addToFavoritesBtn.innerHTML = `remove favorite ${iconHeart}`;
                 addToFavoritesBtn.removeEventListener('click', addToFavorite)
                 addToFavoritesBtn.addEventListener('click', deleteToFavorite)
             } else {
                 addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
                 addToFavoritesBtn.addEventListener('click', addToFavorite);
-                addToFavoritesBtn.innerHTML = "Add to favorites" + iconHeart;
+                addToFavoritesBtn.innerHTML = `Add to favorites ${iconHeart}`;
             }
         });
     }
