@@ -50,6 +50,10 @@
   padding-left: 44px;
   min-height: 125px;
 }
+.quote-fav-info{
+  padding-left: 44px;
+  min-height: 125px;
+}
 .quote-text {
   color: var(--colorTextQuote);
   font-size: 14px;
@@ -129,6 +133,11 @@
   .quote-info {
     padding-left: 50px;
   }
+  .quote-fav-info{
+    padding-left: 50px;
+    min-height: 125px;
+  }
+
   .quote-text {
     font-size: 16px;
     line-height: 1.5;
