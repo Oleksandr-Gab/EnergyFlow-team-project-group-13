@@ -12,6 +12,7 @@
   background: #e8e8e8;
   width: 335px;
 }
+
 .section-title {
   display: flex;
   padding-left: 20px;
@@ -23,7 +24,7 @@
 
 .search-block {
   display: flex;
-  padding-left: 20px;   
+  padding-left: 20px;
   flex-direction: row;
   gap: 20px;
 }
@@ -40,16 +41,17 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   border: none;
   border-radius: 30px;
   background: var(--bodyBackground);
-
   color: #1b1b1b;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.28;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+  cursor: pointer;
 }
+
 .filter-active {
   color: var(--textCardTitle);
   background: var(--colorHoverBtn);
@@ -59,30 +61,10 @@
   color: var(--textCardTitle);
   background: var(--colorHoverBtn);
 }
+
 .field-search-wraper {
   display: none;
 }
-/* #search {
-  display: inline-flex;
-  padding: 12px 236px 12px 14px;
-  border: none;
-  border-radius: 30px;
-  background-color: var(--bodyBackground);
-
-  gap: 10px;
-  font-size: 14px;
-  height: 38px;
-
-}
-.search-icon {
-    position: absolute;
-    right: 14px;
-    top: 12px;    
-    width: 18px;
-    height: 18px;
-    fill:transparent;    
-
-} */
 
 .gallery {
   margin-top: 40px;
@@ -95,26 +77,32 @@
 
 .gallery-item {
   position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
 }
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .card {
   width: 295px;
   height: 232px;
+  position: relative;
 }
+
 .card:after {
   content: '';
   width: 100%;
   height: 100%;
-
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(16, 16, 16, 0.7) 0%,
-    rgba(16, 16, 16, 0.7) 100%
-  );
+  background: linear-gradient(0deg, rgba(16, 16, 16, 0.7) 0%, rgba(16, 16, 16, 0.7) 100%);
   border-radius: 12px;
 }
+
 .gallery-image {
   width: 100%;
   height: 100%;
@@ -129,7 +117,6 @@
   gap: 2px;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   top: 50%;
   left: 50%;
@@ -149,6 +136,7 @@
   line-height: 1.5;
   color: var(--textCartText);
 }
+
 .pagination-btn {
   margin-top: 20px;
   display: flex;
@@ -159,6 +147,7 @@
   line-height: 1.6;
   letter-spacing: 0.04em;
 }
+
 .pg-num-btn {
   display: flex;
   width: 32px;
@@ -169,6 +158,7 @@
   color: rgba(27, 27, 27, 0.4);
   background-color: transparent;
 }
+
 .pg-num-btn-active {
   color: inherit;
   border-radius: 50%;
@@ -179,7 +169,6 @@
   color: inherit;
   border-radius: 50%;
   border: 1px solid #1b1b1b;
-  
 }
 
 /* tablet 768px + */
