@@ -1,14 +1,17 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import TypeIt from "typeit";
+
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../../img/sprite.svg';
+import iconDUMURL from '../../img/dumbbell.svg';
+
 
 // import { checkDay } from '../quote-of-the-day';
 // import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
 
-const favoriteInfo = "<img class='favoritePart-img' src='./img/dumbbell.svg' alt=''> <p class='favoritePart-text'>It appears that you haven't added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>";
+const favoriteInfo = `<img class='favoritePart-img' src='${iconDUMURL}' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
 const savedFavorites = localStorage.getItem('favoritesCard');
 const quoteFavContainer = document.querySelector('.quote-fav-info');
@@ -96,7 +99,10 @@ new TypeIt("#fan-quote", {
     }
 }).go();
 
-function saveExercises() {
+
+// зчитування та додавання карток
+
+export function saveExercises() {
   if (savedFavorites != null) {
     arrFavorite = JSON.parse(savedFavorites);
       try {
@@ -115,6 +121,42 @@ function saveExercises() {
   }
 }
 
+const delet = (data) => {
+  let localFavCart = localStorage.getItem('favoritesCard');
+  let pars = JSON.parse(localFavCart)
+      try {
+      let newLocalFavCart = pars.filter(el => el._id != data);
+      if (newLocalFavCart.length != 0) {
+          renderFavorites(newLocalFavCart);
+          localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
+      } else {
+          localStorage.removeItem('favoritesCard');
+          favoritePartInfo.innerHTML = ' ';
+          favoritePartInfo.insertAdjacentHTML('afterbegin', favoriteInfo);
+          favoritePartInfo.style.justifyContent = 'center';
+      };
+      } catch (error) {
+        iziToast.error({
+          message: "Error, query. repeat the request.",
+          color: 'red',
+          position: 'topCenter',
+        });
+      }
+
+}
+
+// активація кнопочки видалення 
+const actBtnTrash = async () => {
+  const btnsTrash = document.querySelectorAll(".trash");
+  btnsTrash.forEach(t => {
+    t.addEventListener('click', (event) =>{
+      let id = event.currentTarget.id;
+      console.log(id);
+      delet(id);
+    })
+  })
+}
+
 async function renderFavorites(arr) {
   let favCard = arr.reduce(
       (html, { burnedCalories, name, bodyPart, time, target, _id }) =>
@@ -123,7 +165,7 @@ async function renderFavorites(arr) {
       <div class="header-card">
         <div class="fav-titel-card">  
           <div class="workout">WORKOUT</div>
-            <div class="trash">
+            <div class="trash" id="${_id}">
               <svg class="icon-trash" width="16" height="16">
                 <use href="${iconURL}#trash"></use>
               </svg>
@@ -155,28 +197,8 @@ async function renderFavorites(arr) {
       ''
     )
     favoritePartInfo.innerHTML = favCard;
-  activeModalBtn();
+    activeModalBtn();
+  actBtnTrash()
 }
 
-
 saveExercises();
-
-// actBtnTrash();
-// // deleteToFavorite
-
-
-
-// const actBtnTrash = () => {
-//     const btnsTrash = document.querySelectorAll(".trash");
-//     btnsTrash.forEach(el => console.log(el))
-//     //   el.addEventListener('click'), event => 
-//     // console.log(event));
-
-
-//     favoritePartInfo.addEventListener('click', event => {
-//     event.preventDefault();
-//     console.log(event.currentTarget.id);
-//   })
-   
-// }
-

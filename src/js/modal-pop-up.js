@@ -2,10 +2,13 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../img/sprite.svg';
+
+
+// import { saveExercises } from './favorites/favoritePart';
 // document.addEventListener('DOMContentLoaded', () => {
 //     activeModalBtn();
 // });
-const iconHeart = `<svg class="icon-heart" width="32" height="32">
+const iconHeart = `<svg class="heart" width="32" height="32">
 <use href="${iconURL}#heart"></use>
 </svg>`
 
@@ -17,15 +20,16 @@ const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
 let openModalBtn;
 let modallResponseData;
 
+const fModaLApi = axios.create({
+    baseURL: 'https://energyflow.b.goit.study/api/exercises',
+});
+
+
 async function getData(id) {
     try {
-        const modallApi = axios.create({
-            baseURL: 'https://energyflow.b.goit.study/api/exercises',
-        });
-        const responseModall = await modallApi.get(id);
+        const responseModall = await fModaLApi.get(id);
         modallResponseData = responseModall.data;
         renderCard(modallResponseData);
-
     } catch (error) {
         iziToast.error({
             title: 'Error',
@@ -41,6 +45,7 @@ export const activeModalBtn = () => {
         item.addEventListener('click', (event) =>{
             event.preventDefault();
             let id = event.target.id;
+            if (!id) return 
             getData(id);
         });
     });
@@ -92,7 +97,6 @@ async function renderCard(data) {
         </div>`;
     
     exerciseInfo.insertAdjacentHTML('afterbegin', modalHtml);
-    auditLocal()
     openModal();
 }
 
@@ -100,6 +104,7 @@ async function renderCard(data) {
 
 
 export function openModal() {
+    auditLocal();
     exerciseModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeModalBtn.addEventListener('click', closeModal);
@@ -160,7 +165,7 @@ const addToFavorite = () => {
 
 // функція  видалення інфи в localStor
 
-const deleteToFavorite = () => {
+export const deleteToFavorite = async () => {
     const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
     let newLocalFavCart = JSON.parse(localFavCart).filter(el => el._id != _id);
@@ -185,7 +190,7 @@ export const auditLocal = () => {
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
             if (el._id == _id) {
-                addToFavoritesBtn.innerHTML = `remove favorite ${iconHeart}`;
+                addToFavoritesBtn.innerHTML = `Remove favorite ${iconHeart}`;
                 addToFavoritesBtn.removeEventListener('click', addToFavorite)
                 addToFavoritesBtn.addEventListener('click', deleteToFavorite)
             } else {
