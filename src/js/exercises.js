@@ -2,7 +2,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const searchWraper = document.querySelector('.field-search-wraper');
+const WAIST_PAGINATION = document.querySelector('.waist-pagination');
 const FILTER_LIST = document.querySelector('.filter-list');
 const GALLERY = document.querySelector('.gallery');
 const PAGES_LIST = document.querySelector('.pagination-btn');
@@ -52,6 +52,7 @@ FILTER_LIST.addEventListener('click', event => {
   WAIST.innerHTML = '';
   TITLE_SLASH.innerHTML = '';
   FIELD_SEARCH_WRAPER.style = 'display:none';
+  WAIST_PAGINATION.innerHTML = '';
 
   if (event.target.tagName === 'BUTTON') {
     document.querySelectorAll('.filter-button').forEach(button => {
