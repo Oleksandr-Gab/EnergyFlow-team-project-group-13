@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await callApiWithQuery({ filter: 'Muscles' });
 
   //відображати активні кнопки
- 
+
   MUSCLES_BUTTON.classList.add('filter-active');
   let pagesButton = document.querySelector('.pg-num-btn');
   console.log(pagesButton);
@@ -101,7 +100,7 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
     const imgs = renderExercises.data.results.reduce(
       (html, { name, filter, imgUrl }) =>
         html +
-        `<li class="gallery-item" id=${name}>
+        `<li class="gallery-item" >
           <div class="card" >
              <img class="gallery-image"
              src="${imgUrl}"
