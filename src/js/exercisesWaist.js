@@ -4,7 +4,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { activeModalBtn } from './modal-pop-up.js';
-import iconURL from '../../img/sprite.svg';
+import iconURL from '../img/sprite.svg';
 
 //  -------Текст при відсутності вправи ------
 const partError =
