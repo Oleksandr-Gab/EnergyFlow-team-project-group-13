@@ -3,6 +3,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../img/sprite.svg';
 
+
 // import { saveExercises } from './favorites/favoritePart';
 // document.addEventListener('DOMContentLoaded', () => {
 //     activeModalBtn();
@@ -19,12 +20,14 @@ const addToFavoritesBtn = document.getElementById('addToFavoritesBtn');
 let openModalBtn;
 let modallResponseData;
 
+const fModaLApi = axios.create({
+    baseURL: 'https://energyflow.b.goit.study/api/exercises',
+});
+
+
 async function getData(id) {
     try {
-        const modallApi = axios.create({
-            baseURL: 'https://energyflow.b.goit.study/api/exercises',
-        });
-        const responseModall = await modallApi.get(id);
+        const responseModall = await fModaLApi.get(id);
         modallResponseData = responseModall.data;
         renderCard(modallResponseData);
     } catch (error) {
@@ -42,6 +45,7 @@ export const activeModalBtn = () => {
         item.addEventListener('click', (event) =>{
             event.preventDefault();
             let id = event.target.id;
+            if (!id) return 
             getData(id);
         });
     });

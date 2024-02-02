@@ -58,6 +58,7 @@ paginationWrapper.addEventListener('click', event => {
 //  ----- перероблена функція ----
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
+  markupBtnPgs = '';
   // гортання сторінок
   // if (event.target.tagName === 'BUTTON') {
   //   galleryWaist.innerHTML = '';
@@ -66,16 +67,17 @@ galleryDalley.addEventListener('click', event => {
 
   if (
     event.target.nodeName !== 'DIV' &&
-    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'H2' &&
     event.target.nodeName !== 'P'
   ) {
     return;
   }
+  paginationWrapper.innerHTML = '';
   paginationBtn.innerHTML = '';
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
   titleSlash.innerHTML = '';
-  paginationWrapper.innerHTML = '';
+
   // paginationBtn.style.display = 'block';
   searchContainer.style.display = 'block';
   galleryWaist.classList.add('information-cards');
@@ -89,7 +91,10 @@ galleryDalley.addEventListener('click', event => {
     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-
+   titleSlash.insertAdjacentHTML(
+    'beforeend',
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+  );
   //виклик ф-ції з обраним користувачем фільтром та сторінкою
   request();
 });
@@ -99,6 +104,7 @@ function request(page) {
     params: { page },
   })
     .then(response => {
+      totalPages = 0;
       totalPages = response.data.totalPages;
       let markupBtnPgs = '';
       const quantityBtnPgs = () => {
@@ -119,6 +125,7 @@ function request(page) {
       const pgn = quantityBtnPgs();
       paginationWrapper.innerHTML = pgn;
       renderExercises(response.data.results);
+      console.log(totalPages);
     })
     .catch(error => {
       iziToast.error({
@@ -128,7 +135,40 @@ function request(page) {
     });
 }
 
+// ---- pagination ----------
+
 // -----------------------------------------------------------
+
+paginationWrapper.addEventListener('click', event => {
+  // totalPages = 0;
+  markupBtnPgs = '';
+  galleryWaist.innerHTML = '';
+  console.log(totalPages);
+  // paramObj = event.target.id;
+  const pageNum = event.target.textContent * 1;
+  paramArr = paramObj.split(':');
+  apiWaist.defaults.params = {
+    page: pageNum,
+    limit: viewportWidth > 1400 ? '9' : '8',
+    muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
+    bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
+    equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
+  };
+
+  fetchExercises('/exercises', {
+    params: {},
+  })
+    .then(response => {
+      // totalPages = response.data.totalPages;
+      renderExercises(response.data.results);
+    })
+    .catch(error => {
+      iziToast.error({
+        message: error.message,
+        position: 'topRight',
+      });
+    });
+});
 // ----- Пошук вправи за інпутом -----------------------------
 
 let inputValue;
@@ -139,8 +179,6 @@ searchPart.addEventListener('input', event => {
 searchBtn.addEventListener('click', event => {
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
-  console.log(paramArr);
-  console.log(paramObj);
   // -------------------------------------------------------------
   apiWaist.defaults.params = {
     page: 1,
