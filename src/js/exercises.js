@@ -9,8 +9,8 @@ const PAGES_LIST = document.querySelector('.pagination-btn');
 const WAIST = document.querySelector('.waist');
 const FIELD_SEARCH_WRAPER = document.querySelector('.field-search-wraper');
 const TITLE_SLASH = document.querySelector('#slash');
-//BASE URL
 
+//BASE URL
 export const API_BASE_URL = axios.create({
   baseURL: 'https://energyflow.b.goit.study/api',
 });
