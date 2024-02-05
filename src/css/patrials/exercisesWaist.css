@@ -6,6 +6,8 @@
 
   padding-top: 40px;
   padding-bottom: 20px;
+  height: auto;
+  transition: height 1s ease;
 }
 
 .name-description {
@@ -53,7 +55,6 @@
 .search-icon {
   fill: transparent;
   position: relative;
-  /* top: 150px; */
   bottom: 26px;
   left: 266px;
 }
@@ -191,27 +192,85 @@
   stroke: var(--blackColorText-Background);
 }
 
-.waist-pagination {
+/* .waist-pagination {
   display: flex;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
-/* .pagination-btn {
-  column-gap: 8px;
+/* ------------------------------------ */
+
+.main-waist-btn-container {
+  width: 325px;
+  overflow: hidden;
+  display: none;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 32px;
-  display: none;
 }
 
-.pagination-item {
+.container-waist-btn {
+  position: relative;
+  height: 60px;
+  background-color: #e8e8e8;
+  display: flex;
+  column-gap: 130px;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.left-waist-btn {
+  background-color: inherit;
+  height: 60px;
+  flex-grow: 1;
+  position: relative;
+  z-index: 7;
+}
+
+.right-waist-btn {
+  position: relative;
+  background-color: inherit;
+  height: 60px;
+  flex-grow: 1;
+  z-index: 7;
+}
+
+.waist-pagination {
+  height: 52px;
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  background-color: inherit;
+  position: absolute;
+  top: 5px;
+  z-index: 3;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  left: 50%;
+  transform: translateX(-16px);
+}
+
+.btn-item-waist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ------------------- */
   width: 32px;
   height: 32px;
-  border: 1px solid #000;
+  /* ------------------------ */
   border-radius: 50%;
-} */
+  color: rgba(27, 27, 27, 0.4);
+  cursor: pointer;
+}
+
+.btn-waist-active {
+  border: 1px solid #1b1b1b;
+  color: #1b1b1b;
+}
+
+/* ---------------------------------------------- */
 
 @media screen and (min-width: 768px) {
   .waist {
@@ -243,6 +302,9 @@
   }
   .search-icon {
     left: 216px;
+  }
+  .main-waist-btn-container {
+    /* width: 576px; */
   }
 }
 
