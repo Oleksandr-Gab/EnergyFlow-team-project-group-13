@@ -201,3 +201,4 @@ async function renderFavorites(arr) {
 }
 
 saveExercises();
+

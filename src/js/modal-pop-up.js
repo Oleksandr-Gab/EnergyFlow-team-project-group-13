@@ -4,10 +4,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 import iconURL from '../img/sprite.svg';
 
 
-// import { saveExercises } from './favorites/favoritePart';
-// document.addEventListener('DOMContentLoaded', () => {
-//     activeModalBtn();
-// });
 const iconHeart = `<svg class="heart" width="32" height="32">
 <use href="${iconURL}#heart"></use>
 </svg>`
@@ -176,7 +172,6 @@ export const deleteToFavorite = async () => {
             localStorage.removeItem('favoritesCard');
         };
     auditLocal( _id );
-    // await saveExercises();
 }
 
 // Функція перевірки localStor
