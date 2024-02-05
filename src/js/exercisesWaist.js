@@ -19,12 +19,16 @@ const galleryWaist = document.querySelector('.waist');
 const searchPart = document.querySelector('#search');
 const paginationBtn = document.querySelector('.pagination-btn');
 const paginationWrapper = document.querySelector('.waist-pagination');
+const btnActive = document.querySelectorAll('.btn-waist-active');
+const waistBtnContainer = document.querySelector('.main-waist-btn-container');
 
 const viewportWidth = innerWidth;
 let paramArr;
 let paramObj;
 let page = 1;
 let totalPages;
+let baseTranslate = 16;
+let activeBtn = 1;
 
 // -------- Екземпляр AXIOS ------------------------------------
 const apiWaist = axios.create({
@@ -38,32 +42,8 @@ const fetchExercises = async (lastString, { params }) => {
   });
 };
 
-paginationWrapper.addEventListener('click', event => {
-  event.preventDefault();
-
-  console.log(event.target.id);
-  if (event.target.nodeName === 'BUTTON') {
-    request(event.target.id);
-  }
-  paginationBtn.innerHTML = '';
-  galleryWaist.innerHTML = '';
-  galleryDalley.innerHTML = '';
-  titleSlash.innerHTML = '';
-  paginationWrapper.innerHTML = '';
-  // paginationBtn.style.display = 'block';
-  searchContainer.style.display = 'block';
-});
-
-// ----------------------------------------------------------
-//  ----- перероблена функція ----
 galleryDalley.addEventListener('click', event => {
   event.preventDefault();
-  markupBtnPgs = '';
-  // гортання сторінок
-  // if (event.target.tagName === 'BUTTON') {
-  //   galleryWaist.innerHTML = '';
-  //   galleryDalley.innerHTML = '';
-  // }
 
   if (
     event.target.nodeName !== 'DIV' &&
@@ -78,12 +58,14 @@ galleryDalley.addEventListener('click', event => {
   galleryDalley.innerHTML = '';
   titleSlash.innerHTML = '';
 
-  // paginationBtn.style.display = 'block';
+  baseTranslate = 16;
+  activeBtn = 1;
+  waistBtnContainer.style.display = 'block';
   searchContainer.style.display = 'block';
   galleryWaist.classList.add('information-cards');
-
   paramObj = event.target.id;
   paramArr = paramObj.split(':');
+  // ----------------------------------------------------------------
   apiWaist.defaults.params = {
     page: page,
     limit: viewportWidth > 1400 ? '9' : '8',
@@ -91,41 +73,17 @@ galleryDalley.addEventListener('click', event => {
     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-   titleSlash.insertAdjacentHTML(
+  // -----------------------------------------------------------------
+  titleSlash.insertAdjacentHTML(
     'beforeend',
     `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
   );
-  //виклик ф-ції з обраним користувачем фільтром та сторінкою
-  request();
-});
-let markupBtnPgs = '';
-function request(page) {
   fetchExercises('/exercises', {
-    params: { page },
+    params: {},
   })
     .then(response => {
-      totalPages = 0;
-      totalPages = response.data.totalPages;
-      let markupBtnPgs = '';
-      const quantityBtnPgs = () => {
-        // let markupBtnPgs = '';
-        for (let i = 1; i <= totalPages; i++) {
-          //если значение ключа page приведенное к Number = счетчику
-          if (Number(page) === i) {
-            //добавить в разметку класс pg-num-btn-active
-            markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn pg-num-btn-active" type="button"
- >${i}</button></li> `;
-          } else {
-            markupBtnPgs += `<li id="${i}"  class="pg-item" > <button id="${i}" class="pg-num-btn" type="button"
- >${i}</button></li> `;
-          }
-        }
-        return markupBtnPgs;
-      };
-      const pgn = quantityBtnPgs();
-      paginationWrapper.innerHTML = pgn;
       renderExercises(response.data.results);
-      console.log(totalPages);
+      paginationWaist(response.data.totalPages);
     })
     .catch(error => {
       iziToast.error({
@@ -133,33 +91,58 @@ function request(page) {
         position: 'topRight',
       });
     });
-}
+});
 
-// ---- pagination ----------
-
-// -----------------------------------------------------------
-
+// ==============================
 paginationWrapper.addEventListener('click', event => {
-  // totalPages = 0;
-  markupBtnPgs = '';
+  event.preventDefault();
+  const arrItem = [...paginationWrapper.children];
+
+  let page = event.target.id * 1;
+  let translate = 42;
+
+  if (page > activeBtn && event.target.tagName === 'LI') {
+    paginationWrapper.style.transform = `translateX(-${(baseTranslate +=
+      translate)}px)`;
+    activeBtn = event.target.id * 1;
+  } else if (page < activeBtn && event.target.tagName === 'LI') {
+    paginationWrapper.style.transform = `translateX(-${(baseTranslate -=
+      translate)}px)`;
+    activeBtn = page;
+  }
+
+  const forArr = arrItem.forEach(item => {
+    if (item.classList[1] && event.target.tagName === 'LI') {
+      item.classList.remove('btn-waist-active');
+    }
+  });
+  if (event.target.tagName === 'LI') {
+    event.target.classList.add('btn-waist-active');
+  }
+
+  paginationBtn.innerHTML = '';
   galleryWaist.innerHTML = '';
-  console.log(totalPages);
-  // paramObj = event.target.id;
-  const pageNum = event.target.textContent * 1;
-  paramArr = paramObj.split(':');
+  galleryDalley.innerHTML = '';
+  titleSlash.innerHTML = '';
+  searchContainer.style.display = 'block';
+  galleryWaist.classList.add('information-cards');
+  // ------------------------------------------------------------
   apiWaist.defaults.params = {
-    page: pageNum,
+    page: page,
     limit: viewportWidth > 1400 ? '9' : '8',
     muscles: paramArr[0] === 'Muscles' ? paramArr[1] : null,
     bodypart: paramArr[0] === 'Body parts' ? paramArr[1] : null,
     equipment: paramArr[0] === 'Equipment' ? paramArr[1] : null,
   };
-
+  // -------------------------------------------------------------
+  titleSlash.insertAdjacentHTML(
+    'beforeend',
+    `<p>&#8260;<span class="title-span">${paramArr[1]}</span></p>`
+  );
   fetchExercises('/exercises', {
     params: {},
   })
     .then(response => {
-      // totalPages = response.data.totalPages;
       renderExercises(response.data.results);
     })
     .catch(error => {
@@ -169,6 +152,7 @@ paginationWrapper.addEventListener('click', event => {
       });
     });
 });
+
 // ----- Пошук вправи за інпутом -----------------------------
 
 let inputValue;
@@ -179,6 +163,8 @@ searchPart.addEventListener('input', event => {
 searchBtn.addEventListener('click', event => {
   galleryWaist.innerHTML = '';
   galleryDalley.innerHTML = '';
+  paginationWrapper.innerHTML = '';
+  activeBtn = 1;
   // -------------------------------------------------------------
   apiWaist.defaults.params = {
     page: 1,
@@ -194,12 +180,14 @@ searchBtn.addEventListener('click', event => {
     params: {},
   })
     .then(response => {
-      console.log(response.data.totalPages);
+      totalPages = response.data.totalPages;
+
       if (response.data.totalPages === null) {
         heightViewport.style.height = '100vh';
         galleryWaist.innerHTML = `<div class="invalid-name">${partError}</div>`;
       }
       renderExercises(response.data.results);
+      paginationWaist(totalPages);
     })
     .catch(error => {
       iziToast.error({
@@ -257,4 +245,16 @@ export function renderExercises(arr) {
     )
   );
   activeModalBtn();
+}
+
+// ----- Рендер кнопок пагінації ---------------
+function paginationWaist(numb) {
+  for (let i = 1; i <= numb; i++) {
+    paginationWrapper.insertAdjacentHTML(
+      'beforeend',
+      `<li class="btn-item-waist" id="${i}">${i}</li>`
+    );
+  }
+  paginationWrapper.firstChild.classList.add('btn-waist-active');
+  paginationWrapper.style.transform = 'translateX(-1px)';
 }
