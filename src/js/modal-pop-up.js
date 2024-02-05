@@ -44,15 +44,16 @@ export const activeModalBtn = () => {
     openModalBtn.forEach(item => {
         item.addEventListener('click', (event) =>{
             event.preventDefault();
-            let id = event.target.id;
-            if (!id) return 
+            let id = event.currentTarget.id;
+            if (!id) return;
             getData(id);
+            auditLocal(id)
         });
     });
 };
 
 async function renderCard(data) {
-    const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time } = data;
+    const { bodyPart, burnedCalories, description, equipment, gifUrl, name, popularity, rating, target, time, _id } = data;
     const modalHtml = `
         <div class="gif">
         <img src="${gifUrl}" alt="${name}" >
@@ -104,7 +105,6 @@ async function renderCard(data) {
 
 
 export function openModal() {
-    auditLocal();
     exerciseModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeModalBtn.addEventListener('click', closeModal);
@@ -150,6 +150,7 @@ const getObj = (data) => {
 // функція додавання інфи в localStor
 
 const addToFavorite = () => {
+    const { _id } = modallResponseData;
     let localFavCart = localStorage.getItem('favoritesCard');
     let newLocalFavCart = [];
 
@@ -160,7 +161,7 @@ const addToFavorite = () => {
     newLocalFavCart.push(newObj);
 
     localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
-    auditLocal()
+    auditLocal( _id )
 };
 
 // функція  видалення інфи в localStor
@@ -174,29 +175,25 @@ export const deleteToFavorite = async () => {
         } else {
             localStorage.removeItem('favoritesCard');
         };
-    auditLocal();
+    auditLocal( _id );
+    // await saveExercises();
 }
 
 // Функція перевірки localStor
 
-export const auditLocal = () => {
-    const { _id } = modallResponseData;
+export const auditLocal = (data) => {
     let localFavCart = localStorage.getItem('favoritesCard');
 
-    if (!localFavCart) {addToFavoritesBtn.addEventListener('click', addToFavorite);
-                        addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
-                        addToFavoritesBtn.innerHTML = `Add to favorites ${iconHeart}`
-                    }
+    addToFavoritesBtn.addEventListener('click', addToFavorite);
+    addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
+    addToFavoritesBtn.innerHTML = `Add to favorites ${iconHeart}`
+    
     if (localFavCart != null) {
         JSON.parse(localFavCart).forEach(el => {
-            if (el._id == _id) {
+            if (el._id == data) {
                 addToFavoritesBtn.innerHTML = `Remove favorite ${iconHeart}`;
-                addToFavoritesBtn.removeEventListener('click', addToFavorite)
-                addToFavoritesBtn.addEventListener('click', deleteToFavorite)
-            } else {
-                addToFavoritesBtn.removeEventListener('click', deleteToFavorite);
-                addToFavoritesBtn.addEventListener('click', addToFavorite);
-                addToFavoritesBtn.innerHTML = `Add to favorites ${iconHeart}`;
+                addToFavoritesBtn.removeEventListener('click', addToFavorite);
+                addToFavoritesBtn.addEventListener('click', deleteToFavorite);
             }
         });
     }

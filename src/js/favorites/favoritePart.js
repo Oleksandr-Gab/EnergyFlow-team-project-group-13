@@ -8,8 +8,8 @@ import iconDUMURL from '../../img/dumbbell.svg';
 
 
 // import { checkDay } from '../quote-of-the-day';
-// import { checkDay } from '../quote-of-the-day';
 import { activeModalBtn } from '../modal-pop-up';
+import { auditLocal } from '../modal-pop-up';
 
 const favoriteInfo = `<img class='favoritePart-img' src='${iconDUMURL}' alt=''> <p class='favoritePart-text'>It appears that you havent added any exercises to your favorites yet.To get started, you can add exercises that you like to your favorites for easier access in the future.</p>`;
 const favoritePartInfo = document.querySelector('.favoritePartInfo');
@@ -120,7 +120,7 @@ export function saveExercises() {
       favoritePartInfo.style.justifyContent = 'center';
   }
 }
-
+// функція видалення картки з файфоріт
 const delet = (data) => {
   let localFavCart = localStorage.getItem('favoritesCard');
   let pars = JSON.parse(localFavCart)
@@ -151,7 +151,6 @@ const actBtnTrash = async () => {
   btnsTrash.forEach(t => {
     t.addEventListener('click', (event) =>{
       let id = event.currentTarget.id;
-      console.log(id);
       delet(id);
     })
   })
@@ -172,8 +171,8 @@ async function renderFavorites(arr) {
             </div>
           </div>
 
-        <div class="workout-btn-container" data-action="right">
-          <button class="workout-btn" id="${_id}">Start
+        <div class="workout-btn-container" id="${_id}" data-action="right">
+          <button class="workout-btn">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="${iconURL}#icon-right"></use>
             </svg>
@@ -197,7 +196,7 @@ async function renderFavorites(arr) {
       ''
     )
     favoritePartInfo.innerHTML = favCard;
-    activeModalBtn();
+  activeModalBtn();
   actBtnTrash()
 }
 

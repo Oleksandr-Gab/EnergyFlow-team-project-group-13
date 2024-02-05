@@ -217,8 +217,8 @@ export function renderExercises(arr) {
             </svg>
         </div>
 
-        <div class="workout-btn-container" data-action="right">
-            <button class="workout-btn" id="${_id}">Start
+        <div class="workout-btn-container" id="${_id}" data-action="right">
+            <button class="workout-btn">Start
             <svg class="icon-right" width="14" height="16">
                 <use href="${iconURL}#icon-right"></use>
             </svg>
