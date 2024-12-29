@@ -1,48 +1,87 @@
-// import axios from 'axios';
-// import { id } from './modals-functions';
-// // для додавання 'npm install izitoast --save'
+import axios from 'axios';
 
-// import { operationSuccess } from 'izitoast';
+import { errorResult, successResult } from './services/iziToast.js';
 
-// const refs = {
-//   modalBackdrop: document.querySelector('.js-backdrop-modal'),
-//   form: document.querySelector('.js-rating-form'),
-//   exerciseModal: document.querySelector('.modal'),
-//   rateValue: document.querySelector('.js-rating-data'),
-//   starsContainer: document.querySelector('.js-stars-list'),
-// };
+import {
+  closeModalPop,
+  modallResponseData,
+  renderCard,
+} from './modal-pop-up.js';
 
-// refs.form.addEventListener('submit', handleSubmit);
-// refs.starsContainer.addEventListener('click', handleStarClick);
+const giveRatingBtn = document.getElementById('giveRatingBtn');
+const modalForm = document.querySelector('.js-backdrop-modal');
+const closeModalBtn = document.querySelector('.js-rating-close');
+const form = document.querySelector('.js-rating-form');
+const rateValue = document.querySelector('.js-rating-data');
+const starsContainer = document.querySelector('.js-stars-list');
+const submitBtn = document.querySelector('.js-raiting-submit');
 
-// function handleStarClick(e) {
-//   if (e.target.classList.contains('rating-label')) {
-//     refs.rateValue.textContent = `${e.target.dataset.rate}.0`;
-//   }
-// }
+// -------- Екземпляр AXIOS ------------------------------------
+const axiosRating = axios.create({
+  baseURL: 'https://energyflow.b.goit.study/api/exercises/',
+});
 
-// async function handleSubmit(e) {
-//   e.preventDefault();
-//   try {
-//     const response = await axios.patch(
-//       `https://energyflow.b.goit.study/api/exercises/${id}/rating`,
-//       {
-//         rate: parseInt(e.target.elements.rating.value),
-//         email: e.target.elements.email.value.trim(),
-//         review: e.target.elements.comment.value.trim(),
-//       }
-//     );
-//     operationSuccess('Thank you! Your opinion really important for us!');
-//   } catch (error) {
-//     throw new Error(error.message);
-//   } finally {
-//     resetForm();
-//   }
-// }
+function openModal() {
+  closeModalPop();
+  modalForm.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  closeModalBtn.addEventListener('click', closeModal);
+  form.addEventListener('submit', handleSubmit);
+  starsContainer.addEventListener('click', handleClickOnStar);
+}
 
-// export function resetForm() {
-//   refs.modalBackdrop.classList.remove('is-open');
-//   refs.exerciseModal.classList.remove('is-open');
-//   refs.rateValue.textContent = '0.0';
-//   refs.form.reset();
-// }
+function closeModal() {
+  modalForm.classList.remove('is-open');
+  closeModalBtn.removeEventListener('click', closeModal);
+  form.removeEventListener('submit', handleSubmit);
+  starsContainer.removeEventListener('click', handleClickOnStar);
+
+  renderCard(modallResponseData);
+}
+
+export const activeModalBtnForm = () => {
+  giveRatingBtn.addEventListener('click', openModal);
+};
+
+function handleClickOnStar(event) {
+  const rate = form.elements.rating.value;
+  !!rate ? (rateValue.innerHTML = rate + '.0') : (rateValue.innerHTML = '0.0');
+}
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  const id = modallResponseData._id;
+
+  const rate = Number(form.elements.rating.value);
+  const email = form.elements.email.value.trim();
+  const review = form.elements.comment.value.trim();
+
+  const re = /\S+@\S+\.\S+/;
+
+  if (rate === '') {
+    errorResult('Please set your estimation!');
+    return;
+  }
+  if (email === '' || !re.test(email)) {
+    errorResult('Please enter your email!');
+    return;
+  }
+
+  if (review === '') {
+    errorResult('Please enter your review!');
+    return;
+  }
+
+  try {
+    await axiosRating.patch(`/${id}/rating`, {
+      rate,
+      email,
+      review,
+    });
+    successResult('Thank you! Your opinion really important for us!');
+    form.reset();
+    closeModal();
+  } catch (error) {
+    errorResult(error.message);
+  }
+}

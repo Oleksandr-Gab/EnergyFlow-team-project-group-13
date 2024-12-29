@@ -81,7 +81,7 @@
   }
 
   .favoritePartInfo {
-    align-content: center;
+    align-content: flex-start;
     flex-direction: row;
     align-items: normal;
     flex-wrap: wrap;

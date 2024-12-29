@@ -38,7 +38,8 @@ body #exerciseModal.open {
   width: 295px;
 }
 
-#addToFavoritesBtn {
+#addToFavoritesBtn,
+#giveRatingBtn {
   background-color: var(--greyColorText-Background-Btn);
   color: var(--whiteBackground);
   width: 295px;
@@ -51,11 +52,12 @@ body #exerciseModal.open {
   margin-bottom: 9px;
 }
 
-#addToFavoritesBtn:hover {
+#addToFavoritesBtn:hover,
+#giveRatingBtn:hover {
   background-color: var(--colorHoverBtn);
 }
 
-#giveRatingBtn {
+/* #giveRatingBtn {
   background-color: var(--whiteBackground);
   color: #1b1b1b;
   width: 295px;
@@ -69,7 +71,7 @@ body #exerciseModal.open {
 
 #giveRatingBtn:hover {
   background-color: var(--greyBackground);
-}
+} */
 
 .heart {
   width: 20px;

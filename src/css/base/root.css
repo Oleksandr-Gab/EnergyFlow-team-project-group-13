@@ -1,4 +1,3 @@
-
 /* в даномуц файлі змінні для використання в стилізаціях 
 для використання приклад color: var(--blackColorText-Background);
 */
@@ -11,20 +10,35 @@
 }
 */
 @font-face {
-    font-family: 'DM-Sans';
-    src: url('../../fonts/DMSans-Variable.ttf');
-  }
-
-  :root {
-    --bodyBackground: rgba(246, 246, 246, 1);
-    --whiteBackground: rgba(255, 255, 255, 1); /* білий стандартний колір фону */
-    --greyBackground: rgba(232, 232, 232, 1); /* світло-сірий колір фону */
-    --greyColorText-Background-Btn: rgba(126, 132, 127, 1); /* сірий колір фону, шрифту та кнопок */
-    --blackColorText-Background: rgba(27, 27, 27, 1); /* темно-сірий колір фону тв шрифту */
-    --colorHoverBtn: rgba(95, 101, 96, 1); /* колір Hover кнопок */
-    --colorTextQuote: rgba(246, 246, 246, 0.6); /* окремий колір тексту */
-    --textCardTitle: rgba(246, 246, 246, 1); /* колір тексту назви карти */
-    --textCartText: rgba(246, 246, 246, 0.4); /* колір додаткового тексту карти */
-    --colorFooterSpan: rgba(246, 246, 246, 0.3); /* колір вставки "BODY" у футері */
+  font-family: 'DM-Sans';
+  src: url('../../fonts/DMSans-Variable.ttf');
 }
 
+:root {
+  --bodyBackground: rgba(246, 246, 246, 1);
+  --whiteBackground: rgba(255, 255, 255, 1); /* білий стандартний колір фону */
+  --greyBackground: rgba(232, 232, 232, 1); /* світло-сірий колір фону */
+  --greyColorText-Background-Btn: rgba(
+    126,
+    132,
+    127,
+    1
+  ); /* сірий колір фону, шрифту та кнопок */
+  --blackColorText-Background: rgba(
+    27,
+    27,
+    27,
+    1
+  ); /* темно-сірий колір фону тв шрифту */
+  --colorHoverBtn: rgba(95, 101, 96, 1); /* колір Hover кнопок */
+  --colorTextQuote: rgba(246, 246, 246, 0.6); /* окремий колір тексту */
+  --textCardTitle: rgba(246, 246, 246, 1); /* колір тексту назви карти */
+  --textCartText: rgba(246, 246, 246, 0.4); /* колір додаткового тексту карти */
+  --colorFooterSpan: rgba(
+    246,
+    246,
+    246,
+    0.3
+  ); /* колір вставки "BODY" у футері */
+  --action-star: rgba(238, 161, 12, 1); /*колір активної зірочки рейтингу*/
+}
