@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { errorResult, successResult } from './helpers/iziToast';
+import { validateEmail } from './helpers/validateEmail';
 
 const footerform = document.querySelector('.footer-form');
 const footerInput = document.querySelector('.footer-form-input');
@@ -14,9 +15,8 @@ async function handleSubmit(event) {
 
   const footerEmailValue =
     event.currentTarget.elements.footerInput.value.trim();
-  if (!validateEmail(footerEmailValue)) {
-    return errorResult('Please give us a valid email.');
-  }
+
+  if (!validateEmail(footerEmailValue)) return;
 
   try {
     const response = await axios.post(baseURL, {
@@ -35,8 +35,3 @@ async function handleSubmit(event) {
     footerInput.value = '';
   }
 }
-
-const validateEmail = email => {
-  const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-  return pattern.test(email);
-};

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { errorResult, messageInfo, successResult } from './helpers/iziToast';
+import { validateEmail } from './helpers/validateEmail';
 
 const prizes = [
   {
@@ -210,15 +211,9 @@ async function prizeSubmit(event) {
   event.preventDefault();
 
   const prizeEmailValue = event.currentTarget.elements.prizeInput.value.trim();
-  if (!validateEmailPrize(prizeEmailValue)) {
-    return messageInfo('Please give us a valid email.');
-  }
-}
 
-const validateEmailPrize = email => {
-  const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-  return pattern.test(email);
-};
+  if (!validateEmail(prizeEmailValue)) return;
+}
 
 var modal = document.getElementById('myModalPrize');
 var openModalBtnPrize = document.getElementById('openModalBtnPrize');
@@ -250,12 +245,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var email = document.getElementById('email-prize').value;
 
     // Перевіряємо, чи є валідний email
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      // Якщо не валідний, виводимо повідомлення і виходимо
-      errorResult('Enter a valid email!');
-      return;
-    }
+    if (!validateEmail(email)) return;
+
     successResult('Form submitted!');
     setTimeout(function () {
       closePrizeModal();

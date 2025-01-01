@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { errorResult } from './helpers/iziToast';
+import { Loader } from './helpers/loader';
 
 const WAIST_PAGINATION = document.querySelector('.waist-pagination');
 const FILTER_LIST = document.querySelector('.filter-list');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 //ф-ція get API DATA
 export const getExercisesData = async ({ filter, page, limit }) => {
   try {
+    GALLERY.innerHTML = Loader;
     exercisesData = await API_BASE_URL.get('/filters', {
       params: { filter, page, limit },
     });

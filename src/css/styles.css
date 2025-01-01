@@ -20,7 +20,12 @@
 @import url('./patrials/favoritePart.css');
 @import url('./patrials/quote-day-norm.css');
 
+/* loader */
+@import url('./patrials/loader.css');
+
+/*  */
 @import url('./patrials/skroll-btn.css');
+
 /* стилі модалок */
 @import url('./patrials/modal-pop-up.css');
 @import url('./patrials/modal-form.css');

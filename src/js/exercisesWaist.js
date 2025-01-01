@@ -3,6 +3,7 @@ import axios from 'axios';
 import { activeModalBtn } from './modal-pop-up.js';
 import iconURL from '../img/sprite.svg';
 import { errorResult } from './helpers/iziToast.js';
+import { Loader } from './helpers/loader.js';
 
 //  -------Текст при відсутності вправи ------
 const partError =
@@ -35,6 +36,7 @@ const apiWaist = axios.create({
 
 // ----- Функція запиту -----------------------------
 const fetchExercises = async (lastString, { params }) => {
+  galleryWaist.innerHTML = Loader;
   return await apiWaist.get(lastString, {
     params,
   });
@@ -191,12 +193,10 @@ searchBtn.addEventListener('click', event => {
 
 // ---Рендер карток --------------------------------
 export function renderExercises(arr) {
-  galleryWaist.insertAdjacentHTML(
-    'afterbegin',
-    arr.reduce(
-      (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
-        html +
-        `<li class="waist-gallery-card">
+  const waist = arr.reduce(
+    (html, { burnedCalories, name, bodyPart, rating, time, target, _id }) =>
+      html +
+      `<li class="waist-gallery-card">
       <div class="header-card">
         <div class="workout">WORKOUT</div>
         <div class="rating">
@@ -230,9 +230,9 @@ export function renderExercises(arr) {
             <li class="target"><span class="params-text">Target:</span> ${target}</li>
       </ul>
     </li>`,
-      ''
-    )
+    ''
   );
+  galleryWaist.innerHTML = waist;
   activeModalBtn();
 }
 

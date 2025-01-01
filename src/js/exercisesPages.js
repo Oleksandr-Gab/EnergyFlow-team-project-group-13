@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { errorResult } from './helpers/iziToast';
+import { Loader } from './helpers/loader';
 
 const exercisesSectionContainer = document.querySelector('.search-block');
 const renderBtnListElement = document.querySelector('.custom-pagination-btn');

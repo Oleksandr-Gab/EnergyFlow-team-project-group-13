@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-import { errorResult, successResult } from './helpers/iziToast.js';
+import { errorResult, messageInfo, successResult } from './helpers/iziToast.js';
 
 import {
   closeModalPop,
   modallResponseData,
   renderCard,
 } from './modal-pop-up.js';
+import { validateEmail } from './helpers/validateEmail.js';
 
 const giveRatingBtn = document.getElementById('giveRatingBtn');
 const modalForm = document.querySelector('.js-backdrop-modal');
@@ -28,6 +29,8 @@ function openModal() {
   closeModalBtn.addEventListener('click', closeModal);
   form.addEventListener('submit', handleSubmit);
   starsContainer.addEventListener('click', handleClickOnStar);
+  document.addEventListener('mouseup', outsideClick);
+  document.addEventListener('keydown', escapeKey);
 }
 
 function closeModal() {
@@ -35,9 +38,30 @@ function closeModal() {
   closeModalBtn.removeEventListener('click', closeModal);
   form.removeEventListener('submit', handleSubmit);
   starsContainer.removeEventListener('click', handleClickOnStar);
-
+  document.removeEventListener('mouseup', outsideClick);
+  document.removeEventListener('keydown', escapeKey);
+  form.reset();
+  rateValue.innerHTML = '0.0';
   renderCard(modallResponseData);
 }
+
+// --- Кліки по бєкдропу та esc
+
+const outsideClick = function (event) {
+  const container = document.querySelector('.rating-modal-wrapper');
+  if (
+    !container.contains(event.target) &&
+    modalForm.classList.contains('is-open')
+  ) {
+    closeModal();
+  }
+};
+
+const escapeKey = function (event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+};
 
 export const activeModalBtnForm = () => {
   giveRatingBtn.addEventListener('click', openModal);
@@ -56,19 +80,10 @@ async function handleSubmit(event) {
   const email = form.elements.email.value.trim();
   const review = form.elements.comment.value.trim();
 
-  const re = /\S+@\S+\.\S+/;
+  if (!validateEmail(email)) return;
 
-  if (rate === '') {
-    errorResult('Please set your estimation!');
-    return;
-  }
-  if (email === '' || !re.test(email)) {
-    errorResult('Please enter your email!');
-    return;
-  }
-
-  if (review === '') {
-    errorResult('Please enter your review!');
+  if (rate == 0 || review === '') {
+    messageInfo('Fill in the fields');
     return;
   }
 
