@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { errorResult, successResult } from './services/iziToast.js';
+// import { errorResult, successResult } from './services/iziToast.js';
 
 import {
   closeModalPop,
@@ -58,19 +58,19 @@ async function handleSubmit(event) {
 
   const re = /\S+@\S+\.\S+/;
 
-  if (rate === '') {
-    errorResult('Please set your estimation!');
-    return;
-  }
-  if (email === '' || !re.test(email)) {
-    errorResult('Please enter your email!');
-    return;
-  }
+  // if (rate === '') {
+  //   errorResult('Please set your estimation!');
+  //   return;
+  // }
+  // if (email === '' || !re.test(email)) {
+  //   errorResult('Please enter your email!');
+  //   return;
+  // }
 
-  if (review === '') {
-    errorResult('Please enter your review!');
-    return;
-  }
+  // if (review === '') {
+  //   errorResult('Please enter your review!');
+  //   return;
+  // }
 
   try {
     await axiosRating.patch(`/${id}/rating`, {
@@ -78,10 +78,10 @@ async function handleSubmit(event) {
       email,
       review,
     });
-    successResult('Thank you! Your opinion really important for us!');
+    // successResult('Thank you! Your opinion really important for us!');
     form.reset();
     closeModal();
   } catch (error) {
-    errorResult(error.message);
+    // errorResult(error.message);
   }
 }
