@@ -1,6 +1,6 @@
 import axios from 'axios';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+
+import { errorResult, messageInfo, successResult } from './helpers/iziToast';
 
 const prizes = [
   {
@@ -211,22 +211,13 @@ async function prizeSubmit(event) {
 
   const prizeEmailValue = event.currentTarget.elements.prizeInput.value.trim();
   if (!validateEmailPrize(prizeEmailValue)) {
-    return messageValidEmailPrize();
+    return messageInfo('Please give us a valid email.');
   }
 }
 
 const validateEmailPrize = email => {
   const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
   return pattern.test(email);
-};
-
-const messageValidEmailPrize = () => {
-  iziToast.info({
-    title: '',
-    message: 'Please give us a valid email.',
-    color: 'white',
-    position: 'center',
-  });
 };
 
 var modal = document.getElementById('myModalPrize');
@@ -262,28 +253,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       // Якщо не валідний, виводимо повідомлення і виходимо
-      iziToast.error({
-        title: 'Error',
-        message: 'Enter a valid email!',
-        zIndex: 1001,
-        timeout: 2000, // Display for 3 seconds
-        backgroundColor: 'white', // Red background
-        color: 'black', // White text
-        iconColor: 'black', // White icon
-      });
+      errorResult('Enter a valid email!');
       return;
     }
-
-    iziToast.success({
-      title: 'Success',
-      message: 'Form submitted!',
-      zIndex: 1001,
-      timeout: 2000, // Display for 3 seconds
-      backgroundColor: 'white', // Red background
-      color: 'black', // White text
-      iconColor: 'black', // White icon
-    });
-
+    successResult('Form submitted!');
     setTimeout(function () {
       closePrizeModal();
     }, 1000);

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import { errorResult } from './helpers/iziToast';
 
 const WAIST_PAGINATION = document.querySelector('.waist-pagination');
 const FILTER_LIST = document.querySelector('.filter-list');
@@ -34,11 +33,7 @@ export const getExercisesData = async ({ filter, page, limit }) => {
     });
     return exercisesData;
   } catch (error) {
-    iziToast.error({
-      message: error.message,
-      color: 'red',
-      position: 'topCenter',
-    });
+    errorResult(error.message);
   }
 };
 
@@ -122,21 +117,11 @@ async function callApiWithQuery({ filter, page = 1, limit = 12 }) {
       ''
     );
 
-    /* var.2
-    передача через id объекта параметров выбранного фильтра
-    <p class="name-description" id='${JSON.stringify({filter, name, })}'>${name}</p>
-    */
-
     const markupBtnPgs = quantityBtnPgs();
 
     PAGES_LIST.innerHTML = markupBtnPgs;
     GALLERY.innerHTML = imgs;
   } catch (error) {
-    console.error(error);
-    iziToast.error({
-      message: error.message,
-      color: 'red',
-      position: 'topCenter',
-    });
+    errorResult(error.message);
   }
 }

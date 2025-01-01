@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
 import { activeModalBtn } from './modal-pop-up.js';
 import iconURL from '../img/sprite.svg';
+import { errorResult } from './helpers/iziToast.js';
 
 //  -------Текст при відсутності вправи ------
 const partError =
@@ -86,10 +84,7 @@ galleryDalley.addEventListener('click', event => {
       paginationWaist(response.data.totalPages);
     })
     .catch(error => {
-      iziToast.error({
-        message: error.message,
-        position: 'topRight',
-      });
+      errorResult(error.message);
     });
 });
 
@@ -146,10 +141,7 @@ paginationWrapper.addEventListener('click', event => {
       renderExercises(response.data.results);
     })
     .catch(error => {
-      iziToast.error({
-        message: error.message,
-        position: 'topRight',
-      });
+      errorResult(error.message);
     });
 });
 
@@ -190,10 +182,7 @@ searchBtn.addEventListener('click', event => {
       paginationWaist(totalPages);
     })
     .catch(error => {
-      iziToast.error({
-        message: error.message,
-        position: 'topRight',
-      });
+      errorResult(error.message);
     })
     .finally(() => {
       searchPart.value = '';

@@ -1,6 +1,5 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
+import { errorResult } from './helpers/iziToast';
 
 const exercisesSectionContainer = document.querySelector('.search-block');
 const renderBtnListElement = document.querySelector('.custom-pagination-btn');
@@ -19,19 +18,9 @@ const apiService = {
       });
       return response.data.results;
     } catch (error) {
-      console.error(error);
-      handleApiError(error);
+      errorResult('An error occurred while fetching data from the API.');
     }
   },
-};
-
-// Обробник помилок
-const handleApiError = error => {
-  iziToast.error({
-    title: 'API Error',
-    message: 'An error occurred while fetching data from the API.',
-  });
-  throw error;
 };
 
 // HTML для фільтрів
@@ -41,9 +30,7 @@ const generateFilterMarkup = async queryParams => {
     const data = await apiService.fetchFilters({ ...queryParams });
     return data.map(generateFilterItemHTML).join('');
   } catch (error) {
-    console.error(error);
-    handleRenderingError();
-    return '';
+    errorResult('An error occurred while fetching data from the API.');
   }
 };
 
@@ -58,13 +45,6 @@ const generateFilterItemHTML = filterItem => {
           </li>`;
 };
 
-const handleRenderingError = () => {
-  iziToast.error({
-    title: 'Rendering Error',
-    message: 'An error occurred while rendering data.',
-  });
-};
-
 // Рендер першої сторінки
 const renderPageOneContent = async markup => {
   try {
@@ -72,8 +52,7 @@ const renderPageOneContent = async markup => {
     const renderedMarkup = await markup;
     exercisesSectionContainer.innerHTML = renderedMarkup;
   } catch (error) {
-    console.error(error);
-    handleRenderingError();
+    errorResult('An error occurred while rendering data.');
   }
 };
 

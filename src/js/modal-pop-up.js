@@ -1,8 +1,9 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+
 import iconURL from '../img/sprite.svg';
 import { activeModalBtnForm } from './modal-form.js';
+import { errorResult, messageInfo } from './helpers/iziToast.js';
 
 const iconHeart = `<svg class="heart" width="32" height="32">
 <use href="${iconURL}#heart"></use>
@@ -26,11 +27,7 @@ async function getData(id) {
     modallResponseData = responseModall.data;
     renderCard(modallResponseData);
   } catch (error) {
-    iziToast.error({
-      title: 'Error',
-      message: 'Error fetching exercise data: ',
-      position: 'topRight',
-    });
+    errorResult(error.message);
   }
 }
 
@@ -196,6 +193,7 @@ const addToFavorite = () => {
 
   localStorage.setItem('favoritesCard', JSON.stringify(newLocalFavCart));
   auditLocal(_id);
+  messageInfo('Your exercise has been added to your favorites');
 };
 
 // функція  видалення інфи в localStor
@@ -210,6 +208,7 @@ export const deleteToFavorite = async () => {
     localStorage.removeItem('favoritesCard');
   }
   auditLocal(_id);
+  messageInfo('Your exercise has been removed from your favorites');
 };
 
 // Функція перевірки localStor

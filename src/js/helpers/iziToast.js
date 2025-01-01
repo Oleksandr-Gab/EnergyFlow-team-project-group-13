@@ -2,10 +2,10 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 function successResult(message) {
-  iziToast.show({
+  iziToast.success({
     position: 'topCenter',
     icon: 'icon-izi-toast',
-    title: 'Congradulation!',
+    title: 'OK!',
     titleSize: '20px',
     message: message,
     messageSize: '20px',
@@ -19,7 +19,7 @@ function successResult(message) {
 }
 
 function errorResult(message) {
-  iziToast.show({
+  iziToast.error({
     position: 'topCenter',
     icon: 'icon-izi-toast',
     title: 'Upps!',
@@ -35,4 +35,21 @@ function errorResult(message) {
   });
 }
 
-export { successResult, errorResult };
+function messageInfo(message) {
+  iziToast.info({
+    position: 'topCenter',
+    icon: 'icon-izi-toast',
+    title: '',
+    titleSize: '20px',
+    message: message,
+    messageSize: '20px',
+    titleColor: '7e847f',
+    messageColor: 'black',
+    backgroundColor: '#a6b0b0bd',
+    layout: 1,
+    theme: 'light',
+    timeout: 5000,
+  });
+}
+
+export { successResult, errorResult, messageInfo };
