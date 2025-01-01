@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/EnergyFlow-team-project-group-13/",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/glob": "^8.1.0",
     "glob": "^8.1.0",
     "vite": "^4.0.5"
   },
