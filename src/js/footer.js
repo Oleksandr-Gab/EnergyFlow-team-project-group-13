@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { errorResult, messageInfo, successResult } from './helpers/iziToast';
+import { errorResult, successResult } from './helpers/iziToast';
 
 const footerform = document.querySelector('.footer-form');
 const footerInput = document.querySelector('.footer-form-input');
@@ -15,7 +15,7 @@ async function handleSubmit(event) {
   const footerEmailValue =
     event.currentTarget.elements.footerInput.value.trim();
   if (!validateEmail(footerEmailValue)) {
-    return messageInfo('Please give us a valid email.');
+    return errorResult('Please give us a valid email.');
   }
 
   try {
